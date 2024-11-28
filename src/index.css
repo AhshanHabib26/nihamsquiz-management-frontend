@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+html,
+body {
+  height: 100%; /* Ensure the body and html elements take full height */
+  margin: 0; /* Remove default margin */
+}
+
+body {
+  color: #fff;
+
+  /* Fallback background color */
+  background-color: hsla(231, 100%, 1%, 1);
+
+  /* Gradient background */
+  background: linear-gradient(
+    90deg,
+    hsla(231, 100%, 1%, 1) 10%,
+    hsla(214, 100%, 4%, 1) 50%,
+    hsla(206, 100%, 3%, 1) 100%
+  );
+  background-repeat: no-repeat;
+
+  /* Vendor prefixes for compatibility */
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(231, 100%, 1%, 1) 10%,
+    hsla(214, 100%, 4%, 1) 50%,
+    hsla(206, 100%, 3%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(231, 100%, 1%, 1) 10%,
+    hsla(214, 100%, 4%, 1) 50%,
+    hsla(206, 100%, 3%, 1) 100%
+  );
+  background-repeat: no-repeat;
+
+  /* Ensure background covers the full screen */
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+.hind-siliguri-light {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.hind-siliguri-regular {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hind-siliguri-medium {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.hind-siliguri-semibold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hind-siliguri-bold {
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}

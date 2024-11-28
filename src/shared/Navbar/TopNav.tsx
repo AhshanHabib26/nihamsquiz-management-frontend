@@ -1,0 +1,150 @@
+import { Button } from "@/components/ui/button";
+import Container from "@/lib/Container";
+import { formattedBanglaDate } from "@/lib/ConvertDateInBangla";
+import { FaBars, FaDatabase, FaHome, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { MdOutlineQuiz } from "react-icons/md";
+import { IoIosPricetags } from "react-icons/io";
+
+const TopNav = () => {
+  return (
+    <div className="bg-gray-900 py-3 top-0 fixed w-full z-50">
+      <Container>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-5">
+            <div>
+              <h1 className="text-white text-xl uppercase hind-siliguri-semibold">
+                nihamsquiz
+              </h1>
+            </div>
+            <div className="hidden lg:block">
+              <div className="flex items-center gap-4">
+                <Link className="text-lg hover:text-TextPrimary" to="/">
+                  Home
+                </Link>
+                <Link className="text-lg hover:text-TextPrimary" to="/blog">
+                  Blog
+                </Link>
+                <Link className="text-lg hover:text-TextPrimary" to="/quiz">
+                  Quiz
+                </Link>
+                <Link
+                  className="text-lg hover:text-TextPrimary"
+                  to="/price-plan"
+                >
+                  Price Plan
+                </Link>
+                <Link className="text-lg hover:text-TextPrimary" to="/about-us">
+                  About Us
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="hidden lg:block">
+              <div className="flex items-center gap-5">
+                <p className="text-white text-lg">{formattedBanglaDate}</p>
+                <div>
+                  <Link to="/login">
+                    <Button
+                      size="lg"
+                      className=" bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                    >
+                      Get Started
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className=" block lg:hidden">
+              <Sheet>
+                <SheetTrigger>
+                  <FaBars className="text-white" />
+                </SheetTrigger>
+                <SheetContent
+                  side="left"
+                  className="w-[250px] bg-gray-900 border-r-0"
+                >
+                  <SheetHeader>
+                    <SheetTitle className="flex items-start">
+                      <Link
+                        className="text-xl text-gray-300 uppercase font-bold"
+                        to="/"
+                      >
+                        Nihamsquiz
+                      </Link>
+                    </SheetTitle>
+                      <hr className="border-dashed border-gray-700" />
+                    <SheetDescription className="flex items-start flex-col">
+                      <div className="flex flex-col items-start gap-2 mt-3">
+                        
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/"
+                        >
+                         <span className="flex items-center gap-1"><FaHome size={16} /> Home</span>
+                        </Link>
+                        
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/blog"
+                        >
+                          <span className="flex items-center gap-1"><FaDatabase size={16} /> Blog</span>
+                        </Link>
+                       
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/quiz"
+                        >
+                          <span className="flex items-center gap-1"><MdOutlineQuiz size={16} /> Quiz</span>
+                        </Link>
+
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/price-plan"
+                        >
+                          <span className="flex items-center gap-1">
+                            <IoIosPricetags size={16} /> Price Plan
+                          </span>
+                        </Link>
+
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/about-us"
+                        >
+                          <span className="flex items-center gap-1">
+                            <FaUser size={16} /> About Us
+                          </span>
+                        </Link>
+                      </div>
+                      <div className=" w-full mt-5">
+                        <Link to="/login">
+                          <Button
+                            size="lg"
+                            className=" w-full bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                          >
+                            Get Started
+                          </Button>
+                        </Link>
+                      </div>
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+};
+
+export default TopNav;
