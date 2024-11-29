@@ -38,15 +38,30 @@ const LoginPage = () => {
 
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.data.accessToken) as TUser;
-      dispatch(setUser({ user: user, token: res.data.accessToken }));
+
+      // Dispatch the user and token
+      dispatch(setUser({ user, token: res.data.accessToken }));
+
+      // Show success toast
       toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
 
-      if (res.data.accessToken) {
-        if (user.role === "admin") {
-          navigate(`/dashboard`);
-        } else if (user.role === "user" || user.role === "guest") {
-          navigate(`/`);
-        }
+      // Early return if no access token is found
+      if (!res.data.accessToken || !user) {
+        navigate("/");
+        return;
+      }
+
+      // Navigate based on user role
+      switch (user.role) {
+        case "admin":
+          navigate("/admin/dashboard");
+          break;
+        case "user":
+          navigate("/user/dashboard");
+          break;
+        default:
+          navigate("/");
+          break;
       }
     } catch (err) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });

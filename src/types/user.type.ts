@@ -4,5 +4,6 @@ export type TUser = {
   email: string;
   password: string;
   profilePhoto?: string;
-  role: "admin" | "user" | "guest";
+  role: "admin" | "user";
+  userName?: string;
 };

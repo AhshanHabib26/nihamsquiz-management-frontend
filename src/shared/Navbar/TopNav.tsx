@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Container from "@/lib/Container";
 import { formattedBanglaDate } from "@/lib/ConvertDateInBangla";
 import { FaBars, FaDatabase, FaHome, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -13,8 +13,30 @@ import {
 } from "@/components/ui/sheet";
 import { MdOutlineQuiz } from "react-icons/md";
 import { IoIosPricetags } from "react-icons/io";
+import { useAppSelector } from "@/redux/hooks";
+import {
+  logout,
+  selectCurrentUser,
+  useCurrentToken,
+} from "@/redux/features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const TopNav = () => {
+  const token = useAppSelector(useCurrentToken);
+  const user = useAppSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
+  const roleToDashboard: Record<string, string> = {
+    admin: "/admin/dashboard",
+    user: "/user/dashboard",
+  };
+
   return (
     <div className="bg-gray-900 py-3 top-0 fixed w-full z-50">
       <Container>
@@ -45,6 +67,16 @@ const TopNav = () => {
                 <Link className="text-lg hover:text-TextPrimary" to="/about-us">
                   About Us
                 </Link>
+                <>
+                  {user?.role && roleToDashboard[user.role] ? (
+                    <Link
+                      className="text-lg hover:text-TextPrimary"
+                      to={roleToDashboard[user.role]}
+                    >
+                      Dashboard
+                    </Link>
+                  ) : null}
+                </>
               </div>
             </div>
           </div>
@@ -52,16 +84,28 @@ const TopNav = () => {
             <div className="hidden lg:block">
               <div className="flex items-center gap-5">
                 <p className="text-white text-lg">{formattedBanglaDate}</p>
-                <div>
-                  <Link to="/login">
+                {token ? (
+                  <div>
                     <Button
+                      onClick={handleLogout}
                       size="lg"
-                      className=" bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                      className=" bg-red-600 hover:bg-red-700 text-lg font-light"
                     >
-                      Get Started
+                      Logout
                     </Button>
-                  </Link>
-                </div>
+                  </div>
+                ) : (
+                  <div>
+                    <Link to="/login">
+                      <Button
+                        size="lg"
+                        className=" bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                      >
+                        Get Started
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
             <div className=" block lg:hidden">
@@ -82,29 +126,34 @@ const TopNav = () => {
                         Nihamsquiz
                       </Link>
                     </SheetTitle>
-                      <hr className="border-dashed border-gray-700" />
+                    <hr className="border-dashed border-gray-700" />
                     <SheetDescription className="flex items-start flex-col">
                       <div className="flex flex-col items-start gap-2 mt-3">
-                        
                         <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
                           to="/"
                         >
-                         <span className="flex items-center gap-1"><FaHome size={16} /> Home</span>
+                          <span className="flex items-center gap-1">
+                            <FaHome size={16} /> Home
+                          </span>
                         </Link>
-                        
+
                         <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
                           to="/blog"
                         >
-                          <span className="flex items-center gap-1"><FaDatabase size={16} /> Blog</span>
+                          <span className="flex items-center gap-1">
+                            <FaDatabase size={16} /> Blog
+                          </span>
                         </Link>
-                       
+
                         <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
                           to="/quiz"
                         >
-                          <span className="flex items-center gap-1"><MdOutlineQuiz size={16} /> Quiz</span>
+                          <span className="flex items-center gap-1">
+                            <MdOutlineQuiz size={16} /> Quiz
+                          </span>
                         </Link>
 
                         <Link
@@ -125,16 +174,28 @@ const TopNav = () => {
                           </span>
                         </Link>
                       </div>
-                      <div className=" w-full mt-5">
-                        <Link to="/login">
+                      {token ? (
+                        <div className=" w-full mt-5">
                           <Button
+                            onClick={handleLogout}
                             size="lg"
-                            className=" w-full bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                            className=" w-full bg-red-600 hover:bg-red-700 text-lg font-light"
                           >
-                            Get Started
+                            Logout
                           </Button>
-                        </Link>
-                      </div>
+                        </div>
+                      ) : (
+                        <div className=" w-full mt-5">
+                          <Link to="/login">
+                            <Button
+                              size="lg"
+                              className=" w-full bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                            >
+                              Get Started
+                            </Button>
+                          </Link>
+                        </div>
+                      )}
                     </SheetDescription>
                   </SheetHeader>
                 </SheetContent>
