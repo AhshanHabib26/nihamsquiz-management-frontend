@@ -7,6 +7,10 @@ import ProtectedRoute from "@/layout/ProtectedRoute";
 import DHomePage from "@/pages/Dashboard/DHome";
 import AdminDashboardLayout from "@/layout/Dashboard/Admin/AdminDashboardLayout";
 import UserDashboardLayout from "@/layout/Dashboard/User/UserDashboardLayout";
+import BlogPage from "@/pages/Client/Blog";
+import QuizPage from "@/pages/Client/Quiz";
+import PricePlanPage from "@/pages/Client/PricePlan";
+import AboutUsPage from "@/pages/Client/AboutUs";
 
 export const routes = createBrowserRouter([
   {
@@ -16,6 +20,22 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/blog",
+        element: <BlogPage />,
+      },
+      {
+        path: "/quiz",
+        element: <QuizPage />,
+      },
+      {
+        path: "/price-plan",
+        element: <PricePlanPage />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUsPage />,
       },
     ],
   },

@@ -1,5 +1,11 @@
+import Banner from "@/components/client/Banner";
+
 const HomePage = () => {
-  return <div className="pt-20">HomePage</div>;
+  return (
+    <div>
+      <Banner />
+    </div>
+  );
 };
 
 export default HomePage;
