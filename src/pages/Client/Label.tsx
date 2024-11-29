@@ -35,7 +35,7 @@ const LabelPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className=" mt-16 lg:mt-20">
+      <div className=" mt-20 lg:mt-24">
         <Container>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 lg:col-span-8">

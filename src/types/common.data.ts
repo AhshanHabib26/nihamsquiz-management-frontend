@@ -62,6 +62,7 @@ export type TQuiz = {
 
 export type TQuizProps = {
   quiz: TQuiz;
+  index?: number;
   deleteHandler?: (id: string) => void;
 };
 

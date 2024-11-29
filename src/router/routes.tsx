@@ -8,7 +8,7 @@ import DHomePage from "@/pages/Dashboard/DHome";
 import AdminDashboardLayout from "@/layout/Dashboard/Admin/AdminDashboardLayout";
 import UserDashboardLayout from "@/layout/Dashboard/User/UserDashboardLayout";
 import BlogPage from "@/pages/Client/Blog";
-import QuizPage from "@/pages/Client/Quiz";
+import QuizPage from "@/pages/Client/Quiz/Quiz";
 import PricePlanPage from "@/pages/Client/PricePlan";
 import AboutUsPage from "@/pages/Client/AboutUs";
 import CategoryPage from "@/pages/Client/Category";

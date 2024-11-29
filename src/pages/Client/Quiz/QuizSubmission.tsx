@@ -52,10 +52,10 @@ const QuizSubmissionPage = () => {
   }).length;
 
   return (
-    <div className="my-10 max-w-6xl mx-auto">
+    <div className="mt-20 lg:mt-24 max-w-6xl mx-auto">
       <Container>
-        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-          <h1 className="text-2xl font-bold mb-4 text-center flex items-center justify-center">
+        <div className=" p-6 rounded-lg shadow-lg border border-gray-800">
+          <h1 className="text-2xl text-gray-300 font-bold mb-4 text-center flex items-center justify-center">
             <span className="mr-2">📚</span>
             Quiz Submission Details
           </h1>
@@ -71,8 +71,8 @@ const QuizSubmissionPage = () => {
                 !isCorrect && userAnswer?.selectedOption;
 
               return (
-                <div key={question?._id} className="border-b pb-4">
-                  <h2 className="text-lg font-semibold mb-2">
+                <div key={question?._id} className="border-b border-gray-800 pb-4">
+                  <h2 className="text-lg font-semibold mb-2 text-gray-300">
                     {question?.questionText}
                   </h2>
                   <ul className="list-disc pl-5">
@@ -86,10 +86,10 @@ const QuizSubmissionPage = () => {
                       ) {
                         optionClasses += " bg-red-200 text-red-700";
                       } else {
-                        optionClasses += " text-gray-700";
+                        optionClasses += " text-gray-300";
                       }
                       return (
-                        <li key={i} className={`${optionClasses} mb-2`}>
+                        <li key={i} className={`${optionClasses}  mb-2`}>
                           {option}
                         </li>
                       );
@@ -102,11 +102,11 @@ const QuizSubmissionPage = () => {
                       <span className="text-green-700">
                         {question?.correctOption}
                       </span>
-                      .
+                      
                     </p>
                   )}
                   {question?.explanation ? (
-                    <p className="mt-2 text-gray-700">
+                    <p className="mt-2 text-gray-300">
                       <strong>Explanation:</strong> {question?.explanation}
                     </p>
                   ) : null}
@@ -114,7 +114,7 @@ const QuizSubmissionPage = () => {
               );
             })}
           </div>
-          <div className="mt-6 bg-gray-200 p-4 rounded-md flex items-start lg:items-center lg:justify-between flex-col lg:flex-row justify-start">
+          <div className="mt-6 bg-gray-900 p-4 rounded-md flex items-start lg:items-center lg:justify-between flex-col lg:flex-row justify-start">
             <p className="text-lg font-semibold">
               Total Questions: {questions?.length}
             </p>
@@ -125,10 +125,10 @@ const QuizSubmissionPage = () => {
           </div>
           <div className="flex items-end justify-end">
             <Link
-              className=" bg-myBgPrimary hover:bg-myBgSecondary px-3 py-2 text-white rounded-sm mt-4"
-              to="/"
+              className=" bg-BgPrimary hover:bg-BgPrimaryHover px-3 py-2 text-white rounded-sm mt-4"
+              to="/quiz"
             >
-              Back to Home
+              Back to Quiz Page
             </Link>
           </div>
         </div>

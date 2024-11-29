@@ -1,5 +1,5 @@
 const PricePlanPage = () => {
-  return <div className="mt-16 lg:mt-20">PricePlanPage</div>;
+  return <div className="mt-20 lg:mt-24">PricePlanPage</div>;
 };
 
 export default PricePlanPage;

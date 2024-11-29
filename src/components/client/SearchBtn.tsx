@@ -19,7 +19,7 @@ const SearchBtn: React.FC<SearchBtnProps> = ({ setSearchText }) => {
             onChange={(e) => setSearchText(e.target.value)}
             type="text"
             className="pl-10 h-[50px] py-2 border border-gray-800 placeholder:text-gray-600 text-gray-600 hind-siliguri-regular rounded-md w-full"
-            placeholder="এখানে ব্লগ খুজুন..."
+            placeholder="এখানে খুজুন..."
           />
         </div>
         <span className="text-sm text-gray-300 hind-siliguri-light">

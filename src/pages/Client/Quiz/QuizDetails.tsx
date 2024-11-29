@@ -186,11 +186,11 @@ const QuizDetails = () => {
 
   return (
     <div className=" min-h-screen">
-      <div className="mt-10">
+      <div className=" mt-20 lg:mt-28">
         <Container>
           <div className="max-w-4xl mx-auto w-full ">
             {!isToggled && data?.data && (
-              <div className="flex flex-col lg:flex-row gap-5 border border-gray-200 rounded-md p-4">
+              <div className="flex flex-col lg:flex-row gap-5 border border-gray-800 rounded-md p-4">
                 <div className="flex items-center lg:items-start justify-center">
                   <img
                     className="w-full lg:w-[500px] h-[250px] rounded-md"
@@ -200,14 +200,14 @@ const QuizDetails = () => {
                 </div>
 
                 <div className="w-full">
-                  <h1 className="text-md hind-siliguri-medium text-gray-700">
+                  <h1 className="text-md hind-siliguri-medium text-gray-300">
                     Title:{" "}
                     <span className="hind-siliguri-semibold">
                       {data?.data?.title}
                     </span>
                   </h1>
 
-                  <div className="flex gap-1 text-md hind-siliguri-medium text-gray-700">
+                  <div className="flex gap-1 text-md hind-siliguri-medium text-gray-300">
                     Description:{" "}
                     {data?.data?.description && (
                       <p
@@ -218,30 +218,30 @@ const QuizDetails = () => {
                       ></p>
                     )}
                   </div>
-                  <p className="text-md hind-siliguri-medium text-gray-700">
+                  <p className="text-md hind-siliguri-medium text-gray-300">
                     Duration:{" "}
                     <span className="hind-siliguri-light">
                       {data?.data?.duration} Minutes
                     </span>
                   </p>
-                  <p className="text-md hind-siliguri-medium text-gray-700">
+                  <p className="text-md hind-siliguri-medium text-gray-300">
                     Level:{" "}
                     <span className="hind-siliguri-light">
                       {data?.data?.difficultyLevel}
                     </span>
                   </p>
-                  <p className="text-md hind-siliguri-medium text-gray-700">
+                  <p className="text-md hind-siliguri-medium text-gray-300">
                     Category:{" "}
                     <span className="hind-siliguri-light">
                       {data?.data?.category?.name}
                     </span>
                   </p>
-                  <div className="flex items-center gap-1 text-md hind-siliguri-medium text-gray-700 mt-2">
+                  <div className="flex items-center gap-1 text-md hind-siliguri-medium text-gray-300 mt-2">
                     <p>Tags: </p>
                     {data?.data?.tags.map((t: string, index: number) => (
                       <div
                         key={index}
-                        className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-400 rounded hover:text-orange-500 hover:border-orange-500"
+                        className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded hover:text-TextPrimary hover:border-blue-700"
                       >
                         <Link to={`/quiz/label/${t}`}>
                           <p className="hind-siliguri-light">{t}</p>
@@ -252,7 +252,7 @@ const QuizDetails = () => {
                   <div className="flex items-end justify-end">
                     <Button
                       size="lg"
-                      className="bg-gray-800 hover:bg-gray-700"
+                      className=" bg-BgPrimary hover:bg-BgPrimaryHover"
                       onClick={handleToggle}
                     >
                       Start Now
@@ -265,7 +265,7 @@ const QuizDetails = () => {
             {isToggled && data?.data && (
               <div className="mt-5">
                 {!reviewMode ? (
-                  <div className="border border-gray-200 rounded-md p-4 relative">
+                  <div className="border border-gray-800 rounded-md p-4 relative">
                     <div>
                       <p
                         className={`absolute top-0 right-0 w-[140px] py-1 text-center text-lg text-white hind-siliguri-light rounded-tr-sm ${
@@ -281,7 +281,7 @@ const QuizDetails = () => {
                       </p>
                       <div>
                         {/* Display question progress */}
-                        <span className="text-md bg-gray-700 text-white py-1 px-2 font-light inline-block rounded">
+                        <span className="text-md bg-gray-800 text-gray-300 py-1 px-2 font-light inline-block rounded">
                           Question {currentQuestionIndex + 1} of{" "}
                           {data?.data?.questions.length}
                         </span>
@@ -289,7 +289,7 @@ const QuizDetails = () => {
                         {/* Display question text */}
                         <div className="flex items-start lg:items-center gap-1 my-2">
                           <FaQuestion size={18} className="text-red-600" />
-                          <h1 className="text-lg hind-siliguri-semibold">
+                          <h1 className="text-lg text-gray-300 hind-siliguri-semibold">
                             {currentQuestion?.questionText}
                           </h1>
                         </div>
@@ -299,7 +299,7 @@ const QuizDetails = () => {
                           {currentQuestion?.options.map(
                             (option: string, i: number) => (
                               <div key={i}>
-                                <label className="flex items-center gap-2 text-lg">
+                                <label className="flex text-gray-300 items-center gap-2 text-lg">
                                   <input
                                     type="radio"
                                     name={`question-${currentQuestionIndex}`}
@@ -327,7 +327,7 @@ const QuizDetails = () => {
                                 `question-${currentQuestionIndex}`
                               ]
                                 ? "bg-orange-600"
-                                : "bg-gray-400"
+                                : "bg-gray-900"
                             } text-white rounded`}
                             disabled={
                               !selectedAnswers[
@@ -346,21 +346,21 @@ const QuizDetails = () => {
                   </div>
                 ) : (
                   <div>
-                    <h2 className="text-center text-xl hind-siliguri-semibold text-gray-600">
+                    <h2 className="text-center text-xl hind-siliguri-semibold text-gray-400">
                       Review Your Answers
                     </h2>
                     {data?.data?.questions.map((item: any, index: number) => (
                       <div
                         key={index}
-                        className="border border-gray-200 rounded-md p-4 mt-5"
+                        className="border border-gray-800 rounded-md p-4 mt-5"
                       >
-                        <h3 className="text-xl hind-siliguri-semibold">
+                        <h3 className="text-xl text-gray-300 hind-siliguri-semibold">
                           {item.questionText}
                         </h3>
                         <div>
                           {item.options.map((option: string, i: number) => (
                             <div key={i}>
-                              <label className="flex items-center gap-2 text-lg">
+                              <label className="flex text-gray-300 items-center gap-2 text-lg">
                                 <input
                                   type="radio"
                                   name={`question-${index}`}
@@ -369,7 +369,7 @@ const QuizDetails = () => {
                                     selectedAnswers[`question-${index}`] ===
                                     option
                                   }
-                                  disabled
+                                  
                                 />
                                 {option}
                               </label>
@@ -386,7 +386,7 @@ const QuizDetails = () => {
                     </button>
                     <button
                       onClick={handleReview}
-                      className="mt-4 ml-4 px-4 py-2 bg-gray-600 text-white rounded"
+                      className="mt-4 ml-4 px-4 py-2 bg-gray-900 text-white rounded"
                     >
                       Go Back
                     </button>

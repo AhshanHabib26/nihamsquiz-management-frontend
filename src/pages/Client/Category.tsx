@@ -35,7 +35,7 @@ const CategoryPage = () => {
 
   return (
     <div className=" min-h-screen ">
-      <div className="mt-16 lg:mt-20">
+      <div className="mt-20 lg:mt-24">
         <Container>
           <div>
             {!isLoading && (

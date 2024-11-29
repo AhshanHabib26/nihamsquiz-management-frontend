@@ -28,7 +28,7 @@ const QuizResultModal: React.FC<ModalProps> = ({
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4 text-center">
+        <h2 className="text-xl text-gray-800 font-semibold mb-4 text-center">
           Quiz Submitted
         </h2>
 
@@ -48,19 +48,19 @@ const QuizResultModal: React.FC<ModalProps> = ({
           </div>
         </div>
         {totalQuestions > 0 ? (
-          <p className="mt-4 text-lg font-semibold text-center">
+          <p className="mt-4 text-lg text-gray-800 font-semibold text-center">
             {Math.round((correctCount / totalQuestions) * 100) < 80
               ? "Keep Trying!"
               : "Great Job!"}{" "}
           </p>
         ) : null}
 
-        <p className="mt-2 text-center">
+        <p className="mt-2 text-center text-gray-800">
           You answered <span className=" font-semibold">{correctCount}</span>{" "}
           out of <span className=" font-semibold">{totalQuestions}</span>{" "}
           questions correctly!
         </p>
-        <p className="text-center">
+        <p className="text-center text-gray-800">
           You achieved a total of{" "}
           <span className={` font-semibold ${textColor}`}>{totalMarks}</span>{" "}
           marks.
@@ -69,13 +69,13 @@ const QuizResultModal: React.FC<ModalProps> = ({
         <div className="flex justify-end mt-6">
           <button
             onClick={onConfirm}
-            className="px-4 py-2 bg-green-500 text-white rounded mr-2"
+            className="px-4 py-2 bg-BgPrimary text-white rounded mr-2"
           >
             OK
           </button>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
+            className="px-4 py-2 bg-gray-800 text-gray-300 rounded"
           >
             See Details
           </button>

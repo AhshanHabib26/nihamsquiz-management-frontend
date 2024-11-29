@@ -34,7 +34,7 @@ const QuizCategoryPage = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="mt-10">
+      <div className="mt-16 lg:mt-20">
         <Container>
           <div>
             {!isLoading && (
@@ -42,14 +42,14 @@ const QuizCategoryPage = () => {
                 <div className="col-span-12 lg:col-span-8">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h1 className="text-2xl hind-siliguri-semibold text-gray-600">
+                      <h1 className="text-2xl hind-siliguri-semibold text-gray-300">
                         Quiz Category -{" "}
                       </h1>
-                      <p className="text-2xl font-medium text-myBgPrimary">
+                      <p className="text-2xl font-medium text-TextPrimary">
                         {id}
                       </p>
                     </div>
-                    <hr className=" my-2 border-[0.5] border-dashed border-gray-200" />
+                    <hr className=" my-2 border-[0.5] border-dashed border-gray-800" />
                     <div>
                       <div>
                         {selectedCategory && selectedCategory?.length === 0 ? (

@@ -34,24 +34,24 @@ const QuizLabelPage = () => {
 
   return (
     <div className=" min-h-screen">
-      <div className="mt-10">
+      <div className=" mt-16 lg:mt-20">
         <Container>
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 lg:col-span-8">
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-2xl hind-siliguri-semibold text-gray-600">
+                  <h1 className="text-2xl hind-siliguri-semibold text-gray-300">
                     Label -{" "}
                   </h1>
-                  <p className="text-2xl font-medium text-myBgPrimary">{tag}</p>
+                  <p className="text-2xl font-medium text-TextPrimary">{tag}</p>
                 </div>
-                <hr className=" my-2 border-[0.5] border-dashed border-gray-200" />
+                <hr className=" my-2 border-[0.5] border-dashed border-gray-800" />
                 <div>
                   <div>
                     {selectedTags && selectedTags?.length === 0 ? (
                       <div className="flex items-center justify-center flex-col mt-20">
                         <HardDrive size={40} className=" text-gray-400" />
-                        <h1 className="text-gray-400">No Post Found</h1>
+                        <h1 className="text-gray-400">No Quiz Found!</h1>
                       </div>
                     ) : (
                       <>
