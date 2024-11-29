@@ -15,6 +15,8 @@ import Container from "@/lib/Container";
 import QuizResultModal from "@/lib/QuizResultModal";
 import { useDispatch } from "react-redux";
 import { setLoading } from "@/redux/features/global/globalSlice";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export interface Question {
   _id: string;
@@ -27,6 +29,7 @@ export interface Question {
 const QuizDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = useAppSelector(useCurrentToken);
 
   const { id } = useParams();
   const [isToggled, setIsToggled] = useState(false);
@@ -193,7 +196,7 @@ const QuizDetails = () => {
               <div className="flex flex-col lg:flex-row gap-5 border border-gray-800 rounded-md p-4">
                 <div className="flex items-center lg:items-start justify-center">
                   <img
-                    className="w-full lg:w-[500px] h-[250px] rounded-md"
+                    className="w-full lg:w-[550px] h-full rounded-md"
                     src={avatar}
                     alt={data?.data?.title}
                   />
@@ -249,14 +252,25 @@ const QuizDetails = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-end justify-end">
-                    <Button
-                      size="lg"
-                      className=" bg-BgPrimary hover:bg-BgPrimaryHover"
-                      onClick={handleToggle}
-                    >
-                      Start Now
-                    </Button>
+                  <div className="flex items-end justify-end mt-3">
+                    {token ? (
+                      <Button
+                        size="lg"
+                        className=" bg-BgPrimary"
+                        onClick={handleToggle}
+                      >
+                        Start Now
+                      </Button>
+                    ) : (
+                      <Link to="/login">
+                        <Button
+                          size="lg"
+                          className=" bg-BgPrimary hover:bg-BgPrimaryHover"
+                        >
+                          Start Now
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
@@ -369,7 +383,6 @@ const QuizDetails = () => {
                                     selectedAnswers[`question-${index}`] ===
                                     option
                                   }
-                                  
                                 />
                                 {option}
                               </label>
