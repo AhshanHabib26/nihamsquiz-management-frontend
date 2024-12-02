@@ -15,46 +15,92 @@ import {
   useGetAllQuizCategoriesQuery,
 } from "@/redux/features/quiz/category/categoryApi";
 import { TResponse } from "@/types";
-import { Eye, HardDrive, ListPlus, SquarePen, Trash2 } from "lucide-react";
+import { HardDrive, ListPlus, SquarePen, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 export const AllQuizCategoryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const limit = 10;
-  const { data, isLoading } = useGetAllQuizCategoriesQuery({ page, limit }, {
-    refetchOnMountOrArgChange: false, 
-  });
+  const { data, isLoading } = useGetAllQuizCategoriesQuery(
+    { page, limit },
+    {
+      refetchOnMountOrArgChange: false,
+    }
+  );
   const total = data?.meta?.total ?? 0;
   const [deleteCategory] = useDeleteQuizCategoryMutation();
 
   const deleteHandler = async (id: string) => {
-    const toastId = toast.loading("Deleting...");
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this quiz category?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
 
-    try {
-      const res = (await deleteCategory(id)) as TResponse<any>;
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleting...",
+        text: "Please wait while the quiz category is being deleted",
+        icon: "info",
+        allowOutsideClick: false,
+        showConfirmButton: false,
+      });
 
-      if (res.error) {
-        toast.error(res.error.data.message, { id: toastId, duration: 1500 });
-      } else {
-        toast.success("Category deleted successfully", {
-          id: toastId,
-          duration: 1000,
+      try {
+        const res = (await deleteCategory(id)) as TResponse<any>;
+
+        if (res.error) {
+          Swal.fire({
+            title: "Error!",
+            text: res.error.data.message,
+            icon: "error",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        } else {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Quiz category deleted successfully",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false,
+          });
+        }
+      } catch (err: unknown) {
+        const errorMessage =
+          err instanceof Error
+            ? `Error: ${err.message}`
+            : "Something went wrong";
+        Swal.fire({
+          title: "Error!",
+          text: errorMessage,
+          icon: "error",
+          timer: 1500,
+          showConfirmButton: false,
         });
       }
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? `Error: ${err.message}` : "Something went wrong";
-      toast.error(errorMessage, { id: toastId, duration: 1500 });
+    } else {
+      Swal.fire({
+        title: "Cancelled",
+        text: "Quiz category deletion was cancelled",
+        icon: "info",
+        timer: 1000,
+        showConfirmButton: false,
+      });
     }
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/dashboard/create-category/${id}`);
+    navigate(`/admin/dashboard/create-quiz-category/${id}`);
   };
 
   const renderTableRows = () => {
@@ -67,7 +113,6 @@ export const AllQuizCategoryPage = () => {
           </div>
         </TableCell>
         <TableCell className="flex items-center gap-3 justify-end cursor-pointer">
-          <Eye size={20} color="#363636" />
           <SquarePen
             onClick={() => handleEdit(item._id)}
             size={20}
@@ -89,13 +134,13 @@ export const AllQuizCategoryPage = () => {
 
   return (
     <div>
-      <div className="flex items-end justify-end">
+      <div className="flex items-end justify-end mt-4">
         <Link
-          to="/dashboard/create-category"
-          className="flex items-center bg-black text-white px-4 py-3 gap-2 rounded-lg text-md"
+          to="/admin/dashboard/create-quiz-category"
+          className="flex items-center bg-BgPrimary hover:bg-BgPrimaryHover text-white px-4 py-3 gap-2 rounded-lg text-md"
         >
-          <ListPlus />
-          Add Category
+          <ListPlus size={20} />
+          Create Quiz Category
         </Link>
       </div>
       <div>

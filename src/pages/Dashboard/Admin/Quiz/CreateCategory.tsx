@@ -82,7 +82,7 @@ export const CreateQuizCategoryPage = () => {
           }
         );
         resetForm();
-        navigate("/dashboard/quiz-category");
+        navigate("/admin/dashboard/quiz-category");
       }
     } catch (error) {
       const errorMessage =
@@ -101,6 +101,9 @@ export const CreateQuizCategoryPage = () => {
   return (
     <div>
       <div>
+        <h1 className="text-2xl font-semibold text-gray-600 mt-5">Create Quiz Category</h1>
+      </div>
+      <div>
         <Input
           className="h-[50px] mt-5"
           placeholder="Enter image URL"
@@ -109,7 +112,7 @@ export const CreateQuizCategoryPage = () => {
           onChange={(e) => setImageUrl(e.target.value)}
         />
       </div>
-      <div className="my-5">
+      <div className="my-3">
         <Input
           className="h-[50px]"
           type="text"
@@ -122,14 +125,22 @@ export const CreateQuizCategoryPage = () => {
       <div>
         <Textarea
           placeholder="Enter description"
-          rows={8}
+          rows={10}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div className="mt-5">
-        <Button type="button" onClick={handleSubmit} size="lg">
-          {postId ? "Update Quiz Category" : "Add Quiz Category"}
+      <div className="mt-3">
+        <Button
+          type="button"
+          className={`text-lg font-light px-3 py-6 ${
+            postId
+              ? "bg-green-500 hover:bg-green-600"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
+          onClick={handleSubmit}
+        >
+          {postId ? "Update Quiz Category" : "Create Quiz Category"}
         </Button>
       </div>
     </div>

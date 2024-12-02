@@ -53,7 +53,11 @@ const data = {
         },
         {
           title: "Quiz Category",
-          url: "create-quiz",
+          url: "quiz-category",
+        },
+        {
+          title: "Create Quiz Category",
+          url: "create-quiz-category",
         },
       ],
     },

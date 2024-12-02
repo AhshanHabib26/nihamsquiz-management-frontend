@@ -13,7 +13,7 @@ import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { TResponse } from "@/types";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { DashboardLoader } from "@/loader/DashboardLoader";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -135,7 +135,6 @@ export const CreateQuizPage = () => {
       [{ list: "ordered" }, { list: "bullet" }],
       [{ align: [] }],
       ["link", "image", "video"],
-      ["clean"],
     ],
   };
 
@@ -222,8 +221,6 @@ export const CreateQuizPage = () => {
       category: selectedCategory,
     };
 
-    console.log(quizData);
-
     const toastId = toast.loading(id ? "Quiz updating..." : "Quiz creating...");
 
     try {
@@ -245,7 +242,7 @@ export const CreateQuizPage = () => {
           }
         );
         resetForm();
-        navigate("/dashboard/all-quiz");
+        navigate("/admin/dashboard/all-quiz");
       }
     } catch (error) {
       const errorMessage =
@@ -265,7 +262,34 @@ export const CreateQuizPage = () => {
   };
 
   return (
-    <div>
+    <div className="mt-5 mb-10">
+      <div className="flex items-end justify-end">
+        <div className="flex items-center gap-2">
+          <div>
+            <Button
+              className={`text-lg font-light px-3 py-5 ${
+                id
+                  ? "bg-green-500 hover:bg-green-600"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              type="button"
+              onClick={handleSubmit}
+            >
+              {id ? "Update Quiz" : "Add Quiz"}
+            </Button>
+          </div>
+          <div>
+            <Link to="/admin/dashboard/all-quiz">
+              <Button
+                type="button"
+                className="text-lg font-light px-3 py-5 bg-red-500 hover:bg-red-600"
+              >
+                Cancel
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="my-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Input
           className="h-[50px] text-lg hind-siliguri-light"
@@ -287,7 +311,7 @@ export const CreateQuizPage = () => {
               onValueChange={handleCategoryChange}
             >
               <SelectTrigger
-                className="h-[50px] text-lg hind-siliguri-light"
+                className="h-[50px] hind-siliguri-light"
                 aria-label="Category"
               >
                 <SelectValue placeholder="Choose category" />
@@ -329,7 +353,7 @@ export const CreateQuizPage = () => {
           theme="snow"
           value={description}
           onChange={setDescription}
-          className="h-[200px] flex flex-1 flex-col "
+          className="h-[300px] flex flex-1 flex-col "
         />
       </div>
       <div className="mt-20 lg:mt-8">
@@ -420,7 +444,7 @@ export const CreateQuizPage = () => {
               {index === 0 && (
                 <Button
                   size="default"
-                  className="bg-green-600 hover:bg-green-500 text-lg hind-siliguri-light"
+                  className="bg-blue-500 hover:bg-blue-600 text-lg hind-siliguri-light"
                   onClick={handleAddQuestion}
                 >
                   Add Question
@@ -432,12 +456,12 @@ export const CreateQuizPage = () => {
                 <>
                   <Button
                     size="default"
-                    className="bg-green-600 hover:bg-green-500 text-lg hind-siliguri-light"
+                    className="bg-blue-500 hover:bg-blue-600 text-lg hind-siliguri-light"
                     onClick={handleAddQuestion}
                   >
                     Add Question
                   </Button>
-                  
+
                   <Button
                     size="default"
                     className="bg-red-600 hover:bg-red-500 text-lg hind-siliguri-light"
@@ -461,17 +485,6 @@ export const CreateQuizPage = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="flex items-center justify-between my-5">
-        <Button
-          className="text-lg hind-siliguri-light"
-          type="button"
-          onClick={handleSubmit}
-          size="default"
-        >
-          {id ? "Update Quiz" : "Add Quiz"}
-        </Button>
       </div>
     </div>
   );

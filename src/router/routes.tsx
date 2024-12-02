@@ -130,11 +130,11 @@ export const routes = createBrowserRouter([
         element: <CreateQuizPage />,
       },
       {
-        path: "create-category",
+        path: "create-quiz-category",
         element: <CreateQuizCategoryPage />,
       },
       {
-        path: "create-category/:id",
+        path: "create-quiz-category/:id",
         element: <CreateQuizCategoryPage />,
       },
       {

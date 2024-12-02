@@ -13,7 +13,7 @@ import { HardDrive, ListPlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 export const AllQuizPage = () => {
   const dispatch = useDispatch();
@@ -29,23 +29,66 @@ export const AllQuizPage = () => {
   const [deleteQuiz] = useDeleteQuizMutation();
 
   const deleteHandler = async (id: string) => {
-    const toastId = toast.loading("Deleting...");
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this quiz?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
 
-    try {
-      const res = (await deleteQuiz(id)) as TResponse<any>;
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleting...",
+        text: "Please wait while the quiz is being deleted",
+        icon: "info",
+        allowOutsideClick: false,
+        showConfirmButton: false,
+      });
 
-      if (res.error) {
-        toast.error(res.error.data.message, { id: toastId, duration: 1500 });
-      } else {
-        toast.success("Post deleted successfully", {
-          id: toastId,
-          duration: 1000,
+      try {
+        const res = (await deleteQuiz(id)) as TResponse<any>;
+
+        if (res.error) {
+          Swal.fire({
+            title: "Error!",
+            text: res.error.data.message,
+            icon: "error",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        } else {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Quiz deleted successfully",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false,
+          });
+        }
+      } catch (err: unknown) {
+        const errorMessage =
+          err instanceof Error
+            ? `Error: ${err.message}`
+            : "Something went wrong";
+        Swal.fire({
+          title: "Error!",
+          text: errorMessage,
+          icon: "error",
+          timer: 1500,
+          showConfirmButton: false,
         });
       }
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? `Error: ${err.message}` : "Something went wrong";
-      toast.error(errorMessage, { id: toastId, duration: 1500 });
+    } else {
+      Swal.fire({
+        title: "Cancelled",
+        text: "Quiz deletion was cancelled",
+        icon: "info",
+        timer: 1000,
+        showConfirmButton: false,
+      });
     }
   };
 
@@ -55,10 +98,10 @@ export const AllQuizPage = () => {
 
   return (
     <div>
-      <div className="flex items-end justify-end">
+      <div className="flex items-end justify-end mt-5">
         <Link
-          to="/dashboard/create-quiz"
-          className="flex items-center bg-black text-white px-4 py-3 gap-2 rounded-lg text-md"
+          to="/admin/dashboard/create-quiz"
+          className="flex items-center bg-BgPrimary text-white px-4 py-3 gap-2 rounded-lg text-md"
         >
           <ListPlus />
           Create Quiz

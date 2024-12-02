@@ -13,7 +13,7 @@ export const QuizCard: React.FC<TQuizProps> = ({ quiz, deleteHandler }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`/dashboard/create-quiz/${quiz?._id}`);
+    navigate(`/admin/dashboard/create-quiz/${quiz?._id}`);
   };
 
   return (
