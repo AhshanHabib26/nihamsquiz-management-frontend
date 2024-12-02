@@ -11,7 +11,7 @@ const faqData = [
     id: "1",
     question: "প্রতিটি প্ল্যানের মধ্যে কী কী আছে?",
     answer:
-      "প্রতিটি প্ল্যানের মধ্যে কুইজে অংশগ্রহন করা, এ্যানালিটিক্স, সুন্দর ইউজার ইন্টারফেস এবং বিস্তারিত রিপোর্ট অন্তর্ভুক্ত রয়েছে।",
+      "প্রতিটি প্ল্যানের মধ্যে কুইজে অংশগ্রহন করা, ড্যাশবোর্ড, এ্যানালিটিক্স, সুন্দর ইউজার ইন্টারফেস এবং বিস্তারিত রিপোর্ট অন্তর্ভুক্ত রয়েছে।",
   },
   {
     id: "2",
@@ -77,7 +77,9 @@ const FAQPricePlan = () => {
               <Accordion type="single" collapsible>
                 <AccordionItem value={faq.id}>
                   <AccordionTrigger>
-                    <h1 className="text-lg font-medium hover:text-TextPrimary">{faq.question}</h1>
+                    <h1 className="text-lg font-medium hover:text-TextPrimary">
+                      {faq.question}
+                    </h1>
                   </AccordionTrigger>
                   <AccordionContent>
                     <p className="text-lg font-extralight">{faq.answer}</p>

@@ -37,7 +37,7 @@ const QuizPage = () => {
   }, [isLoading, dispatch]);
 
   return (
-    <div className="mt-20 lg:mt-24">
+    <div className="mt-20 lg:mt-24 min-h-screen">
       <Container>
         <div>
           {!isLoading && (
