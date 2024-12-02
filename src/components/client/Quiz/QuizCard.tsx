@@ -19,7 +19,7 @@ const QuizCard: React.FC<TQuizProps> = ({ quiz }) => {
           <div>
             <div className="flex gap-1 items-start lg:items-center">
               <BookCheck className=" text-customPrimary" size={18} />
-              <h1 className=" text-md hind-siliguri-semibold">{quiz.title}</h1>
+              <h1 className=" text-md hind-siliguri-semibold ">{quiz.title}</h1>
             </div>
             <div className="flex gap-1 items-center">
               <FileQuestion className=" text-customPrimary" size={18} />

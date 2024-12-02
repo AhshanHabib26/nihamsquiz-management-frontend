@@ -17,7 +17,7 @@ const RecentQuizCard: React.FC<Props> = ({ quiz, isLast }) => {
     >
       <Link to={`/quiz/quiz-details/${quiz._id}`}>
         <div className="flex items-center justify-between">
-          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-myBgPrimary">
+          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-TextPrimary">
             {quiz.title}
           </h1>
           <div>

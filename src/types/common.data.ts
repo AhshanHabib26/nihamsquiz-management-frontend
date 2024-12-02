@@ -78,3 +78,15 @@ export type TQuizCategoryProps = {
   setSelectedCategory?: (categoryId: string) => void;
   index?: number;
 };
+
+export type TPackage = {
+  id: string;
+  title: string;
+  price: string;
+  offerPrice: string;
+  altTitle: string;
+  service: string[];
+};
+export type TPackageProps = {
+  service: TPackage;
+};

@@ -27,7 +27,7 @@ const QuizListCard: React.FC<TQuizProps> = ({ quiz }) => {
             <div>
               <div className="flex gap-1 items-start lg:items-center">
                 <BookCheck className=" text-gray-300" size={18} />
-                <h1 className=" text-gray-300 text-md hind-siliguri-semibold">
+                <h1 className=" text-gray-300 hover:text-TextPrimary text-md hind-siliguri-semibold">
                   {quiz.title}
                 </h1>
               </div>

@@ -75,7 +75,7 @@ const BlogCard: React.FC<TBlogProps> = ({ post }) => {
         </div>
       </div>
       <div className="my-2">
-        <Link className="hover:text-myBgPrimary" to={`/blog/${post.slug}`}>
+        <Link className="hover:text-TextPrimary" to={`/blog/${post.slug}`}>
           {" "}
           <h1 className="text-lg hind-siliguri-semibold">{post.title}</h1>
         </Link>

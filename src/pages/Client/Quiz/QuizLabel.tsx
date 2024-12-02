@@ -43,7 +43,7 @@ const QuizLabelPage = () => {
                   <h1 className="text-2xl hind-siliguri-semibold text-gray-300">
                     Label -{" "}
                   </h1>
-                  <p className="text-2xl font-medium text-TextPrimary">{tag}</p>
+                  <p className="text-2xl font-medium text-TextPrimary capitalize">{tag}</p>
                 </div>
                 <hr className=" my-2 border-[0.5] border-dashed border-gray-800" />
                 <div>

@@ -17,7 +17,7 @@ const RecentBlogsCard: React.FC<Props> = ({ post, isLast }) => {
     >
       <Link to={`/blog/${post.slug}`}>
         <div className="flex items-center justify-between">
-          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-myBgPrimary">
+          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-TextPrimary">
             {post.title}
           </h1>
           <div>
