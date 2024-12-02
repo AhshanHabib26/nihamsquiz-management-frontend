@@ -19,7 +19,7 @@ import {
   useUpdatePostMutation,
 } from "@/redux/features/post/postApi";
 import { TResponse } from "@/types";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { DashboardLoader } from "@/loader/DashboardLoader";
 import { CategoryLoader } from "@/loader/CategoryLoader";
 
@@ -98,7 +98,6 @@ export const CreatePostPage = () => {
       [{ list: "ordered" }, { list: "bullet" }],
       [{ align: [] }],
       ["link", "image", "video"],
-      ["clean"],
     ],
   };
 
@@ -116,8 +115,6 @@ export const CreatePostPage = () => {
     setTags(tagsArray);
   };
 
-
- 
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     setTitle(newTitle);
@@ -129,14 +126,12 @@ export const CreatePostPage = () => {
       .toString()
       .toLowerCase()
       .trim()
-      .replace(/\s+/g, '-') // Replace spaces with -
-      .replace(/[^\w\u0980-\u09FF-]+/g, '') // Allow Bangla characters and hyphens
-      .replace(/--+/g, '-') // Replace multiple - with single -
-      .replace(/^-+/, '') // Trim - from start of text
-      .replace(/-+$/, ''); // Trim - from end of text
+      .replace(/\s+/g, "-") // Replace spaces with -
+      .replace(/[^\w\u0980-\u09FF-]+/g, "") // Allow Bangla characters and hyphens
+      .replace(/--+/g, "-") // Replace multiple - with single -
+      .replace(/^-+/, "") // Trim - from start of text
+      .replace(/-+$/, ""); // Trim - from end of text
   };
-
-
 
   if (isFetchingPost) {
     return <DashboardLoader />;
@@ -180,7 +175,7 @@ export const CreatePostPage = () => {
           }
         );
         resetForm();
-        navigate("/dashboard/all-post");
+        navigate("/admin/dashboard/all-post");
       }
     } catch (error) {
       const errorMessage =
@@ -196,11 +191,38 @@ export const CreatePostPage = () => {
     setSelectedCategory("");
     setPostId(null);
     setSlug("");
-    setTags([])
+    setTags([]);
   };
 
   return (
-    <div className="text-gray-700">
+    <div className="text-gray-700 my-5">
+      <div className="flex items-end justify-end">
+        <div className="flex items-center gap-2">
+          <div>
+            <Button
+              type="button"
+              onClick={handleSubmit}
+              className={`text-lg font-light px-3 py-5 ${
+                postId
+                  ? "bg-green-500 hover:bg-green-600"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+            >
+              {postId ? "Update Post" : "Publish Post"}
+            </Button>
+          </div>
+          <div>
+            <Link to="/admin/dashboard/all-post">
+              <Button
+                type="button"
+                className="text-lg font-light px-3 py-5 bg-red-500 hover:bg-red-600"
+              >
+                Cancel
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="my-4 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Input
           className="h-[50px] text-lg"
@@ -210,7 +232,7 @@ export const CreatePostPage = () => {
           value={title}
           onChange={handleTitleChange}
         />
-         <Input
+        <Input
           className="h-[50px] text-lg"
           type="text"
           placeholder="Enter your slug"
@@ -229,7 +251,7 @@ export const CreatePostPage = () => {
             value={selectedCategory || ""}
             onValueChange={handleCategoryChange}
           >
-            <SelectTrigger className="h-[50px] text-lg" aria-label="Category">
+            <SelectTrigger className="h-[50px]" aria-label="Category">
               <SelectValue placeholder="Choose category" />
             </SelectTrigger>
             <SelectContent>
@@ -277,18 +299,8 @@ export const CreatePostPage = () => {
           theme="snow"
           value={description}
           onChange={setDescription}
-          className="h-[300px] flex flex-1 flex-col"
+          className="h-[500px] flex flex-1 flex-col"
         />
-      </div>
-      <div className="mt-5">
-        <Button
-          type="button"
-          onClick={handleSubmit}
-          className="text-lg"
-          size="lg"
-        >
-          {postId ? "Update Post" : "Add Post"}
-        </Button>
       </div>
     </div>
   );

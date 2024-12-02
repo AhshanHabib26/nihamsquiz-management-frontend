@@ -122,7 +122,7 @@ export const AddCategoryPage = () => {
 
           <div className=" w-full flex items-end justify-end md:items-start md:justify-start lg:items-start lg:justify-start">
             {categoryId === null ? (
-              <Button className="h-[45px] bg-orange-600 hover:bg-orange-500">
+              <Button className="h-[45px] bg-blue-500 hover:bg-blue-600">
                 Add Category
               </Button>
             ) : (
