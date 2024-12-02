@@ -21,7 +21,7 @@ import BlogDetailsPage from "@/pages/Client/BlogDetailsPage";
 import { PostPage } from "@/pages/Dashboard/Admin/Blog/Post";
 import { CreatePostPage } from "@/pages/Dashboard/Admin/Blog/CreatePost";
 import { AddCategoryPage } from "@/pages/Dashboard/Admin/Blog/AddCategory";
-import { CommentPage } from "@/pages/Dashboard/Admin/Blog/Comment";
+import { CommentPage } from "@/pages/Dashboard/Admin/Comment";
 import { AllQuizPage } from "@/pages/Dashboard/Admin/Quiz/Quiz";
 import { CreateQuizPage } from "@/pages/Dashboard/Admin/Quiz/CreateQuiz";
 import { CreateQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/CreateCategory";

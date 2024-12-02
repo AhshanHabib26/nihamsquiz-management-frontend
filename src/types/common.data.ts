@@ -40,6 +40,15 @@ export type TComment = {
     fullname: string;
   };
   createdAt: string;
+  post: {
+    title: string;
+  };
+};
+
+export type TCommentProps = {
+  comment: TComment;
+  index?: number;
+  deleteHandler?: (id: string) => void;
 };
 
 export type TQuiz = {
