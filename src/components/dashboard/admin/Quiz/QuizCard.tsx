@@ -1,10 +1,10 @@
 import React from "react";
-import QuizImg from "../../../../../assets/images/quizImg.jpg";
+import QuizImg from "../../../../assets/images/quizImg.jpg";
 import { MdOutlineQuiz } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa6";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { LuFileQuestion } from "react-icons/lu";
-import Styles from "../../../../../style/QuizCard.module.css";
+import Styles from "../../../../style/QuizCard.module.css";
 import { TQuizProps } from "@/types/common.data";
 import { Eye, SquarePen, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";

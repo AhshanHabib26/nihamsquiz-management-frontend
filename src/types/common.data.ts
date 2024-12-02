@@ -25,6 +25,7 @@ export type TBlogProps = {
 export type TCategory = {
   _id: string;
   title: string;
+  slug: string;
 };
 
 export type TCategoryProps = {

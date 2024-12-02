@@ -18,6 +18,16 @@ import QuizLabelPage from "@/pages/Client/Quiz/QuizLabel";
 import QuizDetails from "@/pages/Client/Quiz/QuizDetails";
 import QuizSubmissionPage from "@/pages/Client/Quiz/QuizSubmission";
 import BlogDetailsPage from "@/pages/Client/BlogDetailsPage";
+import { PostPage } from "@/pages/Dashboard/Admin/Blog/Post";
+import { CreatePostPage } from "@/pages/Dashboard/Admin/Blog/CreatePost";
+import { AddCategoryPage } from "@/pages/Dashboard/Admin/Blog/AddCategory";
+import { CommentPage } from "@/pages/Dashboard/Admin/Blog/Comment";
+import { AllQuizPage } from "@/pages/Dashboard/Admin/Quiz/Quiz";
+import { CreateQuizPage } from "@/pages/Dashboard/Admin/Quiz/CreateQuiz";
+import { CreateQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/CreateCategory";
+import { AllQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/Category";
+import UserPage from "@/pages/Dashboard/Admin/User";
+import { AnalyticsPage } from "@/pages/Dashboard/Admin/Analytics";
 
 export const routes = createBrowserRouter([
   {
@@ -87,58 +97,58 @@ export const routes = createBrowserRouter([
         path: "/admin/dashboard",
         element: <DHomePage />,
       },
-      // {
-      //   path: "all-post",
-      //   element: <PostPage />,
-      // },
-      // {
-      //   path: "create-post",
-      //   element: <CreatePostPage />,
-      // },
-      // {
-      //   path: "create-post/:id",
-      //   element: <CreatePostPage />,
-      // },
-      // {
-      //   path: "post-category",
-      //   element: <AddCategoryPage />,
-      // },
-      // {
-      //   path: "comments",
-      //   element: <CommentPage />,
-      // },
-      // {
-      //   path: "all-quiz",
-      //   element: <AllQuizPage />,
-      // },
-      // {
-      //   path: "create-quiz",
-      //   element: <CreateQuizPage />,
-      // },
-      // {
-      //   path: "create-quiz/:id",
-      //   element: <CreateQuizPage />,
-      // },
-      // {
-      //   path: "create-category",
-      //   element: <CreateQuizCategoryPage />,
-      // },
-      // {
-      //   path: "create-category/:id",
-      //   element: <CreateQuizCategoryPage />,
-      // },
-      // {
-      //   path: "quiz-category",
-      //   element: <AllQuizCategoryPage />,
-      // },
-      // {
-      //   path: "all-user",
-      //   element: <UserPage />,
-      // },
-      // {
-      //   path: "analytics",
-      //   element: <AnalyticsPage />,
-      // },
+      {
+        path: "all-post",
+        element: <PostPage />,
+      },
+      {
+        path: "create-post",
+        element: <CreatePostPage />,
+      },
+      {
+        path: "create-post/:id",
+        element: <CreatePostPage />,
+      },
+      {
+        path: "post-category",
+        element: <AddCategoryPage />,
+      },
+      {
+        path: "comments",
+        element: <CommentPage />,
+      },
+      {
+        path: "all-quiz",
+        element: <AllQuizPage />,
+      },
+      {
+        path: "create-quiz",
+        element: <CreateQuizPage />,
+      },
+      {
+        path: "create-quiz/:id",
+        element: <CreateQuizPage />,
+      },
+      {
+        path: "create-category",
+        element: <CreateQuizCategoryPage />,
+      },
+      {
+        path: "create-category/:id",
+        element: <CreateQuizCategoryPage />,
+      },
+      {
+        path: "quiz-category",
+        element: <AllQuizCategoryPage />,
+      },
+      {
+        path: "all-user",
+        element: <UserPage />,
+      },
+      {
+        path: "analytics",
+        element: <AnalyticsPage />,
+      },
     ],
   },
 

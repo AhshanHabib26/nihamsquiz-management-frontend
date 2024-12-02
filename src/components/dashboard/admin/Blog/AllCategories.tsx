@@ -19,7 +19,7 @@ import Swal from 'sweetalert2'
 
 
 export interface AllCategoriesProps {
-  onSelectCategory?: (id: string, name: string) => void;
+  onSelectCategory?: (id: string, name: string, slug: string) => void;
 }
 
 export const AllCategories: React.FC<AllCategoriesProps> = ({
@@ -94,8 +94,8 @@ export const AllCategories: React.FC<AllCategoriesProps> = ({
   
   
 
-  const handleEdit = (id: string, name: string) => {
-    onSelectCategory?.(id, name);
+  const handleEdit = (id: string, name: string, slug: string) => {
+    onSelectCategory?.(id, name, slug);
   };
 
   const renderTableRows = () => {
@@ -110,7 +110,7 @@ export const AllCategories: React.FC<AllCategoriesProps> = ({
         <TableCell className="flex items-center gap-3 justify-end cursor-pointer">
           <Eye size={20} color="#363636" />
           <SquarePen
-            onClick={() => handleEdit(item._id, item.title)}
+            onClick={() => handleEdit(item._id, item.title, item.slug)}
             size={20}
             color="green"
           />

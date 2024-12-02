@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PostCard } from "@/components/ui/dashboard/admin/Blog/PostCard";
+import { PostCard } from "@/components/dashboard/admin/Blog/PostCard";
 import { Separator } from "@/components/ui/separator";
 import { PaginationCard } from "@/lib/PaginationCard";
 import { setLoading } from "@/redux/features/global/globalSlice";
@@ -102,8 +102,8 @@ export const PostPage = () => {
     <div>
       <div className="flex items-end justify-end">
         <Link
-          to="/dashboard/create-post"
-          className="flex items-center bg-black text-white px-4 py-3 gap-2 rounded-lg text-md"
+          to="/admin/dashboard/create-post"
+          className="flex items-center bg-BgPrimary hover:bg-BgPrimaryHover text-white px-4 py-3 gap-2 rounded-lg text-md mt-4"
         >
           <ListPlus />
           New Post

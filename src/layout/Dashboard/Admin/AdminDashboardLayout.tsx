@@ -40,11 +40,18 @@ const AdminDashboardLayout = () => {
               </div>
             </div>
             <div>
-              <Button  onClick={handleLogout} className=" bg-red-600 hover:bg-red-700">Logout</Button>
+              <Button
+                onClick={handleLogout}
+                className=" bg-red-600 hover:bg-red-700"
+              >
+                Logout
+              </Button>
             </div>
           </header>
 
-          <Outlet />
+          <div className="px-5">
+            <Outlet />
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </div>

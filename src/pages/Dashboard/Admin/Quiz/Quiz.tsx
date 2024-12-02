@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { QuizCard } from "@/components/ui/dashboard/admin/Quiz/QuizCard";
+import { QuizCard } from "@/components/dashboard/admin/Quiz/QuizCard";
 import { Separator } from "@/components/ui/separator";
 import { PaginationCard } from "@/lib/PaginationCard";
 import { setLoading } from "@/redux/features/global/globalSlice";

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { AllCategories } from "@/components/dashboard/admin/Blog/AllCategories";
 import { Button } from "@/components/ui/button";
-import { AllCategories } from "@/components/ui/dashboard/admin/Blog/AllCategories";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -13,11 +13,10 @@ import { toast } from "sonner";
 
 export const AddCategoryPage = () => {
   const [category, setCategory] = useState("");
+  const [categorySlug, setCategorySlug] = useState("");
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [createCategory] = useCreateCategoryMutation();
   const [updateCategory] = useUpdateCategoryMutation();
-
-
 
   // Handler for creating a category
   const createHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,8 +30,7 @@ export const AddCategoryPage = () => {
       });
     }
 
-    const categoryData = { title: category };
-
+    const categoryData = { title: category, slug: categorySlug };
     try {
       const res = (await createCategory(categoryData)) as TResponse<any>;
 
@@ -44,6 +42,7 @@ export const AddCategoryPage = () => {
           duration: 1000,
         });
         setCategory("");
+        setCategorySlug("");
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -66,7 +65,7 @@ export const AddCategoryPage = () => {
       });
     }
 
-    const categoryData = { title: category };
+    const categoryData = { title: category, slug: categorySlug };
 
     try {
       const res = (await updateCategory({
@@ -82,6 +81,7 @@ export const AddCategoryPage = () => {
           duration: 1000,
         });
         setCategory("");
+        setCategorySlug("");
         setCategoryId(null);
       }
     } catch (err: unknown) {
@@ -96,28 +96,50 @@ export const AddCategoryPage = () => {
   return (
     <div>
       <form onSubmit={categoryId === null ? createHandler : updateHandler}>
-        <div className="flex items-center max-w-xl mx-auto gap-2">
+        <div className="flex items-center flex-col md:flex-row lg:flex-row max-w-xl mx-auto gap-2 mt-5">
           <Input
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              setCategory(value);
+              // Automatically update slug based on category name
+              setCategorySlug(value.trim().toLowerCase().replace(/ /g, "-"));
+            }}
             type="text"
             name="title"
-            className="h-[50px] text-lg text-gray-600 placeholder:text-gray-400"
+            className="h-[45px] text-lg text-gray-600 placeholder:text-gray-400"
             placeholder="Category Name"
           />
-          {categoryId === null ? (
-            <Button className="h-[50px] bg-orange-600 hover:bg-orange-500">Add Category</Button>
-          ) : (
-            <Button className="h-[50px] bg-green-600 hover:bg-green-500">Update Category</Button>
-          )}
+
+          <Input
+            value={categorySlug} // Use value instead of defaultValue
+            onChange={(e) => setCategorySlug(e.target.value)} // Allow manual slug modification
+            type="text"
+            name="slug"
+            className="h-[45px] text-lg text-gray-600 placeholder:text-gray-400"
+            placeholder="Category Slug"
+          />
+
+          <div className=" w-full flex items-end justify-end md:items-start md:justify-start lg:items-start lg:justify-start">
+            {categoryId === null ? (
+              <Button className="h-[45px] bg-orange-600 hover:bg-orange-500">
+                Add Category
+              </Button>
+            ) : (
+              <Button className="h-[45px] bg-green-600 hover:bg-green-500">
+                Update Category
+              </Button>
+            )}
+          </div>
         </div>
       </form>
       <Separator className="mt-5" />
       <div>
         <AllCategories
-          onSelectCategory={(id, name) => {
+          onSelectCategory={(id, name, slug) => {
             setCategoryId(id);
             setCategory(name);
+            setCategorySlug(slug);
           }}
         />
       </div>

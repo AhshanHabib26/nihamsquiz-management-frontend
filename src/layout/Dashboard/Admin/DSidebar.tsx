@@ -35,11 +35,11 @@ const data = {
       items: [
         {
           title: "All Post",
-          url: "#",
+          url: "all-post",
         },
         {
           title: "Post Category",
-          url: "#",
+          url: "post-category",
         },
       ],
     },
@@ -49,11 +49,11 @@ const data = {
       items: [
         {
           title: "All Quiz",
-          url: "#",
+          url: "all-quiz",
         },
         {
           title: "Quiz Category",
-          url: "#",
+          url: "create-quiz",
         },
       ],
     },
@@ -63,7 +63,7 @@ const data = {
       items: [
         {
           title: "Comment",
-          url: "#",
+          url: "comments",
         },
       ],
     },
@@ -73,7 +73,7 @@ const data = {
       items: [
         {
           title: "All User",
-          url: "#",
+          url: "all-user",
         },
       ],
     },
@@ -83,7 +83,7 @@ const data = {
       items: [
         {
           title: "Analytics",
-          url: "#",
+          url: "analytics",
         },
       ],
     },
