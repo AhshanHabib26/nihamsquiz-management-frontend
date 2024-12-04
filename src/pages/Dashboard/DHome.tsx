@@ -1,13 +1,17 @@
-import Container from "@/lib/Container";
+import DCountInfo from "@/components/dashboard/admin/DHome/DCountInfo";
+import DDailyBlogInfo from "@/components/dashboard/admin/DHome/DDailyBlogInfo";
+import DSection from "@/components/dashboard/admin/DHome/DSection";
 
 const DHomePage = () => {
   return (
-    <div className="mt-5">
-      <Container>
-        <div>
-          <h1>Welcome Dashboard </h1>
-        </div>
-      </Container>
+    <div className="mt-3">
+      <DSection title="All Info">
+        <DCountInfo />
+      </DSection>
+
+      <DSection title="Daily Blog Posts">
+        <DDailyBlogInfo />
+      </DSection>
     </div>
   );
 };

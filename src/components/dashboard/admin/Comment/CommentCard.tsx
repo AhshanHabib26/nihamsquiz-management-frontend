@@ -36,7 +36,7 @@ const CommentCard: React.FC<TCommentProps> = ({ comment, deleteHandler }) => {
         <Trash2
           onClick={() => deleteHandler?.(comment?._id)}
           size={18}
-          className="text-red-500"
+          className="text-red-500 cursor-pointer"
         />
       </div>
     </div>
