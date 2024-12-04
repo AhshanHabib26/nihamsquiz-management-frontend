@@ -27,7 +27,8 @@ import { CreateQuizPage } from "@/pages/Dashboard/Admin/Quiz/CreateQuiz";
 import { CreateQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/CreateCategory";
 import { AllQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/Category";
 import UserPage from "@/pages/Dashboard/Admin/User";
-import { AnalyticsPage } from "@/pages/Dashboard/Admin/Analytics";
+import ProfilePage from "@/pages/Dashboard/Admin/Profile";
+import ChangePasswordPage from "@/pages/Dashboard/Admin/ChangePassword";
 
 export const routes = createBrowserRouter([
   {
@@ -146,8 +147,12 @@ export const routes = createBrowserRouter([
         element: <UserPage />,
       },
       {
-        path: "analytics",
-        element: <AnalyticsPage />,
+        path: "profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "change-password",
+        element: <ChangePasswordPage />,
       },
     ],
   },

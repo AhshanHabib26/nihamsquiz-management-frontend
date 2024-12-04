@@ -20,38 +20,44 @@ const DCountInfo = () => {
   const cardData = [
     {
       count: data?.data?.userCount,
-      icon: <UserRound size={40} className="text-blue-500" />,
-      color: "blue",
+      icon: <UserRound size={30} className="text-blue-500" />,
+      bColor: "bg-blue-500",
+      tColor: "text-blue-500",
       label: "Total User",
     },
     {
       count: data?.data?.postCount,
-      icon: <FaBook size={40} className="text-cyan-500" />,
-      color: "cyan",
+      icon: <FaBook size={30} className="text-cyan-500" />,
+      bColor: "bg-cyan-500",
+      tColor: "text-cyan-500",
       label: "Total Blog Post",
     },
     {
       count: data?.data?.postCategoryCount,
-      icon: <Layers2 size={40} className="text-red-500" />,
-      color: "red",
+      icon: <Layers2 size={30} className="text-red-500" />,
+      bColor: "bg-red-500",
+      tColor: "text-red-500",
       label: "Total Blog Category",
     },
     {
       count: data?.data?.quizCount,
-      icon: <FileQuestion size={40} className="text-green-500" />,
-      color: "green",
+      icon: <FileQuestion size={30} className="text-green-500" />,
+      bColor: "bg-green-500",
+      tColor: "text-green-500",
       label: "Total Quiz",
     },
     {
       count: data?.data?.quizCategoryCount,
-      icon: <Layers2 size={40} className="text-orange-500" />,
-      color: "orange",
+      icon: <Layers2 size={30} className="text-orange-500" />,
+      bColor: "bg-orange-500",
+      tColor: "text-orange-500",
       label: "Total Quiz Category",
     },
     {
       count: data?.data?.commentCount,
-      icon: <MessageCircle size={40} className="text-emerald-500" />,
-      color: "emerald",
+      icon: <MessageCircle size={30} className="text-emerald-500" />,
+      bColor: "bg-emerald-500",
+      tColor: "text-emerald-500",
       label: "Total Comments",
     },
   ];
@@ -64,8 +70,9 @@ const DCountInfo = () => {
             key={index}
             count={card.count}
             icon={card.icon}
-            color={card.color}
+            bColor={card.bColor}
             label={card.label}
+            tColor={card.tColor}
           />
         ))}
       </div>

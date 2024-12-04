@@ -23,7 +23,7 @@ const DDailyBlogInfo = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-  const blogData = data.data.map((item: string) => item);
+  const blogData = data?.data?.map((item: string) => item);
 
   return (
     <Container>

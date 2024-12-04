@@ -18,6 +18,13 @@ const authApi = baseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    updatePassword: builder.mutation({
+      query: (userPass) => ({
+        url: "/auth/update-password",
+        method: "PUT",
+        body: userPass,
+      }),
+    }),
     getAllUsers: builder.query({
       query: (args = {}) => {
         const params = new URLSearchParams();
@@ -51,8 +58,36 @@ const authApi = baseApi.injectEndpoints({
         meta: response.meta,
       }),
     }),
+    getuserProfile: builder.query({
+      query: () => ({
+        url: `/auth/profile`,
+        method: "GET",
+      }),
+    }),
+    
+    userBlock: builder.mutation({
+      query: (id) => ({
+        url: `/auth/user-block/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["User"],
+    }),
+    userUnblock: builder.mutation({
+      query: (id) => ({
+        url: `/auth/user-unblock/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useGetAllUsersQuery } =
-  authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useGetAllUsersQuery,
+  useUserBlockMutation,
+  useUserUnblockMutation,
+  useGetuserProfileQuery,
+  useUpdatePasswordMutation
+} = authApi;

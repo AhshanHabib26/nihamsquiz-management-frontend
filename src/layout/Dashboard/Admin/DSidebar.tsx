@@ -82,12 +82,16 @@ const data = {
       ],
     },
     {
-      title: "Analytics",
+      title: "Settings",
       url: "#",
       items: [
         {
-          title: "Analytics",
-          url: "analytics",
+          title: "Profile",
+          url: "profile",
+        },
+        {
+          title: "Change Password",
+          url: "change-password",
         },
       ],
     },

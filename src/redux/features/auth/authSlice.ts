@@ -11,6 +11,7 @@ export type TUser = {
   fullname?: string;
   createdAt?: string;
   email?: string;
+  isBlocked?: boolean;
 };
 
 type TAuthState = {
