@@ -89,14 +89,21 @@ export type TQuizCategoryProps = {
   index?: number;
 };
 
-export type TPackage = {
-  id: string;
+interface IService {
+  serviceTitle: string;
+  serviceValue: string;
+}
+
+export interface IPackage {
+  _id: string;
   title: string;
   price: string;
   offerPrice: string;
-  altTitle: string;
-  service: string[];
-};
+  isOfferActive: boolean;
+  packageType: string;
+  service: IService[];
+}
 export type TPackageProps = {
-  service: TPackage;
+  service: IPackage;
+  isCheckout?: boolean;
 };

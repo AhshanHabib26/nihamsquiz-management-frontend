@@ -10,7 +10,6 @@ const ProfilePage = () => {
   const { data, isLoading } = useGetuserProfileQuery({
     refetchOnMountOrArgChange: false,
   });
-  console.log(data);
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);

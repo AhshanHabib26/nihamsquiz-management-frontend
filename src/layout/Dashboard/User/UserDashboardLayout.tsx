@@ -20,6 +20,8 @@ const UserDashboardLayout = () => {
     navigate("/");
   };
 
+  console.log(user)
+
   return (
     <div className="text-gray-950">
       <SidebarProvider>
@@ -44,7 +46,9 @@ const UserDashboardLayout = () => {
             </div>
           </header>
 
+          <div className="p-5">
           <Outlet />
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </div>

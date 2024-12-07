@@ -20,47 +20,21 @@ import { Link } from "react-router-dom";
 const data = {
   navMain: [
     {
-      title: "Dashboard Info",
+      title: "My Dashboard",
       url: "#",
       items: [
         {
           title: "Dashboard",
           url: "/user/dashboard",
         },
-      ],
-    },
-    {
-      title: "Blogs",
-      url: "#",
-      items: [
         {
-          title: "All Post",
+          title: "Post",
           url: "#",
         },
         {
-          title: "Post Category",
+          title: "Quiz",
           url: "#",
         },
-      ],
-    },
-    {
-      title: "Quizs",
-      url: "#",
-      items: [
-        {
-          title: "All Quiz",
-          url: "#",
-        },
-        {
-          title: "Quiz Category",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Comments",
-      url: "#",
-      items: [
         {
           title: "Comment",
           url: "#",
@@ -68,22 +42,16 @@ const data = {
       ],
     },
     {
-      title: "User",
+      title: "Settings",
       url: "#",
       items: [
         {
-          title: "All User",
-          url: "#",
+          title: "Profile",
+          url: "profile",
         },
-      ],
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      items: [
         {
-          title: "Analytics",
-          url: "#",
+          title: "Change Password",
+          url: "change-password",
         },
       ],
     },

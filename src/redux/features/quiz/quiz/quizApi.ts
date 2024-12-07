@@ -12,6 +12,14 @@ const quizApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Quiz"],
     }),
+    uploadQuiz: builder.mutation({
+      query: (data) => ({
+        url: "/quiz/quiz-upload",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Quiz"],
+    }),
     getAllQuiz: builder.query({
       query: (args = {}) => {
         const params = new URLSearchParams();
@@ -95,4 +103,5 @@ export const {
   useUpdateQuizMutation,
   useSubmitQuizMutation,
   useGetSubmissionQuizQuery,
+  useUploadQuizMutation
 } = quizApi;

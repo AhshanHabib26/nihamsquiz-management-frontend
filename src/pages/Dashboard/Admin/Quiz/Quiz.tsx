@@ -9,15 +9,18 @@ import {
 } from "@/redux/features/quiz/quiz/quizApi";
 import { TResponse } from "@/types";
 import { TQuiz } from "@/types/common.data";
-import { HardDrive, ListPlus } from "lucide-react";
+import { HardDrive, ListPlus, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import UploadQuiz from "./UploadQuiz";
+import { Button } from "@/components/ui/button";
 
 export const AllQuizPage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const limit = 6;
   const { data, isLoading } = useGetAllQuizQuery(
     { page, limit },
@@ -92,20 +95,39 @@ export const AllQuizPage = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+  };
+
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
   return (
     <div>
-      <div className="flex items-end justify-end mt-5">
-        <Link
-          to="/admin/dashboard/create-quiz"
-          className="flex items-center bg-BgPrimary text-white px-4 py-3 gap-2 rounded-lg text-md"
-        >
-          <ListPlus />
-          Create Quiz
-        </Link>
+      <div className="flex items-end justify-end mt-5 gap-2">
+        <div>
+          <Link to="/admin/dashboard/create-quiz">
+            <Button className=" bg-BgPrimary hover:bg-BgPrimaryHover py-5 text-lg font-light">
+              <ListPlus />
+              Create Quiz
+            </Button>
+          </Link>
+        </div>
+        <div>
+          <Button
+            className=" bg-green-600 hover:bg-green-700 py-5 text-lg font-light"
+            onClick={handleButtonClick}
+          >
+            <Upload />
+            Upload Quiz
+          </Button>
+          <UploadQuiz openDialog={isDialogOpen} onClose={handleCloseDialog} />
+        </div>
       </div>
       <div>
         <Separator className="my-5" />

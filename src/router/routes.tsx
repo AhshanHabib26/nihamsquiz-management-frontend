@@ -29,6 +29,10 @@ import { AllQuizCategoryPage } from "@/pages/Dashboard/Admin/Quiz/Category";
 import UserPage from "@/pages/Dashboard/Admin/User";
 import ProfilePage from "@/pages/Dashboard/Admin/Profile";
 import ChangePasswordPage from "@/pages/Dashboard/Admin/ChangePassword";
+import UHomePage from "@/pages/Dashboard/UHome";
+import PlanPage from "@/pages/Dashboard/Admin/Plan/Plan";
+import CreatePlanPage from "@/pages/Dashboard/Admin/Plan/CreatePlan";
+import CheckoutPage from "@/pages/Client/Checkout";
 
 export const routes = createBrowserRouter([
   {
@@ -82,6 +86,10 @@ export const routes = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUsPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
       },
     ],
   },
@@ -147,6 +155,18 @@ export const routes = createBrowserRouter([
         element: <UserPage />,
       },
       {
+        path: "package",
+        element: <PlanPage />,
+      },
+      {
+        path: "create-package",
+        element: <CreatePlanPage />,
+      },
+      {
+        path: "create-package/:id",
+        element: <CreatePlanPage />,
+      },
+      {
         path: "profile",
         element: <ProfilePage />,
       },
@@ -167,60 +187,16 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/user/dashboard",
-        element: <DHomePage />,
+        element: <UHomePage />,
       },
-      // {
-      //   path: "all-post",
-      //   element: <PostPage />,
-      // },
-      // {
-      //   path: "create-post",
-      //   element: <CreatePostPage />,
-      // },
-      // {
-      //   path: "create-post/:id",
-      //   element: <CreatePostPage />,
-      // },
-      // {
-      //   path: "post-category",
-      //   element: <AddCategoryPage />,
-      // },
-      // {
-      //   path: "comments",
-      //   element: <CommentPage />,
-      // },
-      // {
-      //   path: "all-quiz",
-      //   element: <AllQuizPage />,
-      // },
-      // {
-      //   path: "create-quiz",
-      //   element: <CreateQuizPage />,
-      // },
-      // {
-      //   path: "create-quiz/:id",
-      //   element: <CreateQuizPage />,
-      // },
-      // {
-      //   path: "create-category",
-      //   element: <CreateQuizCategoryPage />,
-      // },
-      // {
-      //   path: "create-category/:id",
-      //   element: <CreateQuizCategoryPage />,
-      // },
-      // {
-      //   path: "quiz-category",
-      //   element: <AllQuizCategoryPage />,
-      // },
-      // {
-      //   path: "all-user",
-      //   element: <UserPage />,
-      // },
-      // {
-      //   path: "analytics",
-      //   element: <AnalyticsPage />,
-      // },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "change-password",
+        element: <ChangePasswordPage />,
+      },
     ],
   },
 

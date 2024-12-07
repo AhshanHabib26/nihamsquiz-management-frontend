@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
 
-// This is sample data.
 const data = {
   navMain: [
     {
@@ -58,6 +57,20 @@ const data = {
         {
           title: "Create Quiz Category",
           url: "create-quiz-category",
+        },
+      ],
+    },
+    {
+      title: "Package Plan",
+      url: "#",
+      items: [
+        {
+          title: "Package",
+          url: "package",
+        },
+        {
+          title: "Create Package",
+          url: "create-package",
         },
       ],
     },
