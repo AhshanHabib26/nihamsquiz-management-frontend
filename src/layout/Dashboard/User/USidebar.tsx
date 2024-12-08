@@ -29,7 +29,7 @@ const data = {
         },
         {
           title: "Post",
-          url: "#",
+          url: "all-post",
         },
         {
           title: "Quiz",

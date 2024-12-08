@@ -13,9 +13,6 @@ import { useNavigate } from "react-router-dom";
 
 export const PostCard: React.FC<TBlogProps> = ({ post, deleteHandler }) => {
   const navigate = useNavigate();
-
-  console.log(post);
-
   const handleEdit = () => {
     navigate(`/admin/dashboard/create-post/${post.slug}`);
   };

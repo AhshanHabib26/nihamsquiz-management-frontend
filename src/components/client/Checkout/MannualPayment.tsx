@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,8 +13,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TPackageProps } from "@/types/common.data";
+import {  usePurchasePackageMutation } from "@/redux/features/auth/authApi";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const MannualPayment: React.FC<TPackageProps> = ({ service }) => {
+  const navigate = useNavigate();
+  const [purchasePackage] = usePurchasePackageMutation();
+
+
+
+
   // State to track form data
   const [formData, setFormData] = useState({
     paymentMethod: "",
@@ -71,33 +81,24 @@ const MannualPayment: React.FC<TPackageProps> = ({ service }) => {
     return !Object.values(newErrors).some((error) => error !== "");
   };
 
-  // Submit form data to backend
   const handleSubmit = async () => {
-    if (!validate()) return; // Stop submission if validation fails
-
-    // Add additional data to the payload
-    const payload = {
-      ...formData,
-      packageType: service.packageType,
-      serviceId: service._id,
-    };
-
+    if (!validate()) return;
     try {
-      const response = await fetch("/api/payment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const payload = {
+        ...formData,
+        packageType: service.packageType,
+        serviceId: service._id,
+      };
 
-      if (response.ok) {
-        console.log("Payment request submitted successfully");
-      } else {
-        console.error("Failed to submit payment request");
+      const res = await purchasePackage(payload).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+        navigate(`/`);
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (err) {
+      const errorMessage =
+        (err as any)?.data?.message || "Something went wrong";
+      toast.error(errorMessage);
     }
   };
 

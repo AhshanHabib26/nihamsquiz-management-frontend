@@ -33,6 +33,8 @@ import UHomePage from "@/pages/Dashboard/UHome";
 import PlanPage from "@/pages/Dashboard/Admin/Plan/Plan";
 import CreatePlanPage from "@/pages/Dashboard/Admin/Plan/CreatePlan";
 import CheckoutPage from "@/pages/Client/Checkout";
+import SubscribePage from "@/pages/Dashboard/Admin/Plan/Subscribe";
+import { UPostPage } from "@/pages/Dashboard/User/Blog/Post";
 
 export const routes = createBrowserRouter([
   {
@@ -163,6 +165,10 @@ export const routes = createBrowserRouter([
         element: <CreatePlanPage />,
       },
       {
+        path: "subscriber",
+        element: <SubscribePage />,
+      },
+      {
         path: "create-package/:id",
         element: <CreatePlanPage />,
       },
@@ -188,6 +194,10 @@ export const routes = createBrowserRouter([
       {
         path: "/user/dashboard",
         element: <UHomePage />,
+      },
+      {
+        path: "all-post",
+        element: <UPostPage />,
       },
       {
         path: "profile",

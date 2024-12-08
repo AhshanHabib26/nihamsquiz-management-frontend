@@ -4,6 +4,7 @@ import { useGetSubmissionQuizQuery } from "@/redux/features/quiz/quiz/quizApi";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { MathJax } from "better-react-mathjax";
 
 // Define TypeScript interfaces
 interface Answer {
@@ -33,7 +34,7 @@ const QuizSubmissionPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams<string>();
   const { data, isLoading } = useGetSubmissionQuizQuery(id, {
-    refetchOnMountOrArgChange: false, 
+    refetchOnMountOrArgChange: false,
   });
 
   useEffect(() => {
@@ -71,9 +72,12 @@ const QuizSubmissionPage = () => {
                 !isCorrect && userAnswer?.selectedOption;
 
               return (
-                <div key={question?._id} className="border-b border-gray-800 pb-4">
+                <div
+                  key={question?._id}
+                  className="border-b border-gray-800 pb-4"
+                >
                   <h2 className="text-lg font-semibold mb-2 text-gray-300">
-                    {question?.questionText}
+                    <MathJax inline>{question?.questionText}</MathJax>
                   </h2>
                   <ul className="list-disc pl-5">
                     {question?.options.map((option, i) => {
@@ -90,7 +94,7 @@ const QuizSubmissionPage = () => {
                       }
                       return (
                         <li key={i} className={`${optionClasses}  mb-2`}>
-                          {option}
+                          <MathJax inline> {option}</MathJax>
                         </li>
                       );
                     })}
@@ -100,14 +104,14 @@ const QuizSubmissionPage = () => {
                       <strong>Your answer was incorrect.</strong> The correct
                       answer is:{" "}
                       <span className="text-green-700">
-                        {question?.correctOption}
+                        <MathJax inline>{question?.correctOption}</MathJax>
                       </span>
-                      
                     </p>
                   )}
                   {question?.explanation ? (
                     <p className="mt-2 text-gray-300">
-                      <strong>Explanation:</strong> {question?.explanation}
+                      <strong>Explanation:</strong>{" "}
+                      <MathJax inline>{question?.explanation}</MathJax>
                     </p>
                   ) : null}
                 </div>

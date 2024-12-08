@@ -77,36 +77,49 @@ const ProfilePage = () => {
               Account Status
             </h1>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
-            <div>
-              <h1 className="text-lg font-light text-gray-500">Premium</h1>
-              <p className="text-lg font-light text-gray-500">
-                {data?.data?.isPremium ?? false ? "True" : "False"}
-              </p>
+          {data?.data?.isPremium ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
+              <div>
+                <h1 className="text-lg font-light text-gray-500">Premium</h1>
+                <p className="text-lg font-light text-gray-500">
+                  {data?.data?.isPremium ?? false ? "True" : "False"}
+                </p>
+              </div>
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Package Type
+                </h1>
+                <p className="text-lg font-light text-gray-500 capitalize">
+                  {data?.data?.packageType}
+                </p>
+              </div>
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Package Expiry
+                </h1>
+                <p className="text-lg font-light capitalize text-gray-500">
+                  {data?.data?.packageExpiry ? data.data.packageExpiry : "null"}
+                </p>
+              </div>
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Quizzes Attempted
+                </h1>
+                <p className="text-lg font-light text-gray-500 capitalize">
+                  {data?.data?.quizzesAttempted}
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-lg font-light text-gray-500">Package Type</h1>
-              <p className="text-lg font-light text-gray-500 capitalize">
-                {data?.data?.packageType}
-              </p>
-            </div>
-            <div>
-              <h1 className="text-lg font-light text-gray-500">
-                Package Expiry
+          ) : (
+            <div className="text-center my-8">
+              <h1 className="text-lg font-light text-gray-400">
+                Waiting for Account Activation
               </h1>
-              <p className="text-lg font-light capitalize text-gray-500">
-                {data?.data?.packageExpiry ? data.data.packageExpiry : "null"}
+              <p className="text-lg font-extralight text-gray-400">
+                Please stay with us!
               </p>
             </div>
-            <div>
-              <h1 className="text-lg font-light text-gray-500">
-                Quizzes Attempted
-              </h1>
-              <p className="text-lg font-light text-gray-500 capitalize">
-                {data?.data?.quizzesAttempted}
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

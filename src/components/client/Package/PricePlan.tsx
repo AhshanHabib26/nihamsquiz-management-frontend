@@ -17,8 +17,6 @@ const PricePlan = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-  console.log(data);
-
   return (
     <div>
       <Container>

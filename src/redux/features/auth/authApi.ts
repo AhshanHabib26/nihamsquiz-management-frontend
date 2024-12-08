@@ -1,6 +1,6 @@
 import { TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
-import { TUser } from "./authSlice";
+import { TUser } from "@/types/user.type";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -64,7 +64,7 @@ const authApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
-    
+
     userBlock: builder.mutation({
       query: (id) => ({
         url: `/auth/user-block/${id}`,
@@ -79,6 +79,30 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    purchasePackage: builder.mutation({
+      query: (userInfo) => ({
+        url: "/auth/purchase-package",
+        method: "POST",
+        body: userInfo,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    activeUserPackage: builder.mutation({
+      query: (userId: string) => ({
+        url: "/auth/active-user-package",
+        method: "PUT",
+        body: { id: userId },
+      }),
+      invalidatesTags: ["User"],
+    }),
+    deactiveUserPackage: builder.mutation({
+      query: (userId: string) => ({
+        url: "/auth/deactive-user-package",
+        method: "PUT",
+        body: { id: userId },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -89,5 +113,8 @@ export const {
   useUserBlockMutation,
   useUserUnblockMutation,
   useGetuserProfileQuery,
-  useUpdatePasswordMutation
+  useUpdatePasswordMutation,
+  usePurchasePackageMutation,
+  useActiveUserPackageMutation,
+  useDeactiveUserPackageMutation,
 } = authApi;

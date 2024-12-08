@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 
 interface SearchBtnProps {
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
-  inputBelow: null;
+  inputBelow: boolean;
 }
 
 const SearchBtn: React.FC<SearchBtnProps> = ({ setSearchText, inputBelow }) => {
@@ -22,7 +22,7 @@ const SearchBtn: React.FC<SearchBtnProps> = ({ setSearchText, inputBelow }) => {
             placeholder="এখানে খুজুন..."
           />
         </div>
-        {inputBelow === null ? null : (
+        {inputBelow === false ? false : (
           <span className="text-sm text-gray-300 hind-siliguri-light">
             একাডেমিক, শিক্ষা, চিকিৎসা, স্বাস্থ্য, অনলাইন ইনকাম, প্রোগ্রামিং...{" "}
           </span>

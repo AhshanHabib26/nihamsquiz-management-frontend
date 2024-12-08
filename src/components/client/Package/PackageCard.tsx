@@ -42,9 +42,9 @@ const PackageCard: React.FC<TPackageProps> = ({ service, isCheckout }) => {
           </h1>
           <p className="text-lg hind-siliguri-regular ml-1">
             {" "}
-            {service.packageType === "Month"
+            {service?.packageType === "Month"
               ? "/ মাস"
-              : service.packageType === "Yearly"
+              : service?.packageType === "Yearly"
               ? "/ বার্ষিক"
               : "/ লাইফটাইম"}{" "}
           </p>
@@ -62,7 +62,7 @@ const PackageCard: React.FC<TPackageProps> = ({ service, isCheckout }) => {
             </div>
             <div>
               <span className="text-sm font-extralight bg-gray-800 px-3 rounded-md ">
-                {item.serviceValue}
+                {item?.serviceValue}
               </span>
             </div>
           </div>
@@ -113,7 +113,7 @@ const PackageCard: React.FC<TPackageProps> = ({ service, isCheckout }) => {
             ) : (
               <button
                 className="bg-green-500 hover:bg-green-600 inline-block w-full text-center text-lg rounded-md hind-siliguri-regular text-white p-2"
-                onClick={() => handleEnrollClick(service._id)}
+                onClick={() => handleEnrollClick(service?._id)}
               >
                 এনরোল প্রিমিয়াম
               </button>

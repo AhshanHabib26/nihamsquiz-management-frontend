@@ -72,6 +72,10 @@ const data = {
           title: "Create Package",
           url: "create-package",
         },
+        {
+          title: "All Subscriber",
+          url: "subscriber",
+        },
       ],
     },
     {

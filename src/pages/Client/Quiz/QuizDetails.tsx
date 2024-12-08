@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { setLoading } from "@/redux/features/global/globalSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { MathJax } from "better-react-mathjax";
 
 export interface Question {
   _id: string;
@@ -304,7 +305,9 @@ const QuizDetails = () => {
                         <div className="flex items-start lg:items-center gap-1 my-2">
                           <FaQuestion size={18} className="text-red-600" />
                           <h1 className="text-lg text-gray-300 hind-siliguri-semibold">
-                            {currentQuestion?.questionText}
+                            <MathJax inline>
+                              {currentQuestion?.questionText}
+                            </MathJax>
                           </h1>
                         </div>
 
@@ -325,7 +328,7 @@ const QuizDetails = () => {
                                     }
                                     onChange={handleOptionChange}
                                   />
-                                  {option}
+                                  <MathJax inline> {option}</MathJax>
                                 </label>
                               </div>
                             )
@@ -369,7 +372,7 @@ const QuizDetails = () => {
                         className="border border-gray-800 rounded-md p-4 mt-5"
                       >
                         <h3 className="text-xl text-gray-300 hind-siliguri-semibold">
-                          {item.questionText}
+                          <MathJax inline> {item.questionText}</MathJax>
                         </h3>
                         <div>
                           {item.options.map((option: string, i: number) => (
@@ -384,7 +387,7 @@ const QuizDetails = () => {
                                     option
                                   }
                                 />
-                                {option}
+                                <MathJax inline> {option}</MathJax>
                               </label>
                             </div>
                           ))}

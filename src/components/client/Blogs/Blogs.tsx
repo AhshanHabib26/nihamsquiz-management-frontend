@@ -35,7 +35,7 @@ const Blogs = () => {
 
   return (
     <div>
-      <SearchBtn inputBelow={null} setSearchText={setSearchText} />
+      <SearchBtn inputBelow={true} setSearchText={setSearchText} />
       {data?.data?.length === 0 || filteredPosts?.length === 0 ? (
         <div className="flex items-center justify-center flex-col mt-20">
           <HardDrive size={40} className="text-gray-400" />

@@ -44,7 +44,7 @@ const QuizPage = () => {
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-12 lg:col-span-8">
                 <div>
-                  <SearchBtn setSearchText={setSearchText} />
+                  <SearchBtn inputBelow={true} setSearchText={setSearchText} />
                   {data?.data?.length === 0 || filteredQuiz?.length === 0 ? (
                     <div className="flex items-center justify-center flex-col mt-20">
                       <HardDrive size={40} className="text-gray-400" />
