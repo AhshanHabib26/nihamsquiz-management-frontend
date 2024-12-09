@@ -44,38 +44,36 @@ const SubscriberModal = ({
           <DialogHeader>
             <DialogDescription>
               <div>
-                {user?.paymentDetails &&
-                  Array.isArray(user.paymentDetails) &&
-                  user.paymentDetails.map((item, index) => (
-                    <div key={index}>
-                      <div className="flex items-center justify-between text-sm font-light text-gray-800">
-                        <h1>Payable Amount</h1>
-                        <p>{item?.payableAmount}</p>
-                      </div>
-                      <div className="flex items-center justify-between text-sm font-light text-gray-800">
-                        <h1>Payment Method</h1>
-                        <p>{item?.paymentMethod}</p>
-                      </div>
-                      <div className="flex items-center justify-between text-sm font-light text-gray-800">
-                        <h1>Package Type</h1>
-                        <p>{item?.packageType}</p>
-                      </div>
-                      <div className="flex items-center justify-between text-sm font-light text-gray-800">
-                        <h1>Phone Number</h1>
-                        <p>{item?.phoneNumber}</p>
-                      </div>
-                      <div className="flex items-center justify-between text-sm font-light text-gray-800">
-                        <h1>Package Status</h1>
-                        <p>
-                          {user?.isPremium ? (
-                            <span className="text-green-600">True</span>
-                          ) : (
-                            <span className="text-red-600">False</span>
-                          )}
-                        </p>
-                      </div>
+                {user?.paymentDetails && (
+                  <div>
+                    <div className="flex items-center justify-between text-sm font-light text-gray-800">
+                      <h1>Payable Amount</h1>
+                      <p>{user?.paymentDetails?.payableAmount}</p>
                     </div>
-                  ))}
+                    <div className="flex items-center justify-between text-sm font-light text-gray-800">
+                      <h1>Payment Method</h1>
+                      <p>{user?.paymentDetails?.paymentMethod}</p>
+                    </div>
+                    <div className="flex items-center justify-between text-sm font-light text-gray-800">
+                      <h1>Points</h1>
+                      <p>{user?.paymentDetails?.points}</p>
+                    </div>
+                    <div className="flex items-center justify-between text-sm font-light text-gray-800">
+                      <h1>Phone Number</h1>
+                      <p>{user?.paymentDetails?.phoneNumber}</p>
+                    </div>
+                    <div className="flex items-center justify-between text-sm font-light text-gray-800">
+                      <h1>Package Status</h1>
+                      <p>
+                        {user?.isPremium ? (
+                          <span className="text-green-600">True</span>
+                        ) : (
+                          <span className="text-red-600">False</span>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </DialogDescription>
           </DialogHeader>

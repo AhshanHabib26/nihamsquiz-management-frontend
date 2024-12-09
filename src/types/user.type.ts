@@ -21,10 +21,12 @@ export type TUser = {
   followers?: string[];
   following?: string[];
   quizzesAttempted?: number;
+  totalPoints?: number;
   paymentDetails?: {
     payableAmount?: string;
     paymentMethod?: string;
     phoneNumber?: string;
+    points: number;
   };
 };
 

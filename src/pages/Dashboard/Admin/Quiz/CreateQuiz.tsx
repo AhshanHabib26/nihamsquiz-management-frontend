@@ -43,6 +43,7 @@ export const CreateQuizPage = () => {
   const [title, setTitle] = useState<string>("");
   const [difficultyLevel, setDifficultyLevel] = useState<string>("");
   const [duration, setDuration] = useState<number>();
+  const [accessPoints, setAccessPoints] = useState<number>();
   const [input, setInput] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [questions, setQuestions] = useState<Question[]>([
@@ -91,6 +92,7 @@ export const CreateQuizPage = () => {
       setDifficultyLevel(quiz?.data?.difficultyLevel || "");
       setSelectedCategory(quiz?.data?.category._id || "");
       setDuration(quiz?.data?.duration || 0);
+      setAccessPoints(quiz?.data?.accessPoints || 0);
 
       // Handle tags
       const tagsArray = Array.isArray(quiz?.data?.tags) ? quiz?.data?.tags : [];
@@ -216,6 +218,7 @@ export const CreateQuizPage = () => {
       description,
       questions,
       duration,
+      accessPoints,
       tags,
       difficultyLevel,
       category: selectedCategory,
@@ -257,6 +260,7 @@ export const CreateQuizPage = () => {
     setTitle("");
     setSelectedCategory("");
     setDuration(undefined);
+    setAccessPoints(undefined)
     setDifficultyLevel("");
     setTags([]);
   };
@@ -365,21 +369,27 @@ export const CreateQuizPage = () => {
             onChange={(e) => setDuration(parseInt(e.target.value))}
             placeholder="Duration (minutes)"
           />
-
           <Input
-            type="text"
-            value={difficultyLevel}
-            onChange={(e) => setDifficultyLevel(e.target.value)}
-            placeholder="Add Quiz difficulty level (Easy, Hard, Medium)"
+            type="number"
+            value={accessPoints}
+            onChange={(e) => setAccessPoints(parseInt(e.target.value))}
+            placeholder="Quiz Access Points"
             className="h-[50px] text-lg hind-siliguri-light"
           />
         </div>
-        <div className="mb-4">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-5 my-5">
           <Input
             type="text"
             value={input}
             onChange={handleInputChange}
             placeholder="Enter tags separated by commas"
+            className="h-[50px] text-lg hind-siliguri-light"
+          />
+          <Input
+            type="text"
+            value={difficultyLevel}
+            onChange={(e) => setDifficultyLevel(e.target.value)}
+            placeholder="Add Quiz difficulty level (Easy, Hard, Medium)"
             className="h-[50px] text-lg hind-siliguri-light"
           />
         </div>

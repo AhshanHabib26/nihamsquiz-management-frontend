@@ -3,10 +3,8 @@ import PackageCard from "@/components/client/Package/PackageCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Container from "@/lib/Container";
-import { useGetuserProfileQuery } from "@/redux/features/auth/authApi";
 import { setLoading } from "@/redux/features/global/globalSlice";
 import { useGetSinglePackageQuery } from "@/redux/features/package/packageApi";
-import { ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaCreditCard } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
@@ -20,17 +18,13 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const { data, isLoading } = useGetSinglePackageQuery(serviceId);
   const service = data?.data?.result;
-  const { data: userData, isLoading: isUserLoading } = useGetuserProfileQuery({
-    refetchOnMountOrArgChange: false,
-  });
+
 
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-  useEffect(() => {
-    dispatch(setLoading(isUserLoading));
-  }, [isUserLoading, dispatch]);
+
 
   return (
     <div className=" min-h-screen">
@@ -73,46 +67,34 @@ const CheckoutPage = () => {
                 </div>
               </div>
               <Separator className="bg-gray-900 my-4" />
-              {userData?.data?.isBuyPackage ? (
-                <div className="flex items-center justify-center flex-col my-20 text-gray-500">
-                  <ThumbsUp size={40} />
-                  <h1 className="text-lg font-light mt-2">
-                    Thank You for Purchasing Our Service!
-                  </h1>
-                  <p className="text-lg font-extralight text-center">
-                    We appreciate your support. Stay with us for more exciting
-                    features!
-                  </p>
+
+              <div>
+                <h1 className="text-lg font-light">Select Payment Method:</h1>
+                <div className="mt-3 flex items-center justify-between">
+                  <Button
+                    size="lg"
+                    className="bg-green-600 hover:bg-green-700"
+                    onClick={() => setIsManualPaymentVisible((prev) => !prev)} // Toggle visibility of Manual Payment component
+                  >
+                    {isManualPaymentVisible
+                      ? "Hide Manual Payment"
+                      : "Manual Payment"}
+                  </Button>
+                  <Button
+                    size="lg"
+                    className="bg-BgPrimary hover:bg-BgPrimaryHover"
+                  >
+                    SSLCommerz
+                  </Button>
                 </div>
-              ) : (
-                <div>
-                  <h1 className="text-lg font-light">Select Payment Method:</h1>
-                  <div className="mt-3 flex items-center justify-between">
-                    <Button
-                      size="lg"
-                      className="bg-green-600 hover:bg-green-700"
-                      onClick={() => setIsManualPaymentVisible((prev) => !prev)} // Toggle visibility of Manual Payment component
-                    >
-                      {isManualPaymentVisible
-                        ? "Hide Manual Payment"
-                        : "Manual Payment"}
-                    </Button>
-                    <Button
-                      size="lg"
-                      className="bg-BgPrimary hover:bg-BgPrimaryHover"
-                    >
-                      SSLCommerz
-                    </Button>
+                {isManualPaymentVisible ? (
+                  <MannualPayment service={service} />
+                ) : (
+                  <div className="flex items-center justify-center mt-20">
+                    <FaCreditCard size={50} className="text-gray-800" />
                   </div>
-                  {isManualPaymentVisible ? (
-                    <MannualPayment service={service} />
-                  ) : (
-                    <div className="flex items-center justify-center mt-20">
-                      <FaCreditCard size={50} className="text-gray-800" />
-                    </div>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </Container>

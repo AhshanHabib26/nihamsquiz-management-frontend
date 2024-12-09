@@ -33,6 +33,13 @@ const packageApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Package"],
     }),
+    deletePackage: builder.mutation({
+      query: (id) => ({
+        url: `/packages/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Package"],
+    }),
   }),
 });
 
@@ -41,4 +48,5 @@ export const {
   useGetAllPackageQuery,
   useUpdatePackageMutation,
   useGetSinglePackageQuery,
+  useDeletePackageMutation,
 } = packageApi;

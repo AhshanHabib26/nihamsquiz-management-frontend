@@ -1,4 +1,3 @@
-import Container from "@/lib/Container";
 import {
   Accordion,
   AccordionContent,
@@ -65,7 +64,6 @@ const faqData = [
 const FAQPricePlan = () => {
   return (
     <div className=" py-20">
-      <Container>
         <div className="flex items-center justify-center flex-col">
           <h1 className="text-5xl font-semibold bg-gradient-to-b from-white to-transparent bg-clip-text text-transparent">
             Frequently Asked Questions
@@ -89,7 +87,6 @@ const FAQPricePlan = () => {
             </div>
           ))}
         </div>
-      </Container>
     </div>
   );
 };
