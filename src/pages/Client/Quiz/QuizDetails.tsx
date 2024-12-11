@@ -7,10 +7,6 @@ import { Button } from "@/components/ui/button";
 import Swal from "sweetalert2";
 import { FaQuestion } from "react-icons/fa6";
 import { toast } from "sonner";
-import {
-  useGetSingleQuizQuery,
-  useSubmitQuizMutation,
-} from "@/redux/features/quiz/quiz/quizApi";
 import Container from "@/lib/Container";
 import QuizResultModal from "@/lib/QuizResultModal";
 import { useDispatch } from "react-redux";
@@ -18,7 +14,11 @@ import { setLoading } from "@/redux/features/global/globalSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { MathJax } from "better-react-mathjax";
-
+import {
+  useReservePointsQuizMutation,
+  useSubmitQuizMutation,
+} from "@/redux/features/quiz/submission/submissionApi";
+import { useGetSingleQuizQuery } from "@/redux/features/quiz/quiz/quizApi";
 export interface Question {
   _id: string;
   questionText: string;
@@ -43,6 +43,7 @@ const QuizDetails = () => {
   const [retakeCount, setRetakeCount] = useState<number>(0);
   const { data, isLoading } = useGetSingleQuizQuery(id);
   const [submitQuiz] = useSubmitQuizMutation();
+  const [reservePointsQuiz] = useReservePointsQuizMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quizResult, setQuizResult] = useState({
     totalQuestions: 0,
@@ -85,15 +86,24 @@ const QuizDetails = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-  const handleToggle = () => {
-    setIsToggled((prev) => !prev);
-    if (!isToggled) {
+  useEffect(() => {
+    if (isToggled) {
       const quizDuration = data?.data?.duration || 0;
       if (quizDuration > 0) {
         setTimer(quizDuration * 60);
       } else {
         setTimer(0);
       }
+    }
+  }, [isToggled, data?.data?.duration]);
+
+  const handleToggle = async () => {
+    try {
+      await reservePointsQuiz(data?.data?._id).unwrap();
+      setIsToggled((prev) => !prev);
+    } catch (error) {
+      console.error("Error during reservePointsQuiz:", error);
+      toast.error("Insufficient points to start the quiz.");
     }
   };
 
@@ -192,87 +202,103 @@ const QuizDetails = () => {
     <div className=" min-h-screen">
       <div className=" mt-20 lg:mt-28">
         <Container>
-          <div className="max-w-4xl mx-auto w-full ">
+          <div className="max-w-5xl mx-auto w-full ">
             {!isToggled && data?.data && (
-              <div className="flex flex-col lg:flex-row gap-5 border border-gray-800 rounded-md p-4">
-                <div className="flex items-center lg:items-start justify-center">
-                  <img
-                    className="w-full lg:w-[550px] h-full rounded-md"
-                    src={avatar}
-                    alt={data?.data?.title}
-                  />
+              <div className="border border-gray-800 rounded-md p-4">
+                <div className="flex flex-col lg:flex-row gap-5">
+                  <div className="flex items-center lg:items-start justify-center">
+                    <img
+                      className="w-full lg:w-[520px] h-full rounded-md"
+                      src={avatar}
+                      alt={data?.data?.title}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <h1 className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Title:{" "}
+                      <span className=" font-light">{data?.data?.title}</span>
+                    </h1>
+
+                    <div className="flex items-center flex-wrap gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Description:{" "}
+                      {data?.data?.description && (
+                        <p
+                          className="font-light"
+                          dangerouslySetInnerHTML={{
+                            __html: data?.data?.description,
+                          }}
+                        ></p>
+                      )}
+                    </div>
+                    <p className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Duration:{" "}
+                      <span className="font-light">
+                        {data?.data?.duration} Minutes
+                      </span>
+                    </p>
+
+                    <p className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Error Penalty:
+                      <span className="font-light text-red-500">
+                        {data?.data?.penaltyPerIncorrectAnswer}
+                      </span>
+                    </p>
+
+                    <p className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Points Required:
+                      <span className="hind-siliguri-light">
+                        {data?.data?.pointsRequired}
+                      </span>
+                    </p>
+
+                    <p className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Level:{" "}
+                      <span className="hind-siliguri-light">
+                        {data?.data?.difficultyLevel}
+                      </span>
+                    </p>
+                    <p className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300">
+                      Category:{" "}
+                      <span className="hind-siliguri-light">
+                        {data?.data?.category?.name}
+                      </span>
+                    </p>
+                    <div className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300 mt-2">
+                      <p>Tags: </p>
+                      {data?.data?.tags.map((t: string, index: number) => (
+                        <div
+                          key={index}
+                          className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded hover:text-TextPrimary hover:border-blue-700"
+                        >
+                          <Link to={`/quiz/label/${t}`}>
+                            <p className="font-light">{t}</p>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="w-full">
-                  <h1 className="text-md hind-siliguri-medium text-gray-300">
-                    Title:{" "}
-                    <span className="hind-siliguri-semibold">
-                      {data?.data?.title}
-                    </span>
-                  </h1>
-
-                  <div className="flex gap-1 text-md hind-siliguri-medium text-gray-300">
-                    Description:{" "}
-                    {data?.data?.description && (
-                      <p
-                        className="hind-siliguri-light"
-                        dangerouslySetInnerHTML={{
-                          __html: data?.data?.description,
-                        }}
-                      ></p>
-                    )}
-                  </div>
-                  <p className="text-md hind-siliguri-medium text-gray-300">
-                    Duration:{" "}
-                    <span className="hind-siliguri-light">
-                      {data?.data?.duration} Minutes
-                    </span>
-                  </p>
-                  <p className="text-md hind-siliguri-medium text-gray-300">
-                    Level:{" "}
-                    <span className="hind-siliguri-light">
-                      {data?.data?.difficultyLevel}
-                    </span>
-                  </p>
-                  <p className="text-md hind-siliguri-medium text-gray-300">
-                    Category:{" "}
-                    <span className="hind-siliguri-light">
-                      {data?.data?.category?.name}
-                    </span>
-                  </p>
-                  <div className="flex items-center gap-1 text-md hind-siliguri-medium text-gray-300 mt-2">
-                    <p>Tags: </p>
-                    {data?.data?.tags.map((t: string, index: number) => (
-                      <div
-                        key={index}
-                        className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded hover:text-TextPrimary hover:border-blue-700"
-                      >
-                        <Link to={`/quiz/label/${t}`}>
-                          <p className="hind-siliguri-light">{t}</p>
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-end justify-end mt-3">
-                    {token ? (
+                <hr className=" border-gray-800 mt-5" />
+                <div className="flex items-end justify-end mt-3">
+                  {token ? (
+                    <Button
+                      size="lg"
+                      className=" bg-BgPrimary"
+                      onClick={handleToggle}
+                    >
+                      Start Now
+                    </Button>
+                  ) : (
+                    <Link to="/login">
                       <Button
                         size="lg"
-                        className=" bg-BgPrimary"
-                        onClick={handleToggle}
+                        className=" bg-BgPrimary hover:bg-BgPrimaryHover"
                       >
                         Start Now
                       </Button>
-                    ) : (
-                      <Link to="/login">
-                        <Button
-                          size="lg"
-                          className=" bg-BgPrimary hover:bg-BgPrimaryHover"
-                        >
-                          Start Now
-                        </Button>
-                      </Link>
-                    )}
-                  </div>
+                    </Link>
+                  )}
                 </div>
               </div>
             )}

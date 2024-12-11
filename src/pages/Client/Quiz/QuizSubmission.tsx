@@ -1,10 +1,10 @@
 import Container from "@/lib/Container";
 import { setLoading } from "@/redux/features/global/globalSlice";
-import { useGetSubmissionQuizQuery } from "@/redux/features/quiz/quiz/quizApi";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { MathJax } from "better-react-mathjax";
+import { useGetSubmissionQuizQuery } from "@/redux/features/quiz/submission/submissionApi";
 
 // Define TypeScript interfaces
 interface Answer {

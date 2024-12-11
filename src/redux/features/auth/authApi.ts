@@ -103,6 +103,22 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    activeUserRole: builder.mutation({
+      query: (userId: string) => ({
+        url: "/auth/active-user-role",
+        method: "PUT",
+        body: { id: userId },
+      }),
+      invalidatesTags: ["User"],
+    }),
+    deactiveUserRole: builder.mutation({
+      query: (userId: string) => ({
+        url: "/auth/deactive-user-role",
+        method: "PUT",
+        body: { id: userId },
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -117,4 +133,6 @@ export const {
   usePurchasePackageMutation,
   useActiveUserPackageMutation,
   useDeactiveUserPackageMutation,
+  useActiveUserRoleMutation,
+  useDeactiveUserRoleMutation
 } = authApi;

@@ -33,11 +33,11 @@ const data = {
         },
         {
           title: "Quiz",
-          url: "#",
+          url: "quiz",
         },
         {
           title: "Comment",
-          url: "#",
+          url: "comment",
         },
       ],
     },

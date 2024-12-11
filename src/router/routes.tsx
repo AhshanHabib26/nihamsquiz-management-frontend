@@ -35,6 +35,8 @@ import CreatePlanPage from "@/pages/Dashboard/Admin/Plan/CreatePlan";
 import CheckoutPage from "@/pages/Client/Checkout";
 import SubscribePage from "@/pages/Dashboard/Admin/Plan/Subscribe";
 import { UPostPage } from "@/pages/Dashboard/User/Blog/Post";
+import UQuizPage from "@/pages/Dashboard/User/Quiz/UQuiz";
+import UCommentPage from "@/pages/Dashboard/User/Comment/Comment";
 
 export const routes = createBrowserRouter([
   {
@@ -198,6 +200,14 @@ export const routes = createBrowserRouter([
       {
         path: "all-post",
         element: <UPostPage />,
+      },
+      {
+        path: "quiz",
+        element: <UQuizPage />,
+      },
+      {
+        path: "comment",
+        element: <UCommentPage />,
       },
       {
         path: "profile",

@@ -1,4 +1,6 @@
 import {
+  useActiveUserRoleMutation,
+  useDeactiveUserRoleMutation,
   useGetAllUsersQuery,
   useUserBlockMutation,
   useUserUnblockMutation,
@@ -18,10 +20,10 @@ import { HardDrive } from "lucide-react";
 import { PaginationCard } from "@/lib/PaginationCard";
 import moment from "moment";
 import { Button } from "@/components/ui/button";
-import { TUser } from "@/redux/features/auth/authSlice";
 import SearchBtn from "@/components/client/SearchBtn";
 import { Separator } from "@/components/ui/separator";
 import { handleUserAction } from "@/components/dashboard/admin/User/UserAction";
+import { TUser } from "@/types/user.type";
 
 export default function UserPage() {
   const dispatch = useDispatch();
@@ -29,6 +31,8 @@ export default function UserPage() {
   const limit = 10;
   const [userBlock] = useUserBlockMutation();
   const [userUnblock] = useUserUnblockMutation();
+  const [activeUserRole] = useActiveUserRoleMutation();
+  const [deactiveUserRole] = useDeactiveUserRoleMutation();
 
   const { data, isLoading } = useGetAllUsersQuery(
     { page, limit },
@@ -69,7 +73,7 @@ export default function UserPage() {
                 handleUserAction(
                   userUnblock,
                   user._id as string,
-                  "User unblocked successfully"
+                  "Are you sure you want to unblock this user?"
                 )
               }
               size="sm"
@@ -83,7 +87,7 @@ export default function UserPage() {
                 handleUserAction(
                   userBlock,
                   user._id as string,
-                  "User blocked successfully"
+                  "Are you sure you want to block this user?"
                 )
               }
               size="sm"
@@ -92,9 +96,36 @@ export default function UserPage() {
               Block
             </Button>
           )}
-          <Button size="sm" className="bg-blue-500 hover:bg-blue-600">
-            Edit
-          </Button>
+
+          {user.isAdmin ? (
+            <Button
+              onClick={() =>
+                handleUserAction(
+                  deactiveUserRole,
+                  user._id as string,
+                  "User's role has been changed to regular user."
+                )
+              }
+              size="sm"
+              className="bg-red-500 hover:bg-red-600"
+            >
+              Remove Admin
+            </Button>
+          ) : (
+            <Button
+              onClick={() =>
+                handleUserAction(
+                  activeUserRole,
+                  user._id as string,
+                  "Are you sure you want to make this user an admin?"
+                )
+              }
+              size="sm"
+              className="bg-green-500 hover:bg-green-600"
+            >
+              Promote to Admin
+            </Button>
+          )}
         </TableCell>
       </TableRow>
     ));

@@ -1,4 +1,5 @@
 import Notification from "@/components/dashboard/user/Notification/Notification";
+import QuizSubmissions from "@/components/dashboard/user/Quiz/QuizSubmissions";
 import UHomeCard from "@/components/dashboard/user/UHome/UHomeCard";
 import { useGetuserProfileQuery } from "@/redux/features/auth/authApi";
 import { setLoading } from "@/redux/features/global/globalSlice";
@@ -14,11 +15,13 @@ const UHomePage = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
+
   return (
     <div>
       <div>
         <Notification user={data?.data} />
         <UHomeCard user={data?.data} />
+        <QuizSubmissions />
       </div>
     </div>
   );

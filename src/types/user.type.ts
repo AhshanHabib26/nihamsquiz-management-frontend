@@ -16,12 +16,14 @@ export type TUser = {
   packageExpiry?: Date | null;
   packageType?: string;
   isPremium?: boolean;
+  isAdmin?: boolean;
   isBuyPackage?: boolean;
   comments?: string[];
   followers?: string[];
   following?: string[];
   quizzesAttempted?: number;
   totalPoints?: number;
+  pointsDeducted?: number;
   paymentDetails?: {
     payableAmount?: string;
     paymentMethod?: string;

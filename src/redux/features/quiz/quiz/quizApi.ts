@@ -62,13 +62,12 @@ const quizApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Quiz"],
     }),
-    submitQuiz: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/quiz/submit-quiz/${id}`,
-        method: "POST",
-        body: data, // data should be the userAnswers array
+    getSingleQuiz: builder.query({
+      query: (id) => ({
+        url: `/quiz/${id}`,
+        method: "GET",
       }),
-      invalidatesTags: ["Quiz"],
+      providesTags: ["Quiz"],
     }),
 
     deleteQuiz: builder.mutation({
@@ -78,20 +77,6 @@ const quizApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Quiz"],
     }),
-    getSingleQuiz: builder.query({
-      query: (id) => ({
-        url: `/quiz/${id}`,
-        method: "GET",
-      }),
-      providesTags: ["Quiz"],
-    }),
-    getSubmissionQuiz: builder.query({
-      query: (id) => ({
-        url: `/quiz/get-quiz-result/${id}`,
-        method: "GET",
-      }),
-      providesTags: ["Quiz"],
-    }),
   }),
 });
 
@@ -99,9 +84,7 @@ export const {
   useCreateQuizMutation,
   useDeleteQuizMutation,
   useGetAllQuizQuery,
-  useGetSingleQuizQuery,
   useUpdateQuizMutation,
-  useSubmitQuizMutation,
-  useGetSubmissionQuizQuery,
-  useUploadQuizMutation
+  useUploadQuizMutation,
+  useGetSingleQuizQuery
 } = quizApi;

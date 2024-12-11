@@ -5,10 +5,10 @@ import { TResponseRedux } from "@/types";
 const commentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createComment: builder.mutation({
-      query: ({postId, description}) => ({
+      query: ({ postId, description }) => ({
         url: `/comment/${postId}`,
         method: "POST",
-        body: {description},
+        body: { description },
       }),
       invalidatesTags: ["Comment"],
     }),
@@ -62,6 +62,13 @@ const commentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Comment"],
     }),
+    getUserCommentSubmissions: builder.query({
+      query: () => ({
+        url: "/comment/comment-submissions",
+        method: "GET",
+      }),
+      providesTags: ["Comment"],
+    }),
   }),
 });
 
@@ -70,4 +77,5 @@ export const {
   useDeleteCommentMutation,
   useGetAllCommentQuery,
   useUpdateCommentMutation,
+  useGetUserCommentSubmissionsQuery,
 } = commentApi;

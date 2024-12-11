@@ -43,7 +43,8 @@ export const CreateQuizPage = () => {
   const [title, setTitle] = useState<string>("");
   const [difficultyLevel, setDifficultyLevel] = useState<string>("");
   const [duration, setDuration] = useState<number>();
-  const [accessPoints, setAccessPoints] = useState<number>();
+  const [pointsRequired, setPointsRequired] = useState<number>();
+  const [penaltyPerIncorrectAnswer, setPenaltyPerIncorrectAnswer] = useState<number>();
   const [input, setInput] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [questions, setQuestions] = useState<Question[]>([
@@ -92,7 +93,8 @@ export const CreateQuizPage = () => {
       setDifficultyLevel(quiz?.data?.difficultyLevel || "");
       setSelectedCategory(quiz?.data?.category._id || "");
       setDuration(quiz?.data?.duration || 0);
-      setAccessPoints(quiz?.data?.accessPoints || 0);
+      setPointsRequired(quiz?.data?.pointsRequired || 0);
+      setPenaltyPerIncorrectAnswer(quiz?.data?.penaltyPerIncorrectAnswer || 0);
 
       // Handle tags
       const tagsArray = Array.isArray(quiz?.data?.tags) ? quiz?.data?.tags : [];
@@ -218,7 +220,8 @@ export const CreateQuizPage = () => {
       description,
       questions,
       duration,
-      accessPoints,
+      penaltyPerIncorrectAnswer,
+      pointsRequired,
       tags,
       difficultyLevel,
       category: selectedCategory,
@@ -260,7 +263,8 @@ export const CreateQuizPage = () => {
     setTitle("");
     setSelectedCategory("");
     setDuration(undefined);
-    setAccessPoints(undefined)
+    setPointsRequired(undefined)
+    setPenaltyPerIncorrectAnswer(undefined)
     setDifficultyLevel("");
     setTags([]);
   };
@@ -361,7 +365,7 @@ export const CreateQuizPage = () => {
         />
       </div>
       <div className="mt-20 lg:mt-8">
-        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-5 my-5">
+        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-5 my-5">
           <Input
             type="number"
             value={duration}
@@ -371,9 +375,16 @@ export const CreateQuizPage = () => {
           />
           <Input
             type="number"
-            value={accessPoints}
-            onChange={(e) => setAccessPoints(parseInt(e.target.value))}
+            value={pointsRequired}
+            onChange={(e) => setPointsRequired(parseInt(e.target.value))}
             placeholder="Quiz Access Points"
+            className="h-[50px] text-lg hind-siliguri-light"
+          />
+          <Input
+            type="number"
+            value={penaltyPerIncorrectAnswer}
+            onChange={(e) => setPenaltyPerIncorrectAnswer(parseInt(e.target.value))}
+            placeholder="Penalty Per Incorrect Answer"
             className="h-[50px] text-lg hind-siliguri-light"
           />
         </div>

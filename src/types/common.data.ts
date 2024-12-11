@@ -42,6 +42,7 @@ export type TComment = {
   createdAt: string;
   post: {
     title: string;
+    slug: string;
   };
 };
 
@@ -62,6 +63,8 @@ export type TQuiz = {
     explanation?: string;
   }[];
   duration: number;
+  penaltyPerIncorrectAnswer: number;
+  pointsRequired: number;
   tags?: string[];
   difficultyLevel: string;
   createdAt?: string;
@@ -102,4 +105,15 @@ export interface IPackage {
 export type TPackageProps = {
   service: IPackage;
   isCheckout?: boolean;
+};
+
+export type TProgress = {
+  totalCorrectAnswers: number;
+  totalMarks: number;
+  totalQuizzes: number;
+  totalWrongAnswers: number;
+};
+
+export type TProgressProps = {
+  progress: TProgress;
 };
