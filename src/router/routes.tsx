@@ -34,6 +34,7 @@ import { UPostPage } from "@/pages/Dashboard/User/Blog/Post";
 import UQuizPage from "@/pages/Dashboard/User/Quiz/UQuiz";
 import UCommentPage from "@/pages/Dashboard/User/Comment/Comment";
 import NotFoundPage from "@/pages/Client/NotFound/NotFound";
+import MySubmissionsPage from "@/pages/Dashboard/Admin/MySubmissions";
 
 export const routes = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ export const routes = createBrowserRouter([
       {
         path: "create-post",
         element: <CreatePostPage />,
+      },
+      {
+        path: "my-submissions",
+        element: <MySubmissionsPage />,
       },
       {
         path: "create-post/:id",

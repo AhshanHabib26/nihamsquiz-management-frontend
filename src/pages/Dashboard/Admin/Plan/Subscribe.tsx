@@ -19,9 +19,7 @@ import {
 } from "@/components/ui/table";
 import { HardDrive } from "lucide-react";
 import { PaginationCard } from "@/lib/PaginationCard";
-import moment from "moment";
 import { Button } from "@/components/ui/button";
-import SearchBtn from "@/components/client/SearchBtn";
 import { Separator } from "@/components/ui/separator";
 import { handleUserAction } from "@/components/dashboard/admin/User/UserAction";
 import SubscriberModal from "@/components/dashboard/admin/Plan/SubscriberModal";
@@ -60,21 +58,10 @@ const SubscribePage = () => {
 
   const total = data?.meta?.total ?? 0;
 
-  const [searchText, setSearchText] = useState("");
-  const filteredUser = data?.data?.filter(
-    (user: TUser) =>
-      user?.isBuyPackage === true &&
-      ((user?.fullname &&
-        user?.fullname.toLowerCase().includes(searchText.toLowerCase())) ||
-        (user?.email &&
-          user?.email.toLowerCase().includes(searchText.toLowerCase())) ||
-        (user?.packageType &&
-          user?.packageType.toLowerCase().includes(searchText.toLowerCase())))
-  );
-
+  console.log(data);
 
   useEffect(() => {
-    dispatch(setLoading(isLoading)); 
+    dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
   const handleUserPackageAction = async (
@@ -100,16 +87,20 @@ const SubscribePage = () => {
   };
 
   const renderTableRows = () => {
-    return filteredUser?.map((user) => (
+    return data?.data?.map((user) => (
       <TableRow key={user?._id}>
         <TableCell>{user?.fullname}</TableCell>
         <TableCell>{user?.email}</TableCell>
-        <TableCell>{user?.packageType}</TableCell>
+        <TableCell>{user?.totalPoints}</TableCell>
+        <TableCell>{user?.pointsDeducted}</TableCell>
         <TableCell>
-          {user?.packageExpiry
-            ? moment(user.packageExpiry).format("MMMM Do YYYY, h:mm:ss a")
-            : "N/A"}
+          {user?.packagePointsUsed ? (
+            <span className=" text-green-600">Active Package</span>
+          ) : (
+            <span className=" text-red-600">Inactive Package</span>
+          )}
         </TableCell>
+
         <TableCell className="flex items-center gap-3 justify-end cursor-pointer">
           {user.isBlocked ? (
             <Button
@@ -183,11 +174,10 @@ const SubscribePage = () => {
     <div className="mt-5">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-gray-600">All Subscriber</h1>
-        <SearchBtn setSearchText={setSearchText} inputBelow={false} />
       </div>
       <Separator className="mt-5" />
       <div>
-        {data?.data?.length === 0 || filteredUser?.length === 0 ? (
+        {data?.data?.length === 0 ? (
           <div className="flex items-center justify-center flex-col mt-20">
             <HardDrive size={40} className="text-gray-400" />
             <h1 className="text-gray-400">No User Found!</h1>
@@ -199,14 +189,15 @@ const SubscribePage = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Package Type</TableHead>
-                  <TableHead>Package Expiry</TableHead>
+                  <TableHead>Available Points</TableHead>
+                  <TableHead>Spend Points</TableHead>
+                  <TableHead>Is Points Used</TableHead>
                   <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>{renderTableRows()}</TableBody>
             </Table>
-            {filteredUser?.length === limit && (
+            {total > limit && (
               <div className="my-5 flex items-end justify-end">
                 <PaginationCard
                   page={page}

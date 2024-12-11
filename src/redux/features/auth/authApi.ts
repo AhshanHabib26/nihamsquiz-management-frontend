@@ -31,10 +31,13 @@ const authApi = baseApi.injectEndpoints({
 
         // Only append page and limit if they are provided
         if (args.page !== undefined && args.page !== null) {
-          params.append("page", args.page.toString());
+          params.set("page", args.page.toString());
         }
         if (args.limit !== undefined && args.limit !== null) {
-          params.append("limit", args.limit.toString());
+          params.set("limit", args.limit.toString());
+        }
+        if (args.searchTerm && args.searchTerm.trim()) {
+          params.set("searchTerm", args.searchTerm.trim());
         }
         Object.keys(args).forEach((key) => {
           if (
@@ -43,7 +46,7 @@ const authApi = baseApi.injectEndpoints({
             args[key] !== undefined &&
             args[key] !== null
           ) {
-            params.append(key, args[key]);
+            params.set(key, args[key]);
           }
         });
 
@@ -134,5 +137,5 @@ export const {
   useActiveUserPackageMutation,
   useDeactiveUserPackageMutation,
   useActiveUserRoleMutation,
-  useDeactiveUserRoleMutation
+  useDeactiveUserRoleMutation,
 } = authApi;

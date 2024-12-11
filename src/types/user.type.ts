@@ -18,6 +18,7 @@ export type TUser = {
   isPremium?: boolean;
   isAdmin?: boolean;
   isBuyPackage?: boolean;
+  packagePointsUsed?: boolean;
   comments?: string[];
   followers?: string[];
   following?: string[];

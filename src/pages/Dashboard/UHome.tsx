@@ -15,13 +15,12 @@ const UHomePage = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-
   return (
     <div>
       <div>
         <Notification user={data?.data} />
         <UHomeCard user={data?.data} />
-        <QuizSubmissions />
+        <QuizSubmissions title=" My Quiz Submissions" separator={true} />
       </div>
     </div>
   );

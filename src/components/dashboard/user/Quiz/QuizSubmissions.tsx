@@ -33,7 +33,13 @@ interface IQuizSubmission {
   submittedAt: string;
 }
 
-const QuizSubmissions = () => {
+const QuizSubmissions = ({
+  title,
+  separator,
+}: {
+  title: string;
+  separator: boolean;
+}) => {
   const { data, isLoading } = useGetUserQuizSubmissionsQuery({});
   const dispatch = useDispatch();
   const [expandedQuizId, setExpandedQuizId] = useState<string | null>(null);
@@ -42,19 +48,14 @@ const QuizSubmissions = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
-
   const toggleDetails = (quizId: string) => {
-    setExpandedQuizId((prevId) => (prevId === quizId ? null : quizId)); 
+    setExpandedQuizId((prevId) => (prevId === quizId ? null : quizId));
   };
-
-  console.log(data?.data)
 
   return (
     <div>
-      <h2 className="text-xl font-semibold text-gray-700">
-        My Quiz Submissions
-      </h2>
-      <Separator className="my-3" />
+      <h2 className="text-xl font-semibold text-gray-700">{title && title}</h2>
+      {separator && <Separator className="my-3" />}
 
       {data && data?.data?.length === 0 ? (
         <div className="flex items-center justify-center flex-col mt-20">
@@ -102,7 +103,8 @@ const QuizSubmissions = () => {
                   {submission?.questions.map((question, qIndex) => (
                     <div key={qIndex} className="mb-4">
                       <h4 className="font-medium">
-                        Question {qIndex + 1}: <MathJax inline>{question?.questionText}</MathJax>
+                        Question {qIndex + 1}:{" "}
+                        <MathJax inline>{question?.questionText}</MathJax>
                       </h4>
                       <form>
                         {question?.options?.map((option, oIndex) => {

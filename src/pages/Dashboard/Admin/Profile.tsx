@@ -77,36 +77,44 @@ const ProfilePage = () => {
               Account Status
             </h1>
           </div>
+
           {data?.data?.isPremium ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
+              {/* Premium Status */}
               <div>
                 <h1 className="text-lg font-light text-gray-500">Premium</h1>
                 <p className="text-lg font-light text-gray-500">
-                  {data?.data?.isPremium ?? false ? "True" : "False"}
+                  {data?.data?.isPremium ? "Active" : "Inactive"}
                 </p>
               </div>
+
+              {/* Available Points */}
               <div>
                 <h1 className="text-lg font-light text-gray-500">
-                  Package Type
+                  Available Points
                 </h1>
                 <p className="text-lg font-light text-gray-500 capitalize">
-                  {data?.data?.packageType}
+                  {data?.data?.totalPoints || "0"}
                 </p>
               </div>
+
+              {/* Points Deducted */}
               <div>
                 <h1 className="text-lg font-light text-gray-500">
-                  Package Expiry
+                  Points Spent
                 </h1>
                 <p className="text-lg font-light capitalize text-gray-500">
-                  {data?.data?.packageExpiry ? data.data.packageExpiry : "null"}
+                  {data?.data?.pointsDeducted || "0"}
                 </p>
               </div>
+
+              {/* Quizzes Attempted */}
               <div>
                 <h1 className="text-lg font-light text-gray-500">
                   Quizzes Attempted
                 </h1>
                 <p className="text-lg font-light text-gray-500 capitalize">
-                  {data?.data?.quizzesAttempted}
+                  {data?.data?.quizzesAttempted || "0"}
                 </p>
               </div>
             </div>
@@ -114,6 +122,64 @@ const ProfilePage = () => {
             <div className="text-center my-8">
               <h1 className="text-lg font-light text-gray-400">
                 Waiting for Account Activation
+              </h1>
+              <p className="text-lg font-extralight text-gray-400">
+                Please stay with us!
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="my-5 border border-gray-200 rounded-lg p-6">
+          <div>
+            <h1 className="text-lg font-medium text-gray-700">
+              Payment Details
+            </h1>
+          </div>
+          {data?.data?.paymentDetails ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-3">
+              {/* Payable Amount */}
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Payable Amount
+                </h1>
+                <p className="text-lg font-light text-gray-500">
+                  {data?.data?.paymentDetails?.payableAmount || "N/A"}
+                </p>
+              </div>
+
+              {/* Payment Method */}
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Payment Method
+                </h1>
+                <p className="text-lg font-light text-gray-500 capitalize">
+                  {data?.data?.paymentDetails?.paymentMethod || "N/A"}
+                </p>
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <h1 className="text-lg font-light text-gray-500">
+                  Phone Number
+                </h1>
+                <p className="text-lg font-light text-gray-500">
+                  {data?.data?.paymentDetails?.phoneNumber || "N/A"}
+                </p>
+              </div>
+
+              {/* Points */}
+              <div>
+                <h1 className="text-lg font-light text-gray-500">Points</h1>
+                <p className="text-lg font-light text-gray-500">
+                  {data?.data?.paymentDetails?.points || "N/A"}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center my-8">
+              <h1 className="text-lg font-light text-gray-400">
+                Buy Points and enjoy our new features
               </h1>
               <p className="text-lg font-extralight text-gray-400">
                 Please stay with us!

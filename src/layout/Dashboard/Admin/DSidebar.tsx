@@ -26,6 +26,10 @@ const data = {
           title: "Dashboard",
           url: "/admin/dashboard",
         },
+        {
+          title: "My Submissions",
+          url: "my-submissions",
+        },
       ],
     },
     {
@@ -35,6 +39,10 @@ const data = {
         {
           title: "All Post",
           url: "all-post",
+        },
+        {
+          title: "Create Post",
+          url: "create-post",
         },
         {
           title: "Post Category",
@@ -49,6 +57,10 @@ const data = {
         {
           title: "All Quiz",
           url: "all-quiz",
+        },
+        {
+          title: "Create Quiz",
+          url: "create-quiz",
         },
         {
           title: "Quiz Category",

@@ -23,6 +23,8 @@ import {
 } from "@/redux/features/quiz/quiz/quizApi";
 import { CategoryLoader } from "@/loader/CategoryLoader";
 import { useGetAllQuizCategoriesQuery } from "@/redux/features/quiz/category/categoryApi";
+import { Upload } from "lucide-react";
+import UploadQuiz from "./UploadQuiz";
 
 // Define the types for API responses and form data
 interface ICategory {
@@ -38,13 +40,15 @@ interface Question {
 }
 
 export const CreateQuizPage = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [difficultyLevel, setDifficultyLevel] = useState<string>("");
   const [duration, setDuration] = useState<number>();
   const [pointsRequired, setPointsRequired] = useState<number>();
-  const [penaltyPerIncorrectAnswer, setPenaltyPerIncorrectAnswer] = useState<number>();
+  const [penaltyPerIncorrectAnswer, setPenaltyPerIncorrectAnswer] =
+    useState<number>();
   const [input, setInput] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [questions, setQuestions] = useState<Question[]>([
@@ -128,6 +132,14 @@ export const CreateQuizPage = () => {
   const handleCategoryChange = useCallback((value: string) => {
     setSelectedCategory(value);
   }, []);
+
+  const handleButtonClick = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+  };
 
   // Quill editor modules
   const modules = {
@@ -263,15 +275,25 @@ export const CreateQuizPage = () => {
     setTitle("");
     setSelectedCategory("");
     setDuration(undefined);
-    setPointsRequired(undefined)
-    setPenaltyPerIncorrectAnswer(undefined)
+    setPointsRequired(undefined);
+    setPenaltyPerIncorrectAnswer(undefined);
     setDifficultyLevel("");
     setTags([]);
   };
 
   return (
     <div className="mt-5 mb-10">
-      <div className="flex items-end justify-end">
+      <div className="flex items-center justify-between">
+        <div>
+          <Button
+            className=" bg-green-600 hover:bg-green-700 py-5 text-lg font-light"
+            onClick={handleButtonClick}
+          >
+            <Upload />
+            Upload Quiz
+          </Button>
+          <UploadQuiz openDialog={isDialogOpen} onClose={handleCloseDialog} />
+        </div>
         <div className="flex items-center gap-2">
           <div>
             <Button
@@ -298,6 +320,7 @@ export const CreateQuizPage = () => {
           </div>
         </div>
       </div>
+
       <div className="my-5 grid grid-cols-1 lg:grid-cols-2 gap-5">
         <Input
           className="h-[50px] text-lg hind-siliguri-light"
@@ -383,7 +406,9 @@ export const CreateQuizPage = () => {
           <Input
             type="number"
             value={penaltyPerIncorrectAnswer}
-            onChange={(e) => setPenaltyPerIncorrectAnswer(parseInt(e.target.value))}
+            onChange={(e) =>
+              setPenaltyPerIncorrectAnswer(parseInt(e.target.value))
+            }
             placeholder="Penalty Per Incorrect Answer"
             className="h-[50px] text-lg hind-siliguri-light"
           />
