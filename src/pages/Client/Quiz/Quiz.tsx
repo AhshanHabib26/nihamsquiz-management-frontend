@@ -14,10 +14,16 @@ import RecentQuiz from "@/components/client/Quiz/RecentQuiz";
 const QuizPage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [selectedQuizCategoryId, setSelectedQuizCategoryId] = useState("");
   const limit = 10;
-
+  const [searchTerm, setSearchTerm] = useState("");
   const { data, isLoading } = useGetAllQuizQuery(
-    { page, limit },
+    {
+      page,
+      limit,
+      category: selectedQuizCategoryId || undefined,
+      searchTerm: searchTerm.trim() ? searchTerm : undefined,
+    },
     {
       refetchOnMountOrArgChange: false,
     }
@@ -25,12 +31,6 @@ const QuizPage = () => {
 
   const total = data?.meta?.total ?? 0;
 
-  const [searchText, setSearchText] = useState("");
-
-  // Filter the posts based on searchText
-  const filteredQuiz = data?.data?.filter((quiz: TQuiz) =>
-    quiz?.title?.toLowerCase().includes(searchText.toLowerCase())
-  );
 
   useEffect(() => {
     dispatch(setLoading(isLoading));
@@ -44,16 +44,16 @@ const QuizPage = () => {
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-12 lg:col-span-8">
                 <div>
-                  <SearchBtn inputBelow={true} setSearchText={setSearchText} />
-                  {data?.data?.length === 0 || filteredQuiz?.length === 0 ? (
+                  <SearchBtn inputBelow={true} setSearchTerm={setSearchTerm} />
+                  {data?.data?.length === 0 ? (
                     <div className="flex items-center justify-center flex-col mt-20">
                       <HardDrive size={40} className="text-gray-400" />
-                      <h1 className="text-gray-400">No Post Found</h1>
+                      <h1 className="text-gray-400">No Quiz Found</h1>
                     </div>
                   ) : (
                     <div>
                       <div className="mt-5">
-                        {(searchText ? filteredQuiz : data?.data)?.map(
+                        {data?.data?.map(
                           (quiz: TQuiz) => (
                             <QuizListCard quiz={quiz} key={quiz._id} />
                           )
@@ -75,8 +75,9 @@ const QuizPage = () => {
               </div>
               <div className="col-span-12 lg:col-span-4">
                 <RecentQuiz />
-                <QuizListCategory />
-                {/* <PopularBlogs /> */}
+                <QuizListCategory
+                  setSelectedQuizCategoryId={setSelectedQuizCategoryId}
+                />
               </div>
             </div>
           )}

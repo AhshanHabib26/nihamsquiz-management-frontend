@@ -26,11 +26,17 @@ const quizApi = baseApi.injectEndpoints({
 
         // Only append page and limit if they are provided
         if (args.page !== undefined && args.page !== null) {
-          params.append("page", args.page.toString());
+          params.set("page", args.page.toString());
         }
         if (args.limit !== undefined && args.limit !== null) {
-          params.append("limit", args.limit.toString());
+          params.set("limit", args.limit.toString());
         }
+
+        // Append search term if provided
+        if (args.searchTerm !== undefined && args.searchTerm.trim()) {
+          params.set("searchTerm", args.searchTerm.trim());
+        }
+
         Object.keys(args).forEach((key) => {
           if (
             key !== "page" &&
@@ -38,7 +44,7 @@ const quizApi = baseApi.injectEndpoints({
             args[key] !== undefined &&
             args[key] !== null
           ) {
-            params.append(key, args[key]);
+            params.set(key, args[key]);
           }
         });
         return {
@@ -46,7 +52,7 @@ const quizApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      keepUnusedDataFor: 600,
+      keepUnusedDataFor: 300,
       providesTags: ["Quiz"],
       transformResponse: (response: TResponseRedux<TQuiz[]>) => ({
         data: response.data,
@@ -86,5 +92,5 @@ export const {
   useGetAllQuizQuery,
   useUpdateQuizMutation,
   useUploadQuizMutation,
-  useGetSingleQuizQuery
+  useGetSingleQuizQuery,
 } = quizApi;

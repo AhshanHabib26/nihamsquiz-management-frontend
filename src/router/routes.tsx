@@ -11,10 +11,6 @@ import BlogPage from "@/pages/Client/Blog";
 import QuizPage from "@/pages/Client/Quiz/Quiz";
 import PricePlanPage from "@/pages/Client/PricePlan";
 import AboutUsPage from "@/pages/Client/AboutUs";
-import CategoryPage from "@/pages/Client/Category";
-import LabelPage from "@/pages/Client/Label";
-import QuizCategoryPage from "@/pages/Client/Quiz/QuizCategory";
-import QuizLabelPage from "@/pages/Client/Quiz/QuizLabel";
 import QuizDetails from "@/pages/Client/Quiz/QuizDetails";
 import QuizSubmissionPage from "@/pages/Client/Quiz/QuizSubmission";
 import BlogDetailsPage from "@/pages/Client/BlogDetailsPage";
@@ -37,6 +33,7 @@ import SubscribePage from "@/pages/Dashboard/Admin/Plan/Subscribe";
 import { UPostPage } from "@/pages/Dashboard/User/Blog/Post";
 import UQuizPage from "@/pages/Dashboard/User/Quiz/UQuiz";
 import UCommentPage from "@/pages/Dashboard/User/Comment/Comment";
+import NotFoundPage from "@/pages/Client/NotFound/NotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -54,22 +51,6 @@ export const routes = createBrowserRouter([
       {
         path: "/blog/:slug",
         element: <BlogDetailsPage />,
-      },
-      {
-        path: "/blog/category/:id",
-        element: <CategoryPage />,
-      },
-      {
-        path: "/blog/label/:tag",
-        element: <LabelPage />,
-      },
-      {
-        path: "/quiz/category/:id",
-        element: <QuizCategoryPage />,
-      },
-      {
-        path: "/quiz/label/:tag",
-        element: <QuizLabelPage />,
       },
       {
         path: "/quiz/quiz-details/:id",
@@ -94,6 +75,10 @@ export const routes = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

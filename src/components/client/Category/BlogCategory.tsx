@@ -1,11 +1,17 @@
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { TCategory } from "@/types/common.data";
-import BlogCategoryCard from "./BlogCategoryCard";
 import { useEffect } from "react";
 import { setLoading } from "@/redux/features/global/globalSlice";
 import { useDispatch } from "react-redux";
+import { Tags } from "lucide-react";
 
-const BlogCategory = () => {
+type BlogCategoryProps = {
+  setSelectedCategoryId: (id: string) => void;
+};
+
+const BlogCategory: React.FC<BlogCategoryProps> = ({
+  setSelectedCategoryId,
+}) => {
   const dispatch = useDispatch();
   const { data, isLoading } = useGetAllCategoriesQuery(
     {},
@@ -26,7 +32,15 @@ const BlogCategory = () => {
       <div className="p-4">
         <div>
           {data?.data?.map((category: TCategory) => (
-            <BlogCategoryCard category={category} key={category._id} />
+            <div className="flex items-center gap-2 mb-1">
+              <Tags size={20} className="text-gray-300" />
+              <p
+                onClick={() => setSelectedCategoryId(category._id)}
+                className="text-lg hind-siliguri-light hover:text-TextPrimary cursor-pointer"
+              >
+                {category?.title}
+              </p>
+            </div>
           ))}
         </div>
       </div>

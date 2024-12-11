@@ -270,9 +270,7 @@ const QuizDetails = () => {
                           key={index}
                           className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded hover:text-TextPrimary hover:border-blue-700"
                         >
-                          <Link to={`/quiz/label/${t}`}>
-                            <p className="font-light">{t}</p>
-                          </Link>
+                          <p className="font-light">{t}</p>
                         </div>
                       ))}
                     </div>

@@ -85,7 +85,7 @@ const UQuizListCard: React.FC<TQuizProps> = ({ quiz }) => {
               <div className="flex gap-1 items-center">
                 <Gem className=" text-gray-300" size={18} />
                 <h1 className="text-gray-300">
-                Points Required: {quiz?.pointsRequired}
+                  Points Required: {quiz?.pointsRequired}
                 </h1>
               </div>
               <div className="flex gap-1 items-center">
@@ -96,9 +96,7 @@ const UQuizListCard: React.FC<TQuizProps> = ({ quiz }) => {
                       key={index}
                       className="border-[0.5px] border-dashed px-3 py-[2px] text-sm border-gray-700 rounded-sm hover:text-TextPrimary hover:border-blue-700 cursor-pointer"
                     >
-                      <Link to={`/quiz/label/${t}`}>
-                        <p className="hind-siliguri-light">{t}</p>
-                      </Link>
+                      <p className="hind-siliguri-light">{t}</p>
                     </div>
                   ))}
                 </div>

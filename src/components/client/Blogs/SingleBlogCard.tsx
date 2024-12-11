@@ -23,7 +23,7 @@ import {
 } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { FolderCheck, Tags } from "lucide-react";
-import { Link } from "react-router-dom";
+
 
 const SingleBlogCard: React.FC<TBlogProps> = ({ post }) => {
   const shareUrl = window.location.href;
@@ -69,13 +69,10 @@ const SingleBlogCard: React.FC<TBlogProps> = ({ post }) => {
       </div>
       <div>
         <div className="flex items-center gap-1">
-          <FolderCheck size={22} className="text-green-500" />
-          <Link to={`/blog/category/${post?.category?.title}`}>
-            {" "}
-            <h1 className="bg-green-600 px-2 text-white rounded-sm hind-siliguri-light text-md">
-              {post?.category?.title}
-            </h1>
-          </Link>
+          <FolderCheck size={22} className="text-green-500" />{" "}
+          <h1 className="bg-green-600 px-2 text-white rounded-sm hind-siliguri-light text-md">
+            {post?.category?.title}
+          </h1>
         </div>
         <div>
           {post?.tags?.length > 0 && (
@@ -83,11 +80,9 @@ const SingleBlogCard: React.FC<TBlogProps> = ({ post }) => {
               <Tags size={22} className="text-BgPrimary" />
               {post.tags.map((tag, index) => (
                 <div key={index}>
-                  <Link to={`/blog/label/${tag}`}>
-                    <p className="bg-BgPrimary px-2 text-white rounded-sm hind-siliguri-light text-md">
-                      {tag}
-                    </p>
-                  </Link>
+                  <p className="bg-BgPrimary px-2 text-white rounded-sm hind-siliguri-light text-md">
+                    {tag}
+                  </p>
                 </div>
               ))}
             </div>
