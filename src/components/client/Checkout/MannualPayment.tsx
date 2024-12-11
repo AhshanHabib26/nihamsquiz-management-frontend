@@ -145,6 +145,7 @@ const MannualPayment: React.FC<TPackageProps> = ({ service }) => {
           type="text"
           name="transactionId"
           value={formData.transactionId}
+          autoComplete="off"
           onChange={handleInputChange}
           className="h-[40px] border-gray-800"
           placeholder="Enter Transaction ID"
@@ -160,6 +161,7 @@ const MannualPayment: React.FC<TPackageProps> = ({ service }) => {
           type="text"
           name="payableAmount"
           value={formData.payableAmount}
+          autoComplete="off"
           onChange={handleInputChange}
           className="h-[40px] border-gray-800"
           placeholder="Enter the Amount Paid."
