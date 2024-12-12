@@ -24,11 +24,8 @@ import { TResponse } from "@/types";
 const PlanPage = () => {
   const dispatch = useDispatch();
 
-  const { data, isLoading } = useGetAllPackageQuery({
-    refetchOnMountOrArgChange: false,
-  });
+  const { data, isLoading } = useGetAllPackageQuery({});
   const [deletePackage] = useDeletePackageMutation();
-
   const deleteHandler = async (id: string) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -100,7 +97,7 @@ const PlanPage = () => {
   // Render table rows with dynamic data
   const renderTableRows = () => {
     return (
-      data?.data?.result?.map((item: IPackage) => (
+      data?.data?.map((item: IPackage) => (
         <TableRow key={item?._id}>
           <TableCell>{item?.title}</TableCell>
           <TableCell>{item?.price}</TableCell>
@@ -131,7 +128,7 @@ const PlanPage = () => {
       <h1 className="text-xl font-semibold text-gray-700 my-4">All Package</h1>
       <div>
         <Separator />
-        {data?.data?.result?.length === 0 ? (
+        {data?.data?.length === 0 ? (
           <div className="flex items-center justify-center flex-col mt-20">
             <HardDrive size={40} className=" text-gray-400" />
             <h1 className="text-gray-400">No Package Found</h1>

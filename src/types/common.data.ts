@@ -102,10 +102,14 @@ export interface IPackage {
   offerStartDate?: Date;
   offerEndDate?: Date;
 }
+
+
 export type TPackageProps = {
   service: IPackage;
   isCheckout?: boolean;
 };
+
+
 
 export type TProgress = {
   totalCorrectAnswers: number;

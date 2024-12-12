@@ -8,9 +8,9 @@ import { IPackage } from "@/types/common.data";
 const PricePlan = () => {
   const dispatch = useDispatch();
 
-  const { data, isLoading } = useGetAllPackageQuery({
-    refetchOnMountOrArgChange: false,
-  });
+  const { data, isLoading } = useGetAllPackageQuery({});
+
+  console.log(data)
 
   useEffect(() => {
     dispatch(setLoading(isLoading));
@@ -30,7 +30,7 @@ const PricePlan = () => {
       </div>
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto mt-8">
-          {data?.data?.result?.map((service: IPackage) => (
+          {data?.data?.map((service: IPackage) => (
             <PackageCard
               service={service}
               key={service._id}
