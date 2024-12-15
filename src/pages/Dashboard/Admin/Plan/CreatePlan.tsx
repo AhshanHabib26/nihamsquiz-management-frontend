@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/lib/DatePicker";
 import { DashboardLoader } from "@/loader/DashboardLoader";
 import {
   useCreatePackageMutation,
@@ -38,7 +39,6 @@ const CreatePlanPage = () => {
   // API hooks
   const { data: packageData, isFetching: isFetchingPackages } =
     useGetSinglePackageQuery(id);
-
   const [createPackage] = useCreatePackageMutation();
   const [updatePackage] = useUpdatePackageMutation();
 
@@ -150,21 +150,19 @@ const CreatePlanPage = () => {
             />
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-2 gap-3">
-            <Input
-              name="offerStartDate"
-              type="date"
-              className="h-[50px]"
-              placeholder="Offer Start Date"
-              value={formData.offerStartDate}
-              onChange={handleInputChange}
+            <DatePicker
+              label="Pick a start date"
+              date={formData.offerStartDate}
+              onChange={(newDate) =>
+                setFormData((prev) => ({ ...prev, offerStartDate: newDate }))
+              }
             />
-            <Input
-              name="offerEndDate"
-              type="date"
-              className="h-[50px]"
-              placeholder="Offer End Date"
-              value={formData.offerEndDate}
-              onChange={handleInputChange}
+            <DatePicker
+              label="Pick an end date"
+              date={formData.offerEndDate}
+              onChange={(newDate) =>
+                setFormData((prev) => ({ ...prev, offerEndDate: newDate }))
+              }
             />
           </div>
           <label className="flex items-center space-x-2">
