@@ -5,15 +5,15 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { DSidebar } from "./DSidebar";
-import { Outlet, useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
-import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
-import { Button } from "@/components/ui/button";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
 
-const AdminDashboardLayout = () => {
+export default function AdminDashboardLayout() {
   const user = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,7 +76,6 @@ const AdminDashboardLayout = () => {
               </Button>
             </div>
           </header>
-
           <div className="px-5">
             <Outlet />
           </div>
@@ -84,6 +83,4 @@ const AdminDashboardLayout = () => {
       </SidebarProvider>
     </div>
   );
-};
-
-export default AdminDashboardLayout;
+}

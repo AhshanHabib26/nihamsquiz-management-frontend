@@ -20,8 +20,6 @@ const UserDashboardLayout = () => {
     navigate("/");
   };
 
-  console.log(user)
-
   return (
     <div className="text-gray-950">
       <SidebarProvider>
