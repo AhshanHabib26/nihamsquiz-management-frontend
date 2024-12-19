@@ -121,3 +121,33 @@ export type TProgress = {
 export type TProgressProps = {
   progress: TProgress;
 };
+
+
+export type TMcq = {
+  _id: string;
+  name: string;
+  slug: string;
+};
+
+export type TMcqProps = {
+  mcq: TMcq;
+};
+
+export interface IMCQ {
+  _id: string;
+  questions: {
+    questionText: string;
+    options: string[];
+    correctOption: string;
+    explanation?: string;
+  };
+  category: {
+    name: string;
+  }
+}
+export interface IMCQProps {
+  mcq: IMCQ;
+  deleteHandler?: (id: string) => void;
+  isActive: boolean; 
+  toggleShowDetails: () => void;
+}

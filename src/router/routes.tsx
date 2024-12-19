@@ -35,6 +35,10 @@ import UQuizPage from "@/pages/Dashboard/User/Quiz/UQuiz";
 import UCommentPage from "@/pages/Dashboard/User/Comment/Comment";
 import NotFoundPage from "@/pages/Client/NotFound/NotFound";
 import MySubmissionsPage from "@/pages/Dashboard/Admin/MySubmissions";
+import { AllMcqPage } from "@/pages/Dashboard/Admin/Mcq/Mcq";
+import { CreateMcqPage } from "@/pages/Dashboard/Admin/Mcq/CreateMcq";
+import { AddMcqCategoryPage } from "@/pages/Dashboard/Admin/Mcq/AddMcqCategory";
+
 
 export const routes = createBrowserRouter([
   {
@@ -143,6 +147,22 @@ export const routes = createBrowserRouter([
       {
         path: "quiz-category",
         element: <AllQuizCategoryPage />,
+      },
+      {
+        path: "all-mcq",
+        element: <AllMcqPage />,
+      },
+      {
+        path: "create-mcq",
+        element: <CreateMcqPage />,
+      },
+      {
+        path: "create-mcq/:id",
+        element: <CreateMcqPage />,
+      },
+      {
+        path: "mcq-category",
+        element: <AddMcqCategoryPage />,
       },
       {
         path: "all-user",

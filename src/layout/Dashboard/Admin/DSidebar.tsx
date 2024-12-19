@@ -77,6 +77,24 @@ const data = {
       ],
     },
     {
+      title: "MCQ",
+      url: "#",
+      items: [
+        {
+          title: "All MCQ",
+          url: "all-mcq",
+        },
+        {
+          title: "Create MCQ",
+          url: "create-mcq",
+        },
+        {
+          title: "MCQ Category",
+          url: "mcq-category",
+        },
+      ],
+    },
+    {
       title: "Package Plan",
       url: "#",
       items: [
