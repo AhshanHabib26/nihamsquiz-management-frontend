@@ -1,6 +1,5 @@
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import newImg from "../../../assets/icons/newLabel.png";
 import { isNewBlog } from "@/lib/isNew";
 import { TQuizProps } from "@/types/common.data";
 
@@ -25,7 +24,7 @@ const RecentQuizCard: React.FC<Props> = ({ quiz, isLast }) => {
               <div>
                 {isNewBlog(quiz.createdAt) ? (
                   <div>
-                    <img className="w-[35px]" src={newImg} alt="New Post" />
+                    <p className="text-sm text-red-500 capitalize italic">new</p>
                   </div>
                 ) : (
                   <div>

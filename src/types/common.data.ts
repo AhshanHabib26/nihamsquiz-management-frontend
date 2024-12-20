@@ -143,11 +143,12 @@ export interface IMCQ {
   };
   category: {
     name: string;
-  }
+  };
+  createdAt?: string;
 }
 export interface IMCQProps {
   mcq: IMCQ;
   deleteHandler?: (id: string) => void;
-  isActive: boolean; 
-  toggleShowDetails: () => void;
+  isActive?: boolean; 
+  toggleShowDetails?: () => void;
 }

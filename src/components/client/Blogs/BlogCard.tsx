@@ -1,6 +1,5 @@
 import { TBlogProps } from "@/types/common.data";
 import userImg from "../../../assets/icons/profile.png";
-import moment from "moment";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -23,8 +22,6 @@ import {
 } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { Link } from "react-router-dom";
-import newImg from "../../../assets/icons/new.png";
-import { isNewBlog } from "@/lib/isNew";
 
 const BlogCard: React.FC<TBlogProps> = ({ post }) => {
   const shareUrl = window.location.href;
@@ -48,41 +45,16 @@ const BlogCard: React.FC<TBlogProps> = ({ post }) => {
 
   return (
     <div className="text-gray-300 border border-gray-800 mb-4 p-3 rounded-lg">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <img className="w-[35px]" src={userImg} alt="Admin" />
-          <div>
-            <h1 className="text-[16px] hind-siliguri-medium">
-              {post?.user?.fullname}
-            </h1>
-            <p className="text-sm hind-siliguri-medium">
-              {moment(post.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
-            </p>
-          </div>
-        </div>
-        <div>
-          <div>
-            {post?.createdAt && isNewBlog(post.createdAt) && (
-              <div>
-                <img
-                  className="w-[35px]"
-                  src={newImg}
-                  alt="New Post"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="my-2">
+    
+      <div>
         <Link className="hover:text-TextPrimary" to={`/blog/${post.slug}`}>
           {" "}
-          <h1 className="text-lg hind-siliguri-semibold">{post.title}</h1>
+          <h1 className="text-xl font-semibold">{post.title}</h1>
         </Link>
         <p
-          className=" text-[16px] hind-siliguri-light"
+          className=" text-[16px] hind-siliguri-light my-1"
           dangerouslySetInnerHTML={{
-            __html: `${post.description.slice(0, 100)}.....`,
+            __html: `${post.description.slice(0, 200)}.....`,
           }}
         />
       </div>
@@ -93,9 +65,8 @@ const BlogCard: React.FC<TBlogProps> = ({ post }) => {
               <FaThumbsUp
                 size={18}
                 onClick={handleLike}
-                className={`cursor-pointer ${
-                  liked ? "text-blue-500" : "text-gray-300"
-                }`}
+                className={`cursor-pointer ${liked ? "text-blue-500" : "text-gray-300"
+                  }`}
               />
             ) : (
               <FaThumbsUp size={18} className=" cursor-not-allowed" />

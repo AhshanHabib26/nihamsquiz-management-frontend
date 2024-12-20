@@ -9,19 +9,16 @@ interface Props extends TBlogProps {
 const PopularBlogCard: React.FC<Props> = ({ post, isLast }) => {
   return (
     <div
-      className={`text-gray-300 ${
-        isLast ? "" : "border-b border-gray-800 border-dashed"
-      }`}
+      className={`text-gray-300 ${isLast ? "" : "border-b border-gray-800 border-dashed"
+        }`}
     >
       <div className="flex items-center justify-between">
         <div className="my-1">
-          <Link to={`/blog/category/${post?.category?.title}`}>
-            <p className="bg-gray-800 my-1 inline-block px-2 rounded text-sm hind-siliguri-light">
-              {post?.category?.title ? post?.category?.title : "Uncategorised"}
-            </p>
-          </Link>
+          <p className="bg-gray-800 my-1 inline-block px-2 rounded text-sm hind-siliguri-light">
+            {post?.category?.title ? post?.category?.title : "Uncategorised"}
+          </p>
           <Link to={`/blog/${post.slug}`}>
-            <h1 className="text-[17px] hind-siliguri-medium hover:text-BgPrimary">
+            <h1 className="text-[16px] hind-siliguri-medium hover:text-BgPrimary">
               {post.title}
             </h1>
           </Link>

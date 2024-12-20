@@ -38,6 +38,7 @@ import MySubmissionsPage from "@/pages/Dashboard/Admin/MySubmissions";
 import { AllMcqPage } from "@/pages/Dashboard/Admin/Mcq/Mcq";
 import { CreateMcqPage } from "@/pages/Dashboard/Admin/Mcq/CreateMcq";
 import { AddMcqCategoryPage } from "@/pages/Dashboard/Admin/Mcq/AddMcqCategory";
+import MCQPage from "@/pages/Client/MCQ/MCQ";
 
 
 export const routes = createBrowserRouter([
@@ -66,7 +67,11 @@ export const routes = createBrowserRouter([
         element: <QuizSubmissionPage />,
       },
       {
-        path: "/quiz",
+        path: "/mcq",
+        element: <MCQPage />,
+      },
+      {
+        path: "/exam",
         element: <QuizPage />,
       },
       {

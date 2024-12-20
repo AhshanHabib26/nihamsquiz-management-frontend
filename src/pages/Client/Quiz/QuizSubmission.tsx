@@ -130,7 +130,7 @@ const QuizSubmissionPage = () => {
           <div className="flex items-end justify-end">
             <Link
               className=" bg-BgPrimary hover:bg-BgPrimaryHover px-3 py-2 text-white rounded-sm mt-4"
-              to="/quiz"
+              to="/exam"
             >
               Back to Quiz Page
             </Link>

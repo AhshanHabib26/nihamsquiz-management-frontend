@@ -20,6 +20,7 @@ import {
   useCurrentToken,
 } from "@/redux/features/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { FaQuestion } from "react-icons/fa6";
 
 const TopNav = () => {
   const token = useAppSelector(useCurrentToken);
@@ -55,8 +56,11 @@ const TopNav = () => {
                 <Link className="text-lg hover:text-TextPrimary" to="/blog">
                   Blog
                 </Link>
-                <Link className="text-lg hover:text-TextPrimary" to="/quiz">
-                  Quiz
+                <Link className="text-lg hover:text-TextPrimary" to="/mcq">
+                  MCQ
+                </Link>
+                <Link className="text-lg hover:text-TextPrimary" to="/exam">
+                  Exam
                 </Link>
                 <Link
                   className="text-lg hover:text-TextPrimary"
@@ -149,10 +153,19 @@ const TopNav = () => {
 
                         <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/quiz"
+                          to="/mcq"
                         >
                           <span className="flex items-center gap-1">
-                            <MdOutlineQuiz size={16} /> Quiz
+                            <FaQuestion size={16} /> MCQ
+                          </span>
+                        </Link>
+
+                        <Link
+                          className="text-lg text-gray-300 hover:text-TextPrimary"
+                          to="/exam"
+                        >
+                          <span className="flex items-center gap-1">
+                            <MdOutlineQuiz size={16} /> Exam
                           </span>
                         </Link>
 
