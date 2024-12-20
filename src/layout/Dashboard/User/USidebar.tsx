@@ -36,6 +36,10 @@ const data = {
           url: "all-post",
         },
         {
+          title: "MCQ",
+          url: "all-mcq",
+        },
+        {
           title: "Quiz",
           url: "quiz",
         },

@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MdOutlineQuiz } from "react-icons/md";
+import { MdDashboard, MdOutlineQuiz } from "react-icons/md";
 import { IoIosPricetags } from "react-icons/io";
 import { useAppSelector } from "@/redux/hooks";
 import {
@@ -186,6 +186,18 @@ const TopNav = () => {
                             <FaUser size={16} /> About Us
                           </span>
                         </Link> */}
+
+                        <>
+                          {user?.role && roleToDashboard[user.role] ? (
+                            <Link
+                              className="text-lg text-gray-300 hover:text-TextPrimary"
+                              to={roleToDashboard[user.role]}
+                            >
+                              <span className="flex items-center gap-1"> <MdDashboard size={16} />  Dashboard</span>
+                            </Link>
+                          ) : null}
+                        </>
+
                       </div>
                       {token ? (
                         <div className=" w-full mt-5">

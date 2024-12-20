@@ -217,6 +217,10 @@ export const routes = createBrowserRouter([
         element: <UPostPage />,
       },
       {
+        path: "all-mcq",
+        element: <AllMcqPage />,
+      },
+      {
         path: "quiz",
         element: <UQuizPage />,
       },

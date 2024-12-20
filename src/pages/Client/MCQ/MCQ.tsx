@@ -58,7 +58,7 @@ const MCQPage = () => {
                                     {data?.data?.length === 0 ? (
                                         <div className="flex items-center justify-center flex-col mt-20">
                                             <HardDrive size={40} className="text-gray-400" />
-                                            <h1 className="text-gray-400">No Quiz Found</h1>
+                                            <h1 className="text-gray-400">No MCQ Found</h1>
                                         </div>
                                     ) : (
                                         <div>

@@ -13,14 +13,17 @@ import UploadQuiz from "./UploadMcq";
 import { Button } from "@/components/ui/button";
 import { useDeleteMcqMutation, useGetAllMcqQuery } from "@/redux/features/quiz/mcq/mcqApi";
 import { MCQCard } from "@/components/dashboard/admin/Mcq/McqCard";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/hooks";
 
 export const AllMcqPage = () => {
+  const user = useAppSelector(selectCurrentUser);
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [deleteMcq] = useDeleteMcqMutation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const limit = 10;
+  const limit = 25;
   const { data, isLoading } = useGetAllMcqQuery(
     { page, limit },
     {
@@ -118,28 +121,34 @@ export const AllMcqPage = () => {
 
   return (
     <div>
-      <div className="flex items-end justify-end mt-5 gap-2">
-        <div>
-          <Link to="/admin/dashboard/create-mcq">
-            <Button className=" bg-BgPrimary hover:bg-BgPrimaryHover py-5 text-lg font-light">
-              <ListPlus />
-              Create MCQ
-            </Button>
-          </Link>
+      {
+        user?.role === "admin" && <div>
+          <div className="flex items-end justify-end mt-2 gap-2">
+            <div>
+              <Link to="/admin/dashboard/create-mcq">
+                <Button className=" bg-BgPrimary hover:bg-BgPrimaryHover py-5 text-lg font-light">
+                  <ListPlus />
+                  Create MCQ
+                </Button>
+              </Link>
+            </div>
+            <div>
+              <Button
+                className=" bg-green-600 hover:bg-green-700 py-5 text-lg font-light"
+                onClick={handleButtonClick}
+              >
+                <Upload />
+                Upload Quiz
+              </Button>
+              <UploadQuiz openDialog={isDialogOpen} onClose={handleCloseDialog} />
+            </div>
+          </div>
         </div>
-        <div>
-          <Button
-            className=" bg-green-600 hover:bg-green-700 py-5 text-lg font-light"
-            onClick={handleButtonClick}
-          >
-            <Upload />
-            Upload Quiz
-          </Button>
-          <UploadQuiz openDialog={isDialogOpen} onClose={handleCloseDialog} />
-        </div>
-      </div>
+      }
       <div>
-        <Separator className="my-5" />
+        {
+          user?.role === "admin" && <Separator className="my-5" />
+        }
 
         {data?.data?.length === 0 ? (
           <div className="flex items-center justify-center flex-col mt-20">
