@@ -10,43 +10,43 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const BlogDetailsPage = () => {
-    const dispatch = useDispatch();
-    const { slug } = useParams();
-    const { data, isLoading } = useGetSinglePostQuery(slug, {
-      refetchOnMountOrArgChange: false,
-    });
-  
-    useEffect(() => {
-      dispatch(setLoading(isLoading));
-    }, [isLoading, dispatch]);
-  
-    return (
-      <div>
-        <div className="mt-20 lg:mt-24">
-          <Container>
-            <div>
-              {!isLoading && (
-                <div className="grid grid-cols-12 gap-4">
-                  <div className="col-span-12 lg:col-span-8">
+  const dispatch = useDispatch();
+  const { slug } = useParams();
+  const { data, isLoading } = useGetSinglePostQuery(slug, {
+    refetchOnMountOrArgChange: false,
+  });
+
+  useEffect(() => {
+    dispatch(setLoading(isLoading));
+  }, [isLoading, dispatch]);
+
+  return (
+    <div className=" min-h-screen">
+      <div className="mt-20 lg:mt-24">
+        <Container>
+          <div>
+            {!isLoading && (
+              <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-12 lg:col-span-8">
+                  <div>
+                    {" "}
+                    <SingleBlogCard post={data?.data} />
                     <div>
-                      {" "}
-                      <SingleBlogCard post={data?.data} />
-                      <div>
-                        <SingleBlogCommentBox postId={data?.data?._id} />
-                        <CommentsCard post={data?.data} />
-                      </div>
+                      <SingleBlogCommentBox postId={data?.data?._id} />
+                      <CommentsCard post={data?.data} />
                     </div>
                   </div>
-                  <div className="col-span-12 lg:col-span-4">
-                    <PopularBlogs />
-                  </div>
                 </div>
-              )}
-            </div>
-          </Container>
-        </div>
+                <div className="col-span-12 lg:col-span-4">
+                  <PopularBlogs />
+                </div>
+              </div>
+            )}
+          </div>
+        </Container>
       </div>
-    );
+    </div>
+  );
 }
 
 export default BlogDetailsPage

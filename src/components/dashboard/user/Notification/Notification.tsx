@@ -52,7 +52,7 @@ const Notification: React.FC<TUserProps> = ({ user }) => {
     bgColor = "bg-green-300";
   } else if (quizzesAttempted === 0) {
     message =
-      "🚨 You are currently on the free plan and can participate in up to 5 quizzes. Keep exploring!";
+      "🚨 You're on the Free Plan! 🎉 Start with 100 points and participate in exams. Keep exploring and discover more!";
     bgColor = "bg-red-300";
   } else if (quizzesAttempted === 5) {
     message = (
