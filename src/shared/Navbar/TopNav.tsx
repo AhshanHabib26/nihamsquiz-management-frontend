@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Container from "@/lib/Container";
 import { formattedBanglaDate } from "@/lib/ConvertDateInBangla";
-import { FaBars, FaDatabase, FaHome, FaUser } from "react-icons/fa";
+import { FaBars, FaDatabase, FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Sheet,
@@ -68,9 +68,9 @@ const TopNav = () => {
                 >
                   Price Plan
                 </Link>
-                <Link className="text-lg hover:text-TextPrimary" to="/about-us">
+                {/* <Link className="text-lg hover:text-TextPrimary" to="/about-us">
                   About Us
-                </Link>
+                </Link> */}
                 <>
                   {user?.role && roleToDashboard[user.role] ? (
                     <Link
@@ -178,14 +178,14 @@ const TopNav = () => {
                           </span>
                         </Link>
 
-                        <Link
+                        {/* <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
                           to="/about-us"
                         >
                           <span className="flex items-center gap-1">
                             <FaUser size={16} /> About Us
                           </span>
-                        </Link>
+                        </Link> */}
                       </div>
                       {token ? (
                         <div className=" w-full mt-5">
