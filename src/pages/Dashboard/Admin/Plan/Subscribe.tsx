@@ -1,12 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  useActiveUserPackageMutation,
-  useDeactiveUserPackageMutation,
-  useGetAllUsersQuery,
-  useUserBlockMutation,
-  useUserUnblockMutation,
-} from "@/redux/features/auth/authApi";
-import { setLoading } from "@/redux/features/global/globalSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -26,18 +18,41 @@ import SubscriberModal from "@/components/dashboard/admin/Plan/SubscriberModal";
 import { TUser } from "@/types/user.type";
 import { toast } from "sonner";
 import { ActionButton } from "@/components/dashboard/admin/User/ActionButton";
+import {
+  useActiveUserPackageMutation,
+  useDeactiveUserPackageMutation,
+  useGetAllUsersQuery,
+  useUserBlockMutation,
+  useUserUnblockMutation,
+} from "@/redux/features/auth/authApi";
+import { setLoading } from "@/redux/features/global/globalSlice";
+
 const SubscribePage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<TUser | null>(null);
+  const [userLoading, setUserLoading] = useState<{ [key: string]: boolean }>({});
+
   const limit = 10;
+
   const [userBlock] = useUserBlockMutation();
   const [userUnblock] = useUserUnblockMutation();
-  const [activeUserPackage, { isLoading: isActiveLoading }] =
-    useActiveUserPackageMutation();
-  const [deactiveUserPackage, { isLoading: isDeactiveLoading }] =
-    useDeactiveUserPackageMutation();
+  const [activeUserPackage] = useActiveUserPackageMutation();
+  const [deactiveUserPackage] = useDeactiveUserPackageMutation();
+
+  const { data, isLoading } = useGetAllUsersQuery(
+    { page, limit },
+    {
+      refetchOnMountOrArgChange: false,
+    }
+  );
+
+  const total = data?.meta?.total ?? 0;
+
+  useEffect(() => {
+    dispatch(setLoading(isLoading));
+  }, [isLoading, dispatch]);
 
   const handleButtonClick = (user: TUser) => {
     setSelectedUser(user);
@@ -49,25 +64,12 @@ const SubscribePage = () => {
     setSelectedUser(null);
   };
 
-  const { data, isLoading } = useGetAllUsersQuery(
-    { page, limit },
-    {
-      refetchOnMountOrArgChange: false,
-    }
-  );
-
-  const total = data?.meta?.total ?? 0;
-
-  console.log(data);
-
-  useEffect(() => {
-    dispatch(setLoading(isLoading));
-  }, [isLoading, dispatch]);
-
   const handleUserPackageAction = async (
     id: string,
     action: "activate" | "deactivate"
   ) => {
+    setUserLoading((prev) => ({ ...prev, [id]: true })); 
+
     try {
       if (action === "activate") {
         await activeUserPackage(id).unwrap();
@@ -79,10 +81,10 @@ const SubscribePage = () => {
     } catch (error: any) {
       const errorMessage =
         error?.data?.message ||
-        `Failed to ${
-          action === "activate" ? "activate" : "deactivate"
-        } the user package.`;
+        `Failed to ${action === "activate" ? "activate" : "deactivate"} the user package.`;
       toast.error(errorMessage);
+    } finally {
+      setUserLoading((prev) => ({ ...prev, [id]: false })); 
     }
   };
 
@@ -136,7 +138,7 @@ const SubscribePage = () => {
               onClick={() =>
                 handleUserPackageAction(user?._id as string, "deactivate")
               }
-              isLoading={isDeactiveLoading}
+              isLoading={userLoading[user._id as string] || false}
               loadingText="Deactivating..."
               defaultText="Deactivate"
               className="mr-2 bg-red-700 hover:bg-red-600"
@@ -146,7 +148,7 @@ const SubscribePage = () => {
               onClick={() =>
                 handleUserPackageAction(user?._id as string, "activate")
               }
-              isLoading={isActiveLoading}
+              isLoading={userLoading[user._id as string] || false}
               loadingText="Activating..."
               defaultText="Activate"
               className="mr-2"
@@ -180,7 +182,7 @@ const SubscribePage = () => {
         {data?.data?.length === 0 ? (
           <div className="flex items-center justify-center flex-col mt-20">
             <HardDrive size={40} className="text-gray-400" />
-            <h1 className="text-gray-400">No User Found!</h1>
+            <h1 className="text-gray-400">No Subscriber Found!</h1>
           </div>
         ) : (
           <div>

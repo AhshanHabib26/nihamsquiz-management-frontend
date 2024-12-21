@@ -44,23 +44,23 @@ const SubscriberModal = ({
           <DialogHeader>
             <DialogDescription>
               <div>
-                {user?.paymentDetails && (
+                {user?.paymentDetails ?
                   <div>
                     <div className="flex items-center justify-between text-sm font-light text-gray-800">
                       <h1>Payable Amount</h1>
-                      <p>{user?.paymentDetails?.payableAmount}</p>
+                      <p>{user?.paymentDetails?.payableAmount ?? "0"}</p>
                     </div>
                     <div className="flex items-center justify-between text-sm font-light text-gray-800">
                       <h1>Payment Method</h1>
-                      <p>{user?.paymentDetails?.paymentMethod}</p>
+                      <p>{user?.paymentDetails?.paymentMethod ?? "0"}</p>
                     </div>
                     <div className="flex items-center justify-between text-sm font-light text-gray-800">
                       <h1>Points</h1>
-                      <p>{user?.paymentDetails?.points}</p>
+                      <p>{user?.paymentDetails?.points ?? "0"}</p>
                     </div>
                     <div className="flex items-center justify-between text-sm font-light text-gray-800">
                       <h1>Phone Number</h1>
-                      <p>{user?.paymentDetails?.phoneNumber}</p>
+                      <p>{user?.paymentDetails?.phoneNumber ?? "0"}</p>
                     </div>
                     <div className="flex items-center justify-between text-sm font-light text-gray-800">
                       <h1>Package Status</h1>
@@ -73,7 +73,11 @@ const SubscriberModal = ({
                       </p>
                     </div>
                   </div>
-                )}
+                  : <div className="text-sm font-light text-gray-800">
+                    <p>Payment details are not available for this user.</p>
+                  </div>
+
+                }
               </div>
             </DialogDescription>
           </DialogHeader>
