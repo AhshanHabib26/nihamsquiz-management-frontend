@@ -77,7 +77,7 @@ const CheckoutPage = () => {
                     onClick={() => setIsManualPaymentVisible((prev) => !prev)} // Toggle visibility of Manual Payment component
                   >
                     {isManualPaymentVisible
-                      ? "Hide Manual Payment"
+                      ? "Hide Payment"
                       : "Manual Payment"}
                   </Button>
                   <Button

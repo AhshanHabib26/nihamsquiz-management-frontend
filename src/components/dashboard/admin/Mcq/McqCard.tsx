@@ -30,7 +30,7 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, deleteHandler, isActive, tog
             isActive ? <Eye onClick={toggleShowDetails} size={20} className="cursor-pointer" /> : <EyeOff className=" cursor-pointer" onClick={toggleShowDetails} size={20} />
           }
           {
-            user?.role === "admin" && <div> <SquarePen
+            user?.role === "admin" && <div className="flex items-center gap-2"> <SquarePen
               onClick={handleEdit}
               size={20}
               className=" cursor-pointer"
@@ -95,7 +95,7 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, deleteHandler, isActive, tog
                 <strong>Correct Answer:</strong>{" "}
                 <MathJax inline>{mcq?.questions?.correctOption}</MathJax>
               </p>
-              <p className="text-gray-500">
+              <p className="text-gray-600">
                 <strong>Explanation:</strong>{" "}
                 {mcq?.questions?.explanation ? (
                   <MathJax inline>{mcq?.questions?.explanation}</MathJax>

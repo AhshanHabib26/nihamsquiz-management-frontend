@@ -38,7 +38,7 @@ const BlogCard: React.FC<TBlogProps> = ({ post }) => {
           <h1 className="text-lg font-semibold">{post.title}</h1>
         </Link>
         <p
-          className="text-sm font-light my-2"
+          className="text-sm lg:text-[16px] font-light my-1"
           dangerouslySetInnerHTML={{
             __html: `${post.description.slice(0, 180)}.....`,
           }}

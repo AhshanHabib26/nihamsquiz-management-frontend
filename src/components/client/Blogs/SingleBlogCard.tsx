@@ -49,7 +49,7 @@ const SingleBlogCard: React.FC<TBlogProps> = ({ post }) => {
       <div>
         <h1 className="text-xl font-semibold">{post?.title}</h1>
         <p
-          className=" text-[16px] font-light my-1 select-none"
+          className=" text-lg font-light my-1 select-none"
           dangerouslySetInnerHTML={{
             __html: `${post?.description}`,
           }}
