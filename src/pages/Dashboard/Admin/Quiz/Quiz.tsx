@@ -148,7 +148,7 @@ export const AllQuizPage = () => {
                 />
               ))}
             </div>
-            <div className="my-5">
+            <div className="my-5 flex items-end justify-end">
               <PaginationCard
                 page={page}
                 limit={limit}

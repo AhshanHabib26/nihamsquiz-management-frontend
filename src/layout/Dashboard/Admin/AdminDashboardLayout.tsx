@@ -57,7 +57,7 @@ export default function AdminDashboardLayout() {
         <DSidebar />
         <SidebarInset>
           <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b mr-5">
-            <div className="flex items-center gap-2 pl-2">
+            <div className="flex items-center gap-1 pl-1">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-1 h-4" />
               <div>
@@ -71,7 +71,7 @@ export default function AdminDashboardLayout() {
                   <p className="text-sm uppercase text-gray-600">{user?.role}</p>
                   <span className="text-gray-600">|</span>
                   <p className="text-gray-600">{greeting}</p>
-                  {icon}
+                  <span className=" hidden lg:block"> {icon}</span>
                 </div>
               </div>
             </div>

@@ -60,7 +60,9 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, deleteHandler, isActive, tog
                     type="radio"
                     name="mcq-option"
                     value={option}
-                    checked={mcq?.questions?.correctOption ? mcq?.questions?.correctOption === option : false}
+                    checked={
+                      showAnswer && option === mcq?.questions?.correctOption
+                    }
                   />
                   <MathJax inline>{option}</MathJax>
                 </label>

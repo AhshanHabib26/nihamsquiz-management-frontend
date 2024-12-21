@@ -5,7 +5,7 @@ const NotFoundPage = () => {
   return (
     <div>
       <div className="flex items-center justify-center h-screen flex-col">
-        <img src={NotFoundImg} width={400} height={400} alt="Not Found Image" />
+        <img src={NotFoundImg} width={200} height={200} alt="Not Found Image" />
         <div className="mt-4 bg-BgPrimary hover:bg-BgPrimaryHover p-3 rounded-md text-white text-md font-light">
           <Link to="/">Return Home</Link>
         </div>
