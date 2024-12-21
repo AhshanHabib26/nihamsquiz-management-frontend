@@ -54,7 +54,7 @@ const RecentBlogs = () => {
   return (
     <div className="shadow-md border-[0.5px] border-gray-800 rounded-md">
       <div className="bg-gray-900 rounded-t-md text-gray-300 p-2 shadow-sm">
-        <h1 className="text-lg hind-siliguri-semibold ml-2">Recent Blogs</h1>
+        <h1 className="text-lg font-semibold ml-2">Recent Blogs</h1>
       </div>
       <div className="p-4">
         <div>

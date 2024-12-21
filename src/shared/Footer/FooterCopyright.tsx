@@ -5,9 +5,9 @@ const FooterCopyright = () => {
   const fullYear: number = date.getFullYear();
 
   return (
-    <div className="text-white flex items-center justify-center">
-      <FaRegCopyright size={14} />
-      <p className="text-md hind-siliguri-light ml-1">
+    <div className="text-white flex justify-center ">
+      <FaRegCopyright size={16} className="mt-1" />
+      <p className="text-[16px] font-light ml-1">
         {fullYear} Nihamsquiz all rights reserved.{" "} Design and Develop by
         <a
           target="_blank"

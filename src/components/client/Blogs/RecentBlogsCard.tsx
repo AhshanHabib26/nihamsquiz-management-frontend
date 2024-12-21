@@ -16,7 +16,7 @@ const RecentBlogsCard: React.FC<Props> = ({ post, isLast }) => {
     >
       <Link to={`/blog/${post.slug}`}>
         <div className="flex items-center justify-between">
-          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-TextPrimary">
+          <h1 className=" my-1 text-[16px] font-light hover:text-TextPrimary">
             {post.title}
           </h1>
           <div>
@@ -24,7 +24,7 @@ const RecentBlogsCard: React.FC<Props> = ({ post, isLast }) => {
               <div>
                 {isNewBlog(post.createdAt) ? (
                   <div>
-                   <p className="text-sm text-red-500 capitalize italic">new</p>
+                   <p className="text-sm text-red-500 font-thin capitalize italic">new</p>
                   </div>
                 ) : (
                   <div>

@@ -12,20 +12,21 @@ const PopularBlogCard: React.FC<Props> = ({ post, isLast }) => {
       className={`text-gray-300 ${isLast ? "" : "border-b border-gray-800 border-dashed"
         }`}
     >
-      <div className="flex items-center justify-between">
-        <div className="my-1">
-          <p className="bg-gray-800 my-1 inline-block px-2 rounded text-sm hind-siliguri-light">
-            {post?.category?.title ? post?.category?.title : "Uncategorised"}
-          </p>
+      <div>
+        <p className="bg-gray-800 inline-block px-1 mt-2 rounded text-sm font-light">
+          {post?.category?.title ? post?.category?.title : "Uncategorised"}
+        </p>
+        <div className="flex items-center mb-1 justify-between">
           <Link to={`/blog/${post.slug}`}>
             <h1 className="text-[16px] hind-siliguri-medium hover:text-BgPrimary">
               {post.title}
             </h1>
           </Link>
+          <div>
+            <FaAngleRight className="text-gray-300" size={15} />
+          </div>
         </div>
-        <div>
-          <FaAngleRight className="text-gray-300" size={15} />
-        </div>
+
       </div>
     </div>
   );

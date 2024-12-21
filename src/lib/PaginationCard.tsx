@@ -39,6 +39,7 @@ export const PaginationCard: React.FC<PaginationCardProps> = ({
             <PaginationItem key={i}>
               <PaginationLink
                 className=" cursor-pointer"
+                size="sm"
                 onClick={() => onPageChange(i + 1)}
                 isActive={i + 1 === page}
               >

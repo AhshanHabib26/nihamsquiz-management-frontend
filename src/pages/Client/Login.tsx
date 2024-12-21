@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,7 +21,6 @@ import { toast } from "sonner";
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const [login] = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +42,7 @@ const LoginPage = () => {
       dispatch(setUser({ user, token: res.data.accessToken }));
 
       // Show success toast
-      toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
+      toast.success("Logged in successfully!", { id: toastId, duration: 1000 });
 
       // Early return if no access token is found
       if (!res.data.accessToken || !user) {
@@ -63,8 +62,13 @@ const LoginPage = () => {
           navigate("/");
           break;
       }
-    } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    } catch (error) {
+      if (error && typeof error === "object" && "data" in error) {
+        const errorMessage = (error as { data: { message: string } }).data.message;
+        toast.error(errorMessage || "Something went wrong!", { id: toastId, duration: 1000 });
+      } else {
+        toast.error("An unexpected error occurred.", { id: toastId, duration: 1000 });
+      }
     }
   };
 

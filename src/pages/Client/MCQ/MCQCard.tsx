@@ -16,12 +16,12 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, isActive, toggleShowDetails 
   }, [isActive]);
 
   return (
-    <div className="border border-gray-800 p-3 rounded-lg mb-2">
+    <div className="border border-gray-800 p-2 rounded-lg mb-2">
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-1">
-          <FaQuestion color="red" />
+        <div className="flex gap-1">
+          <FaQuestion color="red" size={16} className="mt-1" />
           <p
-            className="text-lg font-light cursor-pointer hover:text-TextPrimary"
+            className="text-[16px] font-light cursor-pointer hover:text-TextPrimary"
             onClick={toggleShowDetails}
           >
             <MathJax inline>{mcq?.questions?.questionText}</MathJax>
@@ -29,9 +29,9 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, isActive, toggleShowDetails 
         </div>
         <div className="flex items-center gap-2">
           {isActive ? (
-            <Eye onClick={toggleShowDetails} size={20} className="cursor-pointer" />
+            <Eye onClick={toggleShowDetails} size={16} className="cursor-pointer" />
           ) : (
-            <EyeOff onClick={toggleShowDetails} size={20} className="cursor-pointer" />
+            <EyeOff onClick={toggleShowDetails} size={16} className="cursor-pointer" />
           )}
         </div>
       </div>
@@ -43,7 +43,7 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, isActive, toggleShowDetails 
           <ul>
             {mcq?.questions?.options?.map((option, index) => (
               <li key={index}>
-                <label className="text-lg font-light">
+                <label className="text-[16px] font-light">
                   <input
                     className="mr-2"
                     type="radio"
@@ -64,17 +64,17 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, isActive, toggleShowDetails 
 
           <div className=" flex items-end justify-end">
             <button
-              className=" flex mt-3 items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className=" flex mt-3 items-center gap-1 p-2 bg-BgPrimary text-white rounded hover:bg-BgPrimaryHover"
               onClick={() => setShowAnswer((prev) => !prev)}
             >
               {showAnswer ? (
                 <>
-                  <EyeOff size={20} />
+                  <EyeOff size={16} />
                   Hide Answer
                 </>
               ) : (
                 <>
-                  <Eye size={20} />
+                  <Eye size={16} />
                   Show Answer
                 </>
               )}
@@ -84,11 +84,11 @@ export const MCQCard: React.FC<IMCQProps> = ({ mcq, isActive, toggleShowDetails 
           {showAnswer && (
             <>
               <Separator className=" my-3 bg-gray-800" />
-              <p className="text-green-600">
+              <p className="text-green-600 text-[16px] font-light">
                 <strong>Correct Answer:</strong>{" "}
                 <MathJax inline>{mcq?.questions?.correctOption}</MathJax>
               </p>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-[16px] font-light">
                 <strong>Explanation:</strong>{" "}
                 {mcq?.questions?.explanation ? (
                   <MathJax inline>{mcq?.questions?.explanation}</MathJax>

@@ -10,8 +10,11 @@ import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
+// http://localhost:5000/api/v1
+// https://nihamsquiz-management-server.vercel.app/api/v1
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://nihamsquiz-management-server.vercel.app/api/v1",
+  baseUrl: "http://localhost:5000/api/v1",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -46,7 +49,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     //* Send Refresh
     console.log("Sending refresh token");
 
-    const res = await fetch("https://nihamsquiz-management-server.vercel.app/api/v1/auth/refresh-token", {
+    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
       method: "POST",
       credentials: "include",
     });

@@ -99,13 +99,18 @@ const QuizDetails = () => {
 
   const handleToggle = async () => {
     try {
-      await reservePointsQuiz(data?.data?._id).unwrap();
-      setIsToggled((prev) => !prev);
+        await reservePointsQuiz(data?.data?._id).unwrap();
+        setIsToggled((prev) => !prev);
     } catch (error) {
-      console.error("Error during reservePointsQuiz:", error);
-      toast.error("Insufficient points to start the quiz.");
+        if (error && typeof error === "object" && "data" in error) {
+            const errorMessage = (error as { data: { message: string } }).data.message;
+            toast.error(errorMessage || "Something went wrong!");
+        } else {
+            toast.error("An unexpected error occurred.");
+        }
     }
-  };
+};
+
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -307,16 +312,15 @@ const QuizDetails = () => {
                   <div className="border border-gray-800 rounded-md p-4 relative">
                     <div>
                       <p
-                        className={`absolute top-0 right-0 w-[140px] py-1 text-center text-lg text-white hind-siliguri-light rounded-tr-sm ${
-                          timer > 0 ? "bg-green-600" : "bg-red-600"
-                        }`}
+                        className={`absolute top-0 right-0 w-[140px] py-1 text-center text-lg text-white hind-siliguri-light rounded-tr-sm ${timer > 0 ? "bg-green-600" : "bg-red-600"
+                          }`}
                       >
                         {isToggled &&
                           `Time Left: ${Math.floor(timer / 60)
                             .toString()
                             .padStart(2, "0")}:${(timer % 60)
-                            .toString()
-                            .padStart(2, "0")}`}
+                              .toString()
+                              .padStart(2, "0")}`}
                       </p>
                       <div>
                         {/* Display question progress */}
@@ -347,7 +351,7 @@ const QuizDetails = () => {
                                     value={option}
                                     checked={
                                       selectedAnswers[
-                                        `question-${currentQuestionIndex}`
+                                      `question-${currentQuestionIndex}`
                                       ] === option
                                     }
                                     onChange={handleOptionChange}
@@ -363,21 +367,20 @@ const QuizDetails = () => {
                         <div className="flex items-end justify-end">
                           <button
                             onClick={handleNextQuestion}
-                            className={`mt-2 px-6 py-2 ${
-                              selectedAnswers[
+                            className={`mt-2 px-6 py-2 ${selectedAnswers[
                                 `question-${currentQuestionIndex}`
                               ]
                                 ? "bg-orange-600"
                                 : "bg-gray-900"
-                            } text-white rounded`}
+                              } text-white rounded`}
                             disabled={
                               !selectedAnswers[
-                                `question-${currentQuestionIndex}`
+                              `question-${currentQuestionIndex}`
                               ]
                             } // Disable if no option selected
                           >
                             {currentQuestionIndex <
-                            data?.data?.questions.length - 1
+                              data?.data?.questions.length - 1
                               ? "Next"
                               : "Review"}
                           </button>

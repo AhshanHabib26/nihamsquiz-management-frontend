@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,7 +24,7 @@ const RegisterPage = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const toastId = toast.loading("Creating account");
     try {
       const userInfo = {
         firstname,
@@ -38,8 +38,56 @@ const RegisterPage = () => {
         toast.success(res.message);
         navigate(`/login`);
       }
-    } catch (err) {
-      toast.error("Something went wrong");
+    } catch (error) {
+      if (error && typeof error === "object") {
+        // Check if the error contains a nested structure with validation issues
+        if ("data" in error) {
+          const errorData = (error as { data: any }).data;
+
+          // Try to parse the message or issues if it's a JSON string
+          try {
+            const parsedMessage = JSON.parse(errorData.message);
+            if (Array.isArray(parsedMessage)) {
+              // Iterate through validation issues
+              parsedMessage.forEach((issue: any) => {
+                toast.error(issue.message || "Validation error occurred.", {
+                  id: toastId,
+                  duration: 1000,
+                });
+              });
+            } else {
+              toast.error(errorData.message || "Something went wrong!", {
+                id: toastId,
+                duration: 1000,
+              });
+            }
+          } catch {
+            toast.error(errorData.message || "Something went wrong!", {
+              id: toastId,
+              duration: 1000,
+            });
+          }
+        } else if ("err" in error) {
+          const err = (error as { err: any }).err;
+
+          if (err?.issues && Array.isArray(err.issues)) {
+            // Iterate through the `issues` array for detailed messages
+            err.issues.forEach((issue: any) => {
+              toast.error(issue.message || "Validation error occurred.", {
+                id: toastId,
+                duration: 1000,
+              });
+            });
+          } else {
+            toast.error("An unexpected error occurred.", { id: toastId, duration: 1000 });
+          }
+        } else {
+          toast.error("An unexpected error occurred.", { id: toastId, duration: 1000 });
+        }
+      } else {
+        toast.error("An unexpected error occurred.", { id: toastId, duration: 1000 });
+      }
+
     }
   };
 

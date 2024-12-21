@@ -27,16 +27,16 @@ const BlogCategory: React.FC<BlogCategoryProps> = ({
   return (
     <div className="shadow-md border-[0.5px] border-gray-800 rounded-md  my-5">
       <div className="bg-gray-900 rounded-t-md text-gray-300 p-2 shadow-sm">
-        <h1 className="text-lg hind-siliguri-semibold ml-2">All Category</h1>
+        <h1 className="text-lg font-semibold ml-2">All Category</h1>
       </div>
       <div className="p-4">
         <div>
           {data?.data?.map((category: TCategory) => (
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 my-1">
               <Tags size={20} className="text-gray-300" />
               <p
-                onClick={() => setSelectedCategoryId(category._id)}
-                className="text-lg hind-siliguri-light hover:text-TextPrimary cursor-pointer"
+                onClick={() => setSelectedCategoryId(category?._id)}
+                className="text-[16px] font-light hover:text-TextPrimary cursor-pointer"
               >
                 {category?.title}
               </p>

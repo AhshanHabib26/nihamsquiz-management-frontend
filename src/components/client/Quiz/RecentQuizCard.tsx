@@ -14,15 +14,15 @@ const RecentQuizCard: React.FC<Props> = ({ quiz, isLast }) => {
         isLast ? "" : "border-b border-gray-800 border-dashed"
       }`}
     >
-      <Link to={`/quiz/quiz-details/${quiz._id}`}>
+      <Link to={`/quiz/quiz-details/${quiz?._id}`}>
         <div className="flex items-center justify-between">
-          <h1 className="my-1 text-[17px] hind-siliguri-light hover:text-TextPrimary">
-            {quiz.title}
+          <h1 className="my-1 text-[16px] font-light hover:text-TextPrimary">
+            {quiz?.title}
           </h1>
           <div>
             {quiz?.createdAt && (
               <div>
-                {isNewBlog(quiz.createdAt) ? (
+                {isNewBlog(quiz?.createdAt) ? (
                   <div>
                     <p className="text-sm text-red-500 capitalize italic">new</p>
                   </div>
