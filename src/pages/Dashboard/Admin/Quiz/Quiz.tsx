@@ -139,7 +139,7 @@ export const AllQuizPage = () => {
           </div>
         ) : (
           <div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1">
               {data?.data?.map((quiz: TQuiz) => (
                 <QuizCard
                   quiz={quiz}

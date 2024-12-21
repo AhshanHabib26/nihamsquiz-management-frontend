@@ -96,7 +96,7 @@ export function USidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item, index) => (
               <Collapsible
                 key={item.title}
-                defaultOpen={index === 1}
+                defaultOpen={index === 0}
                 className="group/collapsible"
               >
                 <SidebarMenuItem>

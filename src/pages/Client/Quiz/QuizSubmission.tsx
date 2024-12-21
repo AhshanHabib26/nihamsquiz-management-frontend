@@ -53,7 +53,7 @@ const QuizSubmissionPage = () => {
   }).length;
 
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       <div className="mt-20 lg:mt-24 max-w-6xl mx-auto">
         <Container>
           <div className=" p-6 rounded-lg shadow-lg border border-gray-800">
