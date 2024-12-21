@@ -16,17 +16,18 @@ const DCountInfoCard: React.FC<CardProps> = ({
   label,
 }) => {
   return (
-    <div className={`shadow-xl border border-b rounded-t-lg`}>
-      <div className="flex items-center justify-between p-5">
-        <div>
-          <p className={`text-3xl font-semibold ${tColor}`}>{count ?? 0}</p>
-          <p className={`text-xl font-medium text-center ${tColor}`}>{label}</p>
-        </div>
-        <div>
+    <div className={`shadow `}>
+      <div className="flex items-center flex-col p-4">
+        <div className="flex items-center gap-2">
           <p>{icon}</p>
+          <p className={`text-2xl font-medium mt-1 ${tColor}`}>{count ?? 0}</p>
         </div>
+        <div>
+          <p className={`text-lg font-normal text-center ${tColor}`}>{label}</p>
+        </div>
+
       </div>
-      <div className={`${bColor} p-1 rounded-b-lg`}></div>
+      <div className={`${bColor} p-[2px] `}></div>
     </div>
   );
 };

@@ -6,10 +6,10 @@ const StatCard: React.FC<{ value: number; label: string; bg: string }> = ({
   bg,
 }) => (
   <div
-    className={`${bg} flex items-center justify-center flex-col p-4 lg:p-8 rounded-lg text-gray-700`}
+    className={`${bg} flex items-center justify-center flex-col p-3 lg:p-8 rounded-lg text-gray-700`}
   >
-    <h1 className="text-2xl">{value}</h1>
-    <p className="text-lg font-medium capitalize">{label}</p>
+    <h1 className="text-2xl font-medium">{value}</h1>
+    <p className="text-[16px] font-light capitalize">{label}</p>
   </div>
 );
 
@@ -19,15 +19,12 @@ const UQuizCard: React.FC<TProgressProps> = ({ progress }) => {
   const totalCorrectAnswers = progress?.totalCorrectAnswers || 0;
   const totalWrongAnswers = progress?.totalWrongAnswers || 0;
 
-
-  console.log(progress)
-
   return (
     <div className="my-5 grid grid-cols-2 lg:grid-cols-4 gap-5">
       <StatCard value={totalMarks} label="Total Marks" bg="bg-green-300" />
       <StatCard
         value={totalQuizzes}
-        label="Quizs Attempted"
+        label="Quiz Attempted"
         bg="bg-orange-300"
       />
       <StatCard

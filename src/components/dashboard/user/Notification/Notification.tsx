@@ -50,7 +50,7 @@ const Notification: React.FC<TUserProps> = ({ user }) => {
       <>
         <strong>🛑 You're on the Free Plan!</strong>
         <br />
-        🎉 Start with 100 points and explore our exams. Keep going to discover even more!
+        🎉 Start with {totalPoints ?? 0} points and explore our exams. Keep going to discover even more!
       </>
     );
     bgColor = "bg-red-200";

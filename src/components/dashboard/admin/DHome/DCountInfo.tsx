@@ -1,7 +1,7 @@
-import Container from "@/lib/Container";
+
 import { useGetAllDashboardCountsQuery } from "@/redux/features/dashboard/dashboardApi";
 import { setLoading } from "@/redux/features/global/globalSlice";
-import { FileQuestion, Layers2, MessageCircle, UserRound } from "lucide-react";
+import {  FileQuestion, Grip, MessageCircle, PackageOpen, UserRound } from "lucide-react";
 import { useEffect } from "react";
 import { FaBook } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
@@ -17,45 +17,75 @@ const DCountInfo = () => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
 
+  console.log(data)
+
   const cardData = [
     {
       count: data?.data?.userCount,
-      icon: <UserRound size={30} className="text-blue-500" />,
+      icon: <UserRound size={25} className="text-blue-500" />,
       bColor: "bg-blue-500",
       tColor: "text-blue-500",
       label: "User",
     },
     {
       count: data?.data?.postCount,
-      icon: <FaBook size={30} className="text-cyan-500" />,
+      icon: <FaBook size={25} className="text-cyan-500" />,
       bColor: "bg-cyan-500",
       tColor: "text-cyan-500",
       label: "Blog Post",
     },
     {
       count: data?.data?.postCategoryCount,
-      icon: <Layers2 size={30} className="text-red-500" />,
-      bColor: "bg-red-500",
-      tColor: "text-red-500",
+      icon: <FaBook size={25} className="text-cyan-500" />,
+      bColor: "bg-cyan-500",
+      tColor: "text-cyan-500",
       label: "Blog Category",
     },
     {
-      count: data?.data?.quizCount,
-      icon: <FileQuestion size={30} className="text-green-500" />,
+      count: data?.data?.examCount,
+      icon: <FileQuestion size={25} className="text-green-500" />,
       bColor: "bg-green-500",
       tColor: "text-green-500",
-      label: "Quiz",
+      label: "Exam Set",
     },
     {
-      count: data?.data?.quizCategoryCount,
-      icon: <Layers2 size={30} className="text-orange-500" />,
+      count: data?.data?.examCategoryCount,
+      icon: <FileQuestion size={25} className="text-green-500" />,
+      bColor: "bg-green-500",
+      tColor: "text-green-500",
+      label: "Exam Category",
+    },
+    {
+      count: data?.data?.totalParticipate,
+      icon: <FileQuestion size={25} className="text-green-500" />,
+      bColor: "bg-green-500",
+      tColor: "text-green-500",
+      label: "Exam Participate",
+    },
+    {
+      count: data?.data?.mcqCount,
+      icon: <Grip size={25} className="text-orange-500" />,
       bColor: "bg-orange-500",
       tColor: "text-orange-500",
-      label: "Quiz Category",
+      label: "MCQ",
+    },
+    {
+      count: data?.data?.mcqCategoryCount,
+      icon: <Grip size={25} className="text-orange-500" />,
+      bColor: "bg-orange-500",
+      tColor: "text-orange-500",
+      label: "MCQ Category",
+    },
+    {
+      count: data?.data?.packageCount,
+      icon: <PackageOpen size={25} className="text-slate-500" />,
+      bColor: "bg-slate-500",
+      tColor: "text-slate-500",
+      label: "Active Package",
     },
     {
       count: data?.data?.commentCount,
-      icon: <MessageCircle size={30} className="text-emerald-500" />,
+      icon: <MessageCircle size={25} className="text-emerald-500" />,
       bColor: "bg-emerald-500",
       tColor: "text-emerald-500",
       label: "Comments",
@@ -63,20 +93,18 @@ const DCountInfo = () => {
   ];
 
   return (
-    <Container>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {cardData.map((card, index) => (
-          <DCountInfoCard
-            key={index}
-            count={card.count}
-            icon={card.icon}
-            bColor={card.bColor}
-            label={card.label}
-            tColor={card.tColor}
-          />
-        ))}
-      </div>
-    </Container>
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      {cardData.map((card, index) => (
+        <DCountInfoCard
+          key={index}
+          count={card.count}
+          icon={card.icon}
+          bColor={card.bColor}
+          label={card.label}
+          tColor={card.tColor}
+        />
+      ))}
+    </div>
   );
 };
 
