@@ -62,6 +62,13 @@ const submissionApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Submission"],
     }),
+    delteSubmissionQuiz: builder.mutation({
+      query: (id) => ({
+        url: `/submission/delete-submission/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Submission"],
+    }),
     getUserQuizSubmissions: builder.query({
       query: () => ({
         url: "/submission/quiz-submissions",
@@ -85,5 +92,6 @@ export const {
   useGetUserQuizSubmissionsQuery,
   useSubmitQuizMutation,
   useGetUserQuizProgressReportQuery,
-  useGetAllUserQuizSubmissionQuery
+  useGetAllUserQuizSubmissionQuery,
+  useDelteSubmissionQuizMutation
 } = submissionApi;

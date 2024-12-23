@@ -61,13 +61,12 @@ const UQuizListCard: React.FC<TQuizProps> = ({ quiz }) => {
                 <div className="flex items-center gap-1">
                   <IoPricetagsOutline className=" text-gray-700" size={18} />
                   <p
-                    className={`text-md text-gray-700 hind-siliguri-light ${
-                      quiz.difficultyLevel === "Easy"
-                        ? "text-orange-500"
-                        : quiz.difficultyLevel === "Medium"
+                    className={`text-md text-gray-700 hind-siliguri-light ${quiz.difficultyLevel === "Easy"
+                      ? "text-orange-500"
+                      : quiz.difficultyLevel === "Medium"
                         ? "text-red-500"
                         : "text-green-500"
-                    }`}
+                      }`}
                   >
                     {quiz.difficultyLevel}
                   </p>
@@ -85,20 +84,18 @@ const UQuizListCard: React.FC<TQuizProps> = ({ quiz }) => {
               <div className="flex gap-1 items-center">
                 <Gem className=" text-gray-700" size={18} />
                 <h1 className="text-gray-700">
-                Points Required: {quiz?.pointsRequired}
+                  Points Required: {quiz?.pointsRequired}
                 </h1>
               </div>
               <div className="flex gap-1 items-center">
                 <Layers3 className=" text-gray-700" size={18} />
                 <div className="flex items-center gap-1">
-                  {quiz?.tags?.map((t: string, index: number) => (
+                  {quiz?.tags?.slice(0, 2).map((t: string, index: number) => (
                     <div
                       key={index}
-                      className="border-[0.5px] border-dashed px-3 py-[2px] text-sm border-gray-300 rounded-sm hover:text-TextPrimary hover:border-blue-700 cursor-pointer"
+                      className="border-[0.5px] border-dashed px-3 py-[2px] text-sm border-gray-300 rounded-sm"
                     >
-                      <Link to={`/quiz/label/${t}`}>
-                        <p className="hind-siliguri-light">{t}</p>
-                      </Link>
+                      <p className="hind-siliguri-light">{t}</p>
                     </div>
                   ))}
                 </div>

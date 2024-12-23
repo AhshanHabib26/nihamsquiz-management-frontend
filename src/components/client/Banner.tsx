@@ -1,8 +1,13 @@
 import Container from "@/lib/Container";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const Banner = () => {
+
+  const token = useAppSelector(useCurrentToken);
+
   return (
     <div>
       <Container>
@@ -17,14 +22,23 @@ const Banner = () => {
               the fun today!
             </p>
             <div>
-              <Link to="/login">
-                <Button
-                  size="lg"
-                  className=" bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
-                >
-                  Get Started
-                </Button>
-              </Link>
+              {
+                token ? <Link to="/blog">
+                  <Button
+                    size="lg"
+                    className=" bg-green-500 hover:bg-green-600 text-lg font-light"
+                  >
+                    Explore Now
+                  </Button>
+                </Link> : <Link to="/login">
+                  <Button
+                    size="lg"
+                    className=" bg-BgPrimary hover:bg-BgPrimaryHover text-lg font-light"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              }
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ const BlogCard: React.FC<TBlogProps> = ({ post }) => {
   };
 
   return (
-    <div className="text-gray-300 border border-gray-800 mb-4 p-3 rounded-lg">
+    <div  className="text-gray-300 border border-gray-800 mb-4 p-3 rounded-lg">
     
       <div>
         <Link className="hover:text-TextPrimary" to={`/blog/${post.slug}`}>

@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --radius: 0.5rem;
@@ -15,6 +16,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -29,43 +31,16 @@
 
 html,
 body {
-  height: 100%; /* Ensure the body and html elements take full height */
-  margin: 0; /* Remove default margin */
+  height: 100%;
+  /* Ensure the body and html elements take full height */
+  margin: 0;
+  /* Remove default margin */
 }
 
 body {
   color: #fff;
-
-  /* Fallback background color */
-  background-color: hsla(231, 100%, 1%, 1);
-
-  /* Gradient background */
-  background: linear-gradient(
-    90deg,
-    hsla(231, 100%, 1%, 1) 10%,
-    hsla(214, 100%, 4%, 1) 50%,
-    hsla(206, 100%, 3%, 1) 100%
-  );
-  background-repeat: no-repeat;
-
-  /* Vendor prefixes for compatibility */
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(231, 100%, 1%, 1) 10%,
-    hsla(214, 100%, 4%, 1) 50%,
-    hsla(206, 100%, 3%, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    90deg,
-    hsla(231, 100%, 1%, 1) 10%,
-    hsla(214, 100%, 4%, 1) 50%,
-    hsla(206, 100%, 3%, 1) 100%
-  );
-  background-repeat: no-repeat;
-
-  /* Ensure background covers the full screen */
-  background-size: cover;
-  background-attachment: fixed;
+  background:
+    linear-gradient(90deg, #000814 0%, #000914 50%);
   font-family: "Hind Siliguri", sans-serif;
 }
 

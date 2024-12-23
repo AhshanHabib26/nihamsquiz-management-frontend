@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Separator } from "@/components/ui/separator";
 import { setLoading } from "@/redux/features/global/globalSlice";
-import { useGetUserQuizSubmissionsQuery } from "@/redux/features/quiz/submission/submissionApi";
+import { useDelteSubmissionQuizMutation, useGetUserQuizSubmissionsQuery } from "@/redux/features/quiz/submission/submissionApi";
+import { TResponse } from "@/types";
 import { MathJax } from "better-react-mathjax";
 import { HardDrive } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // Define the structure of the quiz question and result
 interface IQuizQuestion {
@@ -23,6 +26,7 @@ interface IQuizResult {
 }
 
 interface IQuizSubmission {
+  _id: string;
   quizId: string;
   quizTitle: string;
   totalMarks: number;
@@ -41,6 +45,7 @@ const QuizSubmissions = ({
   separator: boolean;
 }) => {
   const { data, isLoading } = useGetUserQuizSubmissionsQuery({});
+  const [delteSubmissionQuiz] = useDelteSubmissionQuizMutation();
   const dispatch = useDispatch();
   const [expandedQuizId, setExpandedQuizId] = useState<string | null>(null);
 
@@ -52,9 +57,75 @@ const QuizSubmissions = ({
     setExpandedQuizId((prevId) => (prevId === quizId ? null : quizId));
   };
 
+
+  const deleteHandler = async (id: string) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to reset this exam? You cannot retrieve it again.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, reset it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
+
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Resetting...",
+        text: "Please wait while the exam is being reset.",
+        icon: "info",
+        allowOutsideClick: false,
+        showConfirmButton: false,
+      });
+
+      try {
+        const res = (await delteSubmissionQuiz(id)) as TResponse<any>;
+
+        if (res.error) {
+          Swal.fire({
+            title: "Error!",
+            text: res.error.data.message,
+            icon: "error",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        } else {
+          Swal.fire({
+            title: "Reset!",
+            text: "Exam reset successfully.",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false,
+          });
+        }
+      } catch (err: unknown) {
+        const errorMessage =
+          err instanceof Error
+            ? `Error: ${err.message}`
+            : "Something went wrong.";
+        Swal.fire({
+          title: "Error!",
+          text: errorMessage,
+          icon: "error",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } else {
+      Swal.fire({
+        title: "Cancelled",
+        text: "Exam resetting was cancelled.",
+        icon: "info",
+        timer: 1000,
+        showConfirmButton: false,
+      });
+    }
+  };
+
+
   return (
     <div>
-      <h2 className="text-xl font-semibold text-gray-700">{title && title}</h2>
+      <h2 className="text-xl font-semibold text-gray-700">{title && title} - ({data?.data?.length ?? 0})</h2>
       {separator && <Separator className="my-3" />}
 
       {data && data?.data?.length === 0 ? (
@@ -123,8 +194,8 @@ const QuizSubmissions = ({
                                       ? "green"
                                       : "red"
                                     : isCorrect
-                                    ? "green"
-                                    : "black",
+                                      ? "green"
+                                      : "black",
                                 }}
                               >
                                 <input
@@ -160,17 +231,27 @@ const QuizSubmissions = ({
               {/* Show summary and details button */}
               <div className="flex items-center justify-end mt-2">
                 <button
-                  className={`${
-                    expandedQuizId === submission.quizId
-                      ? "bg-red-500 hover:bg-red-700"
-                      : "bg-BgPrimary hover:bg-BgPrimaryHover"
-                  } text-white px-3 py-2 rounded-md`}
+                  className={`${expandedQuizId === submission.quizId
+                    ? "bg-green-500 hover:bg-green-700"
+                    : "bg-BgPrimary hover:bg-BgPrimaryHover"
+                    } text-white px-3 py-2 rounded-md`}
                   onClick={() => toggleDetails(submission.quizId)}
                 >
                   {expandedQuizId === submission.quizId
                     ? "Hide Details"
                     : "Show Details"}
                 </button>
+                <div>
+                  {expandedQuizId !== submission.quizId && (
+                    <button
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-md ml-2"
+                      onClick={() => deleteHandler(submission?._id)}
+                    >
+                      Reset Exam
+                    </button>
+                  )}
+                </div>
+
               </div>
             </li>
           ))}

@@ -75,7 +75,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col">
+    <div style={{
+      background:
+        "linear-gradient(90deg, rgba(12,18,23,1) 0%, rgba(20,13,25,1) 50%)",
+    }} className="flex items-center justify-center h-screen flex-col">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>

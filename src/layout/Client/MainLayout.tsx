@@ -11,7 +11,9 @@ const MainLayout = () => {
   return (
     <div>
       <TopNav />
-      <Outlet />
+      <div className=" min-h-screen">
+        <Outlet />
+      </div>
       {/* Render Footer only if not on the home page */}
       {!isHomePage && <Footer />}
     </div>

@@ -99,17 +99,17 @@ const QuizDetails = () => {
 
   const handleToggle = async () => {
     try {
-        await reservePointsQuiz(data?.data?._id).unwrap();
-        setIsToggled((prev) => !prev);
+      await reservePointsQuiz(data?.data?._id).unwrap();
+      setIsToggled((prev) => !prev);
     } catch (error) {
-        if (error && typeof error === "object" && "data" in error) {
-            const errorMessage = (error as { data: { message: string } }).data.message;
-            toast.error(errorMessage || "Something went wrong!");
-        } else {
-            toast.error("An unexpected error occurred.");
-        }
+      if (error && typeof error === "object" && "data" in error) {
+        const errorMessage = (error as { data: { message: string } }).data.message;
+        toast.error(errorMessage || "Something went wrong!");
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
-};
+  };
 
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -204,8 +204,8 @@ const QuizDetails = () => {
   const currentQuestion = data?.data?.questions[currentQuestionIndex];
 
   return (
-    <div className=" min-h-screen">
-      <div className=" mt-20 lg:mt-28">
+    <div>
+      <div className=" mt-20 lg:mt-28 min-h-screen">
         <Container>
           <div className="max-w-5xl mx-auto w-full ">
             {!isToggled && data?.data && (
@@ -368,10 +368,10 @@ const QuizDetails = () => {
                           <button
                             onClick={handleNextQuestion}
                             className={`mt-2 px-6 py-2 ${selectedAnswers[
-                                `question-${currentQuestionIndex}`
-                              ]
-                                ? "bg-orange-600"
-                                : "bg-gray-900"
+                              `question-${currentQuestionIndex}`
+                            ]
+                              ? "bg-orange-600"
+                              : "bg-gray-900"
                               } text-white rounded`}
                             disabled={
                               !selectedAnswers[

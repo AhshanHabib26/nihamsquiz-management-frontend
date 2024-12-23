@@ -94,7 +94,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col px-4 lg:px-0">
+    <div style={{
+      background:
+        "linear-gradient(90deg, rgba(12,18,23,1) 0%, rgba(20,13,25,1) 50%)",
+    }} className="flex items-center justify-center h-screen flex-col px-4 lg:px-0">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
