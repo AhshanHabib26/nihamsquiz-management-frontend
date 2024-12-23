@@ -120,7 +120,13 @@ export const AllMcqPage = () => {
   }, [isLoading, dispatch]);
 
   return (
-    <div>
+    <div className="mt-4">
+      <div className="mb-2">
+        <h1 className="text-xl font-semibold text-gray-700">
+          MCQ <span>({total})</span>
+        </h1>
+      </div>
+      <hr className="mb-4" />
       {
         user?.role === "admin" && <div>
           <div className="flex items-end justify-end mt-2 gap-2">

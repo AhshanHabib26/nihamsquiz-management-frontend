@@ -50,6 +50,16 @@ const data = {
       ],
     },
     {
+      title: "Feedback & Suggestions",
+      url: "#",
+      items: [
+        {
+          title: "Feedback",
+          url: "feedback",
+        },
+      ],
+    },
+    {
       title: "Settings",
       url: "#",
       items: [
@@ -79,7 +89,7 @@ export function USidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <Link to="/user/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
-                <img src={DLogoIcon} alt="Dashboard Logo" className="size-8" />
+                  <img src={DLogoIcon} alt="Dashboard Logo" className="size-8" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">Nihamsquiz</span>

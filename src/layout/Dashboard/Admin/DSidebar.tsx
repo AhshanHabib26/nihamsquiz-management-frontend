@@ -144,6 +144,16 @@ const data = {
       ],
     },
     {
+      title: "Feedback & Suggestions",
+      url: "#",
+      items: [
+        {
+          title: "Feedback",
+          url: "all-feedback",
+        },
+      ],
+    },
+    {
       title: "Settings",
       url: "#",
       items: [

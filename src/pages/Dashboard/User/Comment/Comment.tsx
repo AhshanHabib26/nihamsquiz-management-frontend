@@ -24,7 +24,7 @@ const UCommentPage = () => {
   }, [isLoading, dispatch]);
 
   return (
-    <div>
+    <div className="my-4">
       <div className="mb-4">
         <h1 className="text-xl font-semibold text-gray-700">
           Comment <span>({total})</span>

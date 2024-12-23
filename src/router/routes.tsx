@@ -40,6 +40,8 @@ import { CreateMcqPage } from "@/pages/Dashboard/Admin/Mcq/CreateMcq";
 import { AddMcqCategoryPage } from "@/pages/Dashboard/Admin/Mcq/AddMcqCategory";
 import MCQPage from "@/pages/Client/MCQ/MCQ";
 import SubmissionPage from "@/pages/Dashboard/Admin/Submission/Submission";
+import FeedbackPage from "@/pages/Dashboard/User/Feedback/Feedback";
+import AdminFeedbackPage from "@/pages/Dashboard/Admin/Feedback/Feedback";
 
 
 export const routes = createBrowserRouter([
@@ -175,6 +177,10 @@ export const routes = createBrowserRouter([
         element: <UserPage />,
       },
       {
+        path: "all-feedback",
+        element: <AdminFeedbackPage/>,
+      },
+      {
         path: "package",
         element: <PlanPage />,
       },
@@ -232,6 +238,10 @@ export const routes = createBrowserRouter([
       {
         path: "comment",
         element: <UCommentPage />,
+      },
+      {
+        path: "feedback",
+        element: <FeedbackPage />,
       },
       {
         path: "profile",

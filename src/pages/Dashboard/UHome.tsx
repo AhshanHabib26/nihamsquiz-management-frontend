@@ -16,7 +16,7 @@ const UHomePage = () => {
   }, [isLoading, dispatch]);
 
   return (
-    <div>
+    <div className="my-5">
       <div>
         <Notification user={data?.data} />
         <UHomeCard user={data?.data} />

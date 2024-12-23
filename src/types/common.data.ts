@@ -180,3 +180,14 @@ export interface IQuizUserSubmissionProps {
   deleteHandler?: (id: string) => void;
 }
 
+export interface IFeedback {
+  user: {
+    firstname: string;
+    lastname: string;
+    fullname: string;
+    email: string;
+  },
+  feedback: string;
+  response: string;
+  isResolved: boolean;
+}

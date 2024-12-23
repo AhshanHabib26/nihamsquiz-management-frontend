@@ -24,7 +24,13 @@ export const UPostPage = () => {
   }, [isLoading, dispatch]);
 
   return (
-    <div>
+    <div className="mt-4">
+       <div className="mb-2">
+        <h1 className="text-xl font-semibold text-gray-700">
+          Post <span>({total})</span>
+        </h1>
+      </div>
+      <hr className="mb-4" />
       {data?.data?.length === 0 ? (
         <div className="flex items-center justify-center flex-col mt-20">
           <HardDrive size={40} className=" text-gray-400" />
