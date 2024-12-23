@@ -149,6 +149,34 @@ export interface IMCQ {
 export interface IMCQProps {
   mcq: IMCQ;
   deleteHandler?: (id: string) => void;
-  isActive?: boolean; 
+  isActive?: boolean;
   toggleShowDetails?: () => void;
 }
+
+export interface IQuizUserSubmission {
+  _id: string;
+  quiz?: {
+    title: string;
+  };
+  user?: {
+    fullname: string;
+    initials: string;
+    totalPoints: number;
+    firstname: string;
+  };
+  answers?: string[];
+  results?: {
+    questionText: string;
+    userAnswer: string;
+    correctAnswer: string;
+    explanation: string
+  };
+  totalMarks?: number;
+  penaltyPerIncorrectAnswer?: number;
+  createdAt?: string;
+}
+export interface IQuizUserSubmissionProps {
+  quizSubmission: IQuizUserSubmission;
+  deleteHandler?: (id: string) => void;
+}
+

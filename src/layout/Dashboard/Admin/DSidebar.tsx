@@ -114,6 +114,16 @@ const data = {
       ],
     },
     {
+      title: "User Submission",
+      url: "#",
+      items: [
+        {
+          title: "All Submission",
+          url: "submission",
+        },
+      ],
+    },
+    {
       title: "Comments",
       url: "#",
       items: [

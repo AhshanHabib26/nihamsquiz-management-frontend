@@ -39,6 +39,7 @@ import { AllMcqPage } from "@/pages/Dashboard/Admin/Mcq/Mcq";
 import { CreateMcqPage } from "@/pages/Dashboard/Admin/Mcq/CreateMcq";
 import { AddMcqCategoryPage } from "@/pages/Dashboard/Admin/Mcq/AddMcqCategory";
 import MCQPage from "@/pages/Client/MCQ/MCQ";
+import SubmissionPage from "@/pages/Dashboard/Admin/Submission/Submission";
 
 
 export const routes = createBrowserRouter([
@@ -188,6 +189,10 @@ export const routes = createBrowserRouter([
       {
         path: "create-package/:id",
         element: <CreatePlanPage />,
+      },
+      {
+        path: "submission",
+        element: <SubmissionPage />,
       },
       {
         path: "profile",

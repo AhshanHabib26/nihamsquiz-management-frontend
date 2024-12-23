@@ -16,9 +16,7 @@ const DCountInfo = () => {
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading, dispatch]);
-
-  console.log(data)
-
+  
   const cardData = [
     {
       count: data?.data?.userCount,
