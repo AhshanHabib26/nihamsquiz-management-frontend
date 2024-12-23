@@ -14,6 +14,7 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { TUser } from "@/types/user.type";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -24,6 +25,7 @@ const LoginPage = () => {
   const [login] = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShow, setIsShow] = useState(false)
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -82,7 +84,7 @@ const LoginPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit}>
+          <form autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -90,6 +92,7 @@ const LoginPage = () => {
                   type="email"
                   name="email"
                   placeholder="example@gmail.com"
+                  autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -105,16 +108,39 @@ const LoginPage = () => {
                     Forgot your password?
                   </Link>
                 </div>
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="*********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <div className="relative">
+                  <label htmlFor="password" className="sr-only">Password</label>
+                  <Input
+                    id="password"
+                    type={isShow ? "text" : "password"}
+                    name="password"
+                    placeholder="*********"
+                    value={password}
+                    autoComplete="off"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <div className="absolute top-2 right-3">
+                    {isShow ? (
+                      <Eye
+                        size={20}
+                        onClick={() => setIsShow(false)}
+                        aria-label="Hide password"
+                        className="cursor-pointer"
+                      />
+                    ) : (
+                      <EyeOff
+                        size={20}
+                        onClick={() => setIsShow(true)}
+                        aria-label="Show password"
+                        className="cursor-pointer"
+                      />
+                    )}
+                  </div>
+                </div>
+
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full select-none">
                 Login
               </Button>
             </div>

@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -21,6 +22,7 @@ const RegisterPage = () => {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShow, setIsShow] = useState(false)
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,7 +103,7 @@ const RegisterPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit}>
+          <form autoComplete="off" onSubmit={onSubmit}>
             <div className="grid gap-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
@@ -111,6 +113,7 @@ const RegisterPage = () => {
                     value={firstname}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First Name"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -120,6 +123,7 @@ const RegisterPage = () => {
                     value={lastname}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last Name"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -130,20 +134,42 @@ const RegisterPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
+                  autoComplete="off"
                   placeholder="example@gmail.com"
                   required
                 />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <label htmlFor="password" className="sr-only">Password</label>
                 <Input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
+                  id="password"
+                  type={isShow ? "text" : "password"}
+                  name="password"
                   placeholder="*********"
+                  value={password}
+                  autoComplete="off"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
+                <div className="absolute top-2 right-3">
+                  {isShow ? (
+                    <Eye
+                      size={20}
+                      onClick={() => setIsShow(false)}
+                      aria-label="Hide password"
+                      className="cursor-pointer"
+                    />
+                  ) : (
+                    <EyeOff
+                      size={20}
+                      onClick={() => setIsShow(true)}
+                      aria-label="Show password"
+                      className="cursor-pointer"
+                    />
+                  )}
+                </div>
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full select-none">
                 Create an account
               </Button>
             </div>
