@@ -57,8 +57,8 @@ const QuizSubmissionPage = () => {
       <div className="mt-20 lg:mt-24 max-w-6xl mx-auto min-h-screen">
         <Container>
           <div className=" p-6 rounded-lg shadow-lg border border-gray-800">
-            <h1 className="text-2xl text-gray-300 font-bold mb-4 text-center flex items-center justify-center">
-              <span className="mr-2">📚</span>
+            <h1 className="text-xl md:text-2xl  lg:text-3xl text-gray-300 font-bold mb-4 text-center flex items-center justify-center">
+              <span className="mr-1">📚</span>
               Quiz Submission Details
             </h1>
 
@@ -77,7 +77,8 @@ const QuizSubmissionPage = () => {
                     key={question?._id}
                     className="border-b border-gray-800 pb-4"
                   >
-                    <h2 className="text-lg font-semibold mb-2 text-gray-300">
+                    <h2 className="text-lg font-normal mb-2 text-gray-300">
+                      Q {index + 1}:{" "}
                       <MathJax inline>{question?.questionText}</MathJax>
                     </h2>
                     <ul className="list-disc pl-5">
@@ -101,7 +102,7 @@ const QuizSubmissionPage = () => {
                       })}
                     </ul>
                     {isUserAnswerWrong && (
-                      <p className="text-red-600 mt-2">
+                      <p className="text-red-500 mt-2">
                         <strong>Your answer was incorrect.</strong> The correct
                         answer is:{" "}
                         <span className="text-green-700">

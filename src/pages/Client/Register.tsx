@@ -37,7 +37,7 @@ const RegisterPage = () => {
 
       const res = await register(userInfo).unwrap();
       if (res.success) {
-        toast.success(res.message);
+        toast.success(res.message, { id: toastId, duration: 1000 });
         navigate(`/login`);
       }
     } catch (error) {

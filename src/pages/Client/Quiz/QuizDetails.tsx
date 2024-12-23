@@ -205,7 +205,7 @@ const QuizDetails = () => {
 
   return (
     <div>
-      <div className=" mt-20 lg:mt-28 min-h-screen">
+      <div className=" mt-20 lg:mt-28">
         <Container>
           <div className="max-w-5xl mx-auto w-full ">
             {!isToggled && data?.data && (
@@ -270,10 +270,10 @@ const QuizDetails = () => {
                     </p>
                     <div className="flex items-center gap-2 text-md lg:text-lg font-medium text-gray-300 mt-2">
                       <p>Tags: </p>
-                      {data?.data?.tags.map((t: string, index: number) => (
+                      {data?.data?.tags.slice(0, 3).map((t: string, index: number) => (
                         <div
                           key={index}
-                          className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded hover:text-TextPrimary hover:border-blue-700"
+                          className="border-[0.5px] border-dashed px-3 py-1 text-sm border-gray-800 rounded"
                         >
                           <p className="font-light">{t}</p>
                         </div>
