@@ -44,44 +44,51 @@ const TopNav = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-5">
             <div>
+              <Link to="/">
               <h1 className="text-white text-xl uppercase hind-siliguri-semibold">
                 nihamsquiz
               </h1>
+              </Link>
             </div>
             <div className="hidden lg:block">
-              <div className="flex items-center gap-4">
-                <Link className="text-lg hover:text-TextPrimary" to="/">
-                  Home
-                </Link>
-                <Link className="text-lg hover:text-TextPrimary" to="/blog">
-                  Blog
-                </Link>
-                <Link className="text-lg hover:text-TextPrimary" to="/mcq">
-                  MCQ
-                </Link>
-                <Link className="text-lg hover:text-TextPrimary" to="/exam">
-                  Exam
-                </Link>
-                <Link
-                  className="text-lg hover:text-TextPrimary"
-                  to="/price-plan"
-                >
-                  Price Plan
-                </Link>
-                {/* <Link className="text-lg hover:text-TextPrimary" to="/about-us">
-                  About Us
-                </Link> */}
-                <>
-                  {user?.role && roleToDashboard[user.role] ? (
-                    <Link
-                      className="text-lg hover:text-TextPrimary"
-                      to={roleToDashboard[user.role]}
-                    >
-                      Dashboard
-                    </Link>
-                  ) : null}
-                </>
-              </div>
+              {
+                token && <div className="flex items-center gap-4">
+
+                  {/* <Link className="text-lg hover:text-TextPrimary" to="/about-us">
+                About Us
+              </Link> */}
+
+                  <Link className="text-lg hover:text-TextPrimary" to="/">
+                    Home
+                  </Link>
+                  <Link className="text-lg hover:text-TextPrimary" to="/blog">
+                    Blog & Suggestion
+                  </Link>
+                  <Link className="text-lg hover:text-TextPrimary" to="/mcq">
+                    Daily MCQ
+                  </Link>
+                  <Link className="text-lg hover:text-TextPrimary" to="/exam">
+                    Exam
+                  </Link>
+                  <Link
+                    className="text-lg hover:text-TextPrimary"
+                    to="/price-plan"
+                  >
+                    Price Plan
+                  </Link>
+
+                  <>
+                    {user?.role && roleToDashboard[user.role] ? (
+                      <Link
+                        className="text-lg hover:text-TextPrimary"
+                        to={roleToDashboard[user.role]}
+                      >
+                        Dashboard
+                      </Link>
+                    ) : null}
+                  </>
+                </div>
+              }
             </div>
           </div>
           <div>
@@ -132,53 +139,54 @@ const TopNav = () => {
                     </SheetTitle>
                     <hr className="border-dashed border-gray-700" />
                     <SheetDescription className="flex items-start flex-col">
-                      <div className="flex flex-col items-start gap-2 mt-3">
-                        <Link
-                          className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/"
-                        >
-                          <span className="flex items-center gap-1">
-                            <FaHome size={16} /> Home
-                          </span>
-                        </Link>
+                      {
+                        token && <div className="flex flex-col items-start gap-2 mt-3">
+                          <Link
+                            className="text-lg text-gray-300 hover:text-TextPrimary"
+                            to="/"
+                          >
+                            <span className="flex items-center gap-1">
+                              <FaHome size={16} /> Home
+                            </span>
+                          </Link>
 
-                        <Link
-                          className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/blog"
-                        >
-                          <span className="flex items-center gap-1">
-                            <FaDatabase size={16} /> Blog
-                          </span>
-                        </Link>
+                          <Link
+                            className="text-lg text-gray-300 hover:text-TextPrimary"
+                            to="/blog"
+                          >
+                            <span className="flex items-center gap-1">
+                              <FaDatabase size={16} /> Blog & Suggestion
+                            </span>
+                          </Link>
 
-                        <Link
-                          className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/mcq"
-                        >
-                          <span className="flex items-center gap-1">
-                            <FaQuestion size={16} /> MCQ
-                          </span>
-                        </Link>
+                          <Link
+                            className="text-lg text-gray-300 hover:text-TextPrimary"
+                            to="/mcq"
+                          >
+                            <span className="flex items-center gap-1">
+                              <FaQuestion size={16} /> Daily MCQ
+                            </span>
+                          </Link>
 
-                        <Link
-                          className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/exam"
-                        >
-                          <span className="flex items-center gap-1">
-                            <MdOutlineQuiz size={16} /> Exam
-                          </span>
-                        </Link>
+                          <Link
+                            className="text-lg text-gray-300 hover:text-TextPrimary"
+                            to="/exam"
+                          >
+                            <span className="flex items-center gap-1">
+                              <MdOutlineQuiz size={16} /> Exam
+                            </span>
+                          </Link>
 
-                        <Link
-                          className="text-lg text-gray-300 hover:text-TextPrimary"
-                          to="/price-plan"
-                        >
-                          <span className="flex items-center gap-1">
-                            <IoIosPricetags size={16} /> Price Plan
-                          </span>
-                        </Link>
+                          <Link
+                            className="text-lg text-gray-300 hover:text-TextPrimary"
+                            to="/price-plan"
+                          >
+                            <span className="flex items-center gap-1">
+                              <IoIosPricetags size={16} /> Price Plan
+                            </span>
+                          </Link>
 
-                        {/* <Link
+                          {/* <Link
                           className="text-lg text-gray-300 hover:text-TextPrimary"
                           to="/about-us"
                         >
@@ -187,18 +195,19 @@ const TopNav = () => {
                           </span>
                         </Link> */}
 
-                        <>
-                          {user?.role && roleToDashboard[user.role] ? (
-                            <Link
-                              className="text-lg text-gray-300 hover:text-TextPrimary"
-                              to={roleToDashboard[user.role]}
-                            >
-                              <span className="flex items-center gap-1"> <MdDashboard size={16} />  Dashboard</span>
-                            </Link>
-                          ) : null}
-                        </>
+                          <>
+                            {user?.role && roleToDashboard[user.role] ? (
+                              <Link
+                                className="text-lg text-gray-300 hover:text-TextPrimary"
+                                to={roleToDashboard[user.role]}
+                              >
+                                <span className="flex items-center gap-1"> <MdDashboard size={16} />  Dashboard</span>
+                              </Link>
+                            ) : null}
+                          </>
 
-                      </div>
+                        </div>
+                      }
                       {token ? (
                         <div className=" w-full mt-5">
                           <Button
