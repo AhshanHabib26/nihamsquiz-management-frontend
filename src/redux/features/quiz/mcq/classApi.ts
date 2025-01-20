@@ -2,17 +2,17 @@ import { baseApi } from "@/redux/api/baseApi";
 import { TResponseRedux } from "@/types";
 import { TMcq } from "@/types/common.data";
 
-const mcqCategoryApi = baseApi.injectEndpoints({
+const mcqClassApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createMcqCategory: builder.mutation({
+    createMcqClass: builder.mutation({
       query: (data) => ({
-        url: "/mcq/category",
+        url: "/classes",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["MCQCategory"],
+      invalidatesTags: ["Class"],
     }),
-    getAllMcqCategories: builder.query({
+    getAllMcqClasses: builder.query({
       query: (args = {}) => {
         const params = new URLSearchParams();
 
@@ -35,47 +35,47 @@ const mcqCategoryApi = baseApi.injectEndpoints({
         });
 
         return {
-          url: `/mcq/category?${params.toString()}`,
+          url: `/classes?${params.toString()}`,
           method: "GET",
         };
       },
       keepUnusedDataFor: 600,
-      providesTags: ["MCQCategory"],
+      providesTags: ["Class"],
       transformResponse: (response: TResponseRedux<TMcq[]>) => ({
         data: response.data,
         meta: response.meta,
       }),
     }),
 
-    updateMcqCategory: builder.mutation({
+    updateMcqClass: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/mcq/category/${id}`,
+        url: `/classes/${id}`,
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["MCQCategory"],
+      invalidatesTags: ["Class"],
     }),
-    deleteMcqCategory: builder.mutation({
+    deleteMcqClass: builder.mutation({
       query: (id) => ({
-        url: `/mcq/category/${id}`,
+        url: `/classes/${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["MCQCategory"],
+      invalidatesTags: ["Class"],
     }),
-    getSingleMcqCategory: builder.query({
+    getSingleMcqClass: builder.query({
       query: (id) => ({
-        url: `/mcq/category/${id}`,
+        url: `/classes/${id}`,
         method: "GET",
       }),
-      providesTags: ["MCQCategory"],
+      providesTags: ["Class"],
     }),
   }),
 });
 
 export const {
-  useCreateMcqCategoryMutation,
-  useDeleteMcqCategoryMutation,
-  useGetAllMcqCategoriesQuery,
-  useGetSingleMcqCategoryQuery,
-  useUpdateMcqCategoryMutation
-} = mcqCategoryApi;
+  useCreateMcqClassMutation,
+  useDeleteMcqClassMutation,
+  useGetAllMcqClassesQuery,
+  useGetSingleMcqClassQuery,
+  useUpdateMcqClassMutation
+} = mcqClassApi;

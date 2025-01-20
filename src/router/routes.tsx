@@ -37,11 +37,11 @@ import NotFoundPage from "@/pages/Client/NotFound/NotFound";
 import MySubmissionsPage from "@/pages/Dashboard/Admin/MySubmissions";
 import { AllMcqPage } from "@/pages/Dashboard/Admin/Mcq/Mcq";
 import { CreateMcqPage } from "@/pages/Dashboard/Admin/Mcq/CreateMcq";
-import { AddMcqCategoryPage } from "@/pages/Dashboard/Admin/Mcq/AddMcqCategory";
 import MCQPage from "@/pages/Client/MCQ/MCQ";
 import SubmissionPage from "@/pages/Dashboard/Admin/Submission/Submission";
 import FeedbackPage from "@/pages/Dashboard/User/Feedback/Feedback";
 import AdminFeedbackPage from "@/pages/Dashboard/Admin/Feedback/Feedback";
+import { AddChapterPage } from "@/pages/Dashboard/Admin/Mcq/AddChapter";
 
 
 export const routes = createBrowserRouter([
@@ -169,8 +169,8 @@ export const routes = createBrowserRouter([
         element: <CreateMcqPage />,
       },
       {
-        path: "mcq-category",
-        element: <AddMcqCategoryPage />,
+        path: "chapter",
+        element: <AddChapterPage />,
       },
       {
         path: "all-user",

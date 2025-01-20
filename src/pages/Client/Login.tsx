@@ -44,7 +44,7 @@ const LoginPage = () => {
       dispatch(setUser({ user, token: res.data.accessToken }));
 
       // Show success toast
-      toast.success("Logged in successfully!", { id: toastId, duration: 1000 });
+      toast.success("Logged in successfully!", { id: toastId, duration: 500 });
 
       // Early return if no access token is found
       if (!res.data.accessToken || !user) {
@@ -67,9 +67,9 @@ const LoginPage = () => {
     } catch (error) {
       if (error && typeof error === "object" && "data" in error) {
         const errorMessage = (error as { data: { message: string } }).data.message;
-        toast.error(errorMessage || "Something went wrong!", { id: toastId, duration: 1000 });
+        toast.error(errorMessage || "Something went wrong!", { id: toastId, duration: 500 });
       } else {
-        toast.error("An unexpected error occurred.", { id: toastId, duration: 1000 });
+        toast.error("An unexpected error occurred.", { id: toastId, duration: 500 });
       }
     }
   };

@@ -15,9 +15,9 @@ import { DashboardLoader } from "@/loader/DashboardLoader";
 import { TResponse } from "@/types";
 import { CategoryLoader } from "@/loader/CategoryLoader";
 import { useCreateMcqMutation, useGetSingleMcqQuery, useUpdateMcqMutation } from "@/redux/features/quiz/mcq/mcqApi";
-import { useGetAllMcqCategoriesQuery } from "@/redux/features/quiz/mcq/categoryApi";
 import UploadMcq from "./UploadMcq";
 import { Upload } from "lucide-react";
+import { useGetAllMcqChapteresQuery } from "@/redux/features/quiz/mcq/chapterApi";
 
 // Define the types for API responses and form data
 interface ICommon {
@@ -60,7 +60,7 @@ export const CreateMcqPage = () => {
     data: categoriesData,
     isFetching: isFetchingCategories,
     isError: isErrorCategories,
-  } = useGetAllMcqCategoriesQuery("");
+  } = useGetAllMcqChapteresQuery("");
 
 
   // Memoize categories to avoid unnecessary recalculations

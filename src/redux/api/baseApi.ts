@@ -89,7 +89,15 @@ export const baseApi = createApi({
     "Quiz",
     "Submission",
     "MCQCategory",
-    "Mcq"
+    "Mcq",
+    "Board",
+    "Chapter",
+    "Topic",
+    "University",
+    "School",
+    "Subject",
+    "Year",
+    "Class"
   ],
   endpoints: () => ({}),
 });

@@ -123,14 +123,17 @@ export type TProgressProps = {
 };
 
 
-export type TMcq = {
+export type TMcqChapter = {
   _id: string;
   name: string;
   slug: string;
+  subject: {
+    _id: string;
+  }
 };
 
-export type TMcqProps = {
-  mcq: TMcq;
+export type TMcqChapterProps = {
+  chapter: TMcqChapter;
 };
 
 export interface IMCQ {

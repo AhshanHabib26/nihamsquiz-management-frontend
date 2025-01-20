@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CategoryLoader } from "@/loader/CategoryLoader";
-import { useGetAllMcqCategoriesQuery } from "@/redux/features/quiz/mcq/categoryApi";
+import { useGetAllMcqChapteresQuery } from "@/redux/features/quiz/mcq/chapterApi";
 import { useUploadMcqMutation } from "@/redux/features/quiz/mcq/mcqApi";
 import { TResponse } from "@/types";
 import { X } from "lucide-react";
@@ -41,7 +41,7 @@ const UploadMcq = ({ openDialog, onClose }: UploadQuizProps) => {
     data: categoriesData,
     isFetching: isFetching,
     isError: isError,
-  } = useGetAllMcqCategoriesQuery("");
+  } = useGetAllMcqChapteresQuery("");
 
 
   // Memoize categories to avoid unnecessary recalculations

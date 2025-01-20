@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { setLoading } from "@/redux/features/global/globalSlice";
 import { useDispatch } from "react-redux";
 import { Tags } from "lucide-react";
-import { useGetAllMcqCategoriesQuery } from "@/redux/features/quiz/mcq/categoryApi";
+import { useGetAllMcqChapteresQuery } from "@/redux/features/quiz/mcq/chapterApi";
 
 type MCQCategoryProps = {
   setSelectedCategoryId: (id: string) => void;
@@ -14,7 +14,7 @@ const MCQCategory: React.FC<MCQCategoryProps> = ({
   setSelectedCategoryId,
 }) => {
   const dispatch = useDispatch();
-  const { data, isLoading } = useGetAllMcqCategoriesQuery(
+  const { data, isLoading } = useGetAllMcqChapteresQuery(
     {},
     {
       refetchOnMountOrArgChange: false,

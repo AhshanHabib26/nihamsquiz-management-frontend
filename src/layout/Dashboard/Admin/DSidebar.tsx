@@ -90,8 +90,8 @@ const data = {
           url: "create-mcq",
         },
         {
-          title: "MCQ Category",
-          url: "mcq-category",
+          title: "Chapter",
+          url: "chapter",
         },
       ],
     },
